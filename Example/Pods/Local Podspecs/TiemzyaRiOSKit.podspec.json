@@ -1,0 +1,46 @@
+{
+  "name": "TiemzyaRiOSKit",
+  "version": "1.0.0",
+  "summary": "This framework helps simplyfying some aspects of iOS development ...",
+  "description": "TODO: Add long description of the pod here ... must be longer than summary, mind you.",
+  "homepage": "https://github.com/tiemzyar/trik",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "tiemzyar": "tiemzyar@users.noreply.github.com"
+  },
+  "source": {
+    "git": "https://github.com/tiemzyar84/trik.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "swift_versions": "4.1",
+  "source_files": "TiemzyaRiOSKit/Classes/**/*",
+  "resource_bundles": {
+    "TiemzyaRiOSKit": [
+      "TiemzyaRiOSKit/Assets/**/*"
+    ]
+  },
+  "frameworks": [
+    "UIKit",
+    "CFNetwork",
+    "CoreData",
+    "CoreGraphics",
+    "QuartzCore",
+    "MobileCoreServices",
+    "SystemConfiguration",
+    "Security",
+    "MessageUI",
+    "ImageIO"
+  ],
+  "dependencies": {
+    "Alamofire": [
+      "~> 4.8.1"
+    ]
+  },
+  "swift_version": "4.1"
+}

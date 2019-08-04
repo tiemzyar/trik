@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>code_a2</key>
+		<string>AD</string>
+		<key>code_a3</key>
+		<string>AND</string>
+		<key>code_num</key>
+		<string>020</string>
+		<key>available</key>
+		<true/>
+		<key>names</key>
+		<dict>
+			<key>en</key>
+			<string>Andorra</string>
+			<key>de</key>
+			<string>Andorra</string>
+			<key>local</key>
+			<string>Andorra</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>code_a2</key>
+		<string>AE</string>
+		<key>code_a3</key>
+		<string>ARE</string>
+		<key>code_num</key>
+		<string>784</string>
+		<key>available</key>
+		<true/>
+		<key>names</key>
+		<dict>
+		</dict>
+	</dict>
+	<dict>
+		<key>code_a2</key>
+		<string>AF</string>
+		<key>code_a3</key>
+		<string>AFG</string>
+		<key>code_num</key>
+		<string>004</string>
+		<key>available</key>
+		<true/>
+		<key>names</key>
+		<dict>
+			<key>en</key>
+			<string>Afghanistan</string>
+			<key>de</key>
+			<string>Afghanistan</string>
+			<key>local</key>
+			<string>Afghānistān</string>
+		</dict>
+	</dict>
+</array>
+</plist>

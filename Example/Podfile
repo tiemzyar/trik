@@ -1,0 +1,33 @@
+# Official CocoaPods specs source
+source 'https://github.com/CocoaPods/Specs.git'
+# Other specs sources
+# source 'https://<specs-url>/specs.git'
+
+# Specify platform version
+platform :ios, "11.0"
+# Swift requires framework usage
+use_frameworks!
+
+# Define bundle of pods for usage only in specific targets
+def trik
+	pod 'TiemzyaRiOSKit', :path => '../'
+	#pod '<pod name>', '<version>'
+	#pod '<local or private pod name>', :path => '<path>'
+end
+
+target 'TiemzyaRiOSKit_Example' do
+	trik
+end
+
+target 'TiemzyaRiOSKit_UnitTests' do
+	trik
+end
+
+target 'TiemzyaRiOSKit_UITests' do
+	trik
+end
+
+pod 'Alamofire', '~> 4.8.1'
+#pod 'RNCryptor', '~> 5.0'
+#pod 'Locksmith', '~> 3.0'
+#pod 'Zip', '~> 1.0'

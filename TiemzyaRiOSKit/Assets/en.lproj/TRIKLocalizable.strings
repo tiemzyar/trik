@@ -1,0 +1,41 @@
+//
+//	Localizable.strings
+//	TiemzyaRiOSKit
+//
+//	Created by tiemzyar, on 08.07.15.
+//	Copyright (c) 2015 tiemzyar.
+//
+
+/* TRIKUtil */
+"TRIKUtil: Alert noNetwork Button Cancel" = "OK";
+"TRIKUtil: Alert noNetwork Message" = "Check network connection and try again!";
+"TRIKUtil: Alert noNetwork Title" = "No Network Connection";
+"TRIKUtil: Alert noWifi Button Cancel" = "Cancel";
+"TRIKUtil: Alert noWifi Button Destructive" = "Continue";
+"TRIKUtil: Alert noWifi Message" = "No Wifi Available";
+"TRIKUtil: Alert noWifi Title" =
+"You are currently not connected to a wifi network.
+
+Performing the selected action on a cellular network may induce additional costs from your network provider or reduce your available data volume significantly.
+
+Are you sure you want to continue?";
+
+
+/* TRIKLanguageOverlay */
+"LangOverlay: Actionsheet changeLanguage Button Cancel" = "Cancel";
+"LangOverlay: Actionsheet changeLanguage Button Destructive" = "Change";
+"LangOverlay: Actionsheet changeLanguage Title" = "Change Language?";
+"LangOverlay: Button Cancel" = "Cancel";
+"LangOverlay: Table Header Section 0" = "Selected Language";
+"LangOverlay: Table Header Section 1" = "Available Languages";
+
+/* TRIKCountryOverlay */
+"CSOverlay: Search Bar Placeholder" = "Country name";
+"CSOverlay: Segmented Controle Language Local" = "Local";
+"CSOverlay: Table Section Header" = "Select a Country";
+
+/* TRIKSearchBar */
+"SearchBar: Button Cancel Title" = "Cancel";
+
+/* TRIKPagingImageSlideShow */
+"PISlideShow: Label Page Indicator" = "Image";

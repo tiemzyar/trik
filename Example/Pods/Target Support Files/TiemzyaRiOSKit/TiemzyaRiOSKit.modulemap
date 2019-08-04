@@ -1,0 +1,6 @@
+framework module TiemzyaRiOSKit {
+  umbrella header "TiemzyaRiOSKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

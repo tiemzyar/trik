@@ -1,0 +1,18 @@
+//
+//	InfoPlist.strings
+//
+
+/* Application display name */
+CFBundleDisplayName = "TRIK Exp";
+
+/* Camera usage info string */
+//NSCameraUsageDescription = "The camera is used for ...";
+
+/* General location usage info string */
+//NSLocationUsageDescription = "Your location is used exclusively for ...";
+
+/* App in-use location usage info string */
+//NSLocationWhenInUseUsageDescription = "Your location is used exclusively for ...";
+
+/* Motion data usage info string */
+//NSMotionUsageDescription = "Device motion data is used for ...";

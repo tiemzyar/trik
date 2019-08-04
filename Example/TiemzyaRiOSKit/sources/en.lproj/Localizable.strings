@@ -1,0 +1,145 @@
+//
+//  Localizable.strings
+//  TiemzyaRiOSKit
+//
+//  Created by tiemzyar on 26.09.18.
+//  Copyright © 2018 tiemzyar.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+/* ActivityOverlayVC */
+"ActOverlayVC: Label Activity Style" = "Activity Style:";
+"ActOverlayVC: Label Example Desc" =
+"This view shows the usage of the Activity Overlay from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"ActOverlayVC: Label Progress Slider" = "Progress:";
+"ActOverlayVC: Label Use Button" = "Action Button:";
+
+/* AlertControllerExtVC */
+"ACExtVC: ActionSheet Test Button Cancel" = "Cancel";
+"ACExtVC: ActionSheet Test Button Destructive" = "Destroy";
+"ACExtVC: ActionSheet Test Title" = "Test Action Sheet";
+"ACExtVC: Alert Test Button Cancel" = "Cancel";
+"ACExtVC: Alert Test Button Destructive" = "Destroy";
+"ACExtVC: Alert Test Message" = "Test Message";
+"ACExtVC: Alert Test Title" = "Test Alert";
+"ACExtVC: Label Example Desc" =
+"This view shows the usage of the Alert Controller Extension from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+
+/* AutoDestroyOverlayVC */
+"ADOverlayVC: Label Destruction Delay" = "Destruction delay:";
+"ADOverlayVC: Label Example Desc" =
+"This view shows the usage of the Auto Destroy Overlay from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"ADOverlayVC: Label Tap To Destroy" = "Tap to destroy:";
+"ADOverlayVC: Button Add Overlay" = "Add Overlay";
+
+/* BigTouchZoneSliderVC */
+"BTZSliderVC: Button Dismiss" = "Dismiss Slider";
+"BTZSliderVC: Button Present" = "Present Slider";
+"BTZSliderVC: Label Digits Only" = "Digits allowed only!";
+"BTZSliderVC: Label Example Desc" =
+"This view shows the usage of the Big Touch Zone Slider from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"BTZSliderVC: Label Initial Value" = "Initial value:";
+"BTZSliderVC: Label Interval" = "Interval:";
+"BTZSliderVC: Label Max Value" = "Max value:";
+"BTZSliderVC: Label Min Value" = "Min value:";
+"BTZSliderVC: Label Slider Code" = "Slider (code):";
+"BTZSliderVC: Label Slider IB" = "Slider (IB):";
+"BTZSliderVC: Label Slider Style" = "Slider style:";
+
+/* CountryOverlayVC */
+"COverlayVC: Label Country Code Num Desc" = "ISO Code-N:";
+"COverlayVC: Label Country Code 2 Desc" = "ISO Code-2:";
+"COverlayVC: Label Country Code 3 Desc" = "ISO Code-3:";
+"COverlayVC: Label Country Name Desc" = "Name:";
+"COverlayVC: Label Example Desc" =
+"This view shows the usage of the Country Overlay from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"COverlayVC: Label Localization Enabled" = "Localization enabled:";
+"COverlayVC: Label Selected Country" = "Selected Country:";
+
+/* DBManagerVC */
+"DBManagerVC: Alert invalidEntry Button Cancel" = "OK";
+"DBManagerVC: Alert invalidEntry Message" = "Please set the entry's title.";
+"DBManagerVC: Alert invalidEntry Title" = "Invalid Entry";
+"DBManagerVC: Label Create Entry" = "Create entry:";
+"DBManagerVC: Label Creation Date" = "Created on:";
+"DBManagerVC: Label Example Desc" =
+"This view shows the usage of the Database Manager from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"DBManagerVC: Table Section Footer Plural" = "entries";
+"DBManagerVC: Table Section Footer Singular" = "entry";
+"DBManagerVC: Table Section Header" = "Stored Entries";
+"DBManagerVC: Text Field Entry Placeholder" = "Title";
+
+/* ISSOverlayVC */
+"ISSOverlayVC: Label Button Alpha" = "Button alpha";
+"ISSOverlayVC: Label Button Style" = "Button style";
+"ISSOverlayVC: Label Dismiss Enabled" = "Dismissable:";
+"ISSOverlayVC: Label Paging Enabled" = "Paging buttons:";
+"ISSOverlayVC: Label Preload Images" = "Preload images:";
+
+/* KeyboardAnimationVC */
+"KAnimVC: Label Example Desc" =
+"This view shows the usage of the Text Input View Controller from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+
+/* LanguageOverlayVC */
+"LOverlayVC: Label Example Desc" =
+"This view shows the usage of the Language Overlay from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"LOverlayVC: Overlay Title" = "Language Selection";
+
+/* OverlayVC */
+"OverlayVC: Button Dismiss" = "Dismiss Overlay";
+"OverlayVC: Button Present" = "Present Overlay";
+"OverlayVC: Label Color Style" = "Color Style:";
+"OverlayVC: Label Position" = "Position:";
+
+/* PagingISSOverlayVC */
+"PISSOverlayVC: Label Dual Layout" = "Dual image layout:";
+"PISSOverlayVC: Label Example Desc" =
+"This view shows the usage of the Paging Image Slide Show Overlay from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+
+/* ResourceUsageVC */
+"RUseVC: Label Example Desc" =
+"This view shows how to use resources from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";
+"RUseVC: Label Image Usage Desc" = "Use images:";
+"RUseVC: Label String Usage Desc" = "Use localized strings:";
+
+/* RootVC */
+"RootVC: Title" = "TRIK Framework Examples";
+"RootVC: Button Activity Overlay" = "Activity Overlay";
+"RootVC: Button Alert Controller Extension" = "Alert Controller Extension";
+"RootVC: Button Auto Destroy Overlay" = "Auto Destroy Overlay";
+"RootVC: Button Country Overlay" = "Country Overlay";
+"RootVC: Button Language Overlay" = "Language Overlay";
+"RootVC: Button Utility" = "Framework Utility";
+"RootVC: Button Static Image Slide Show Overlay" = "Static Image Slide Show Overlay";
+
+/* StaticISSOverlayVC */
+"SISSOverlayVC: Label Example Desc" =
+"This view shows the usage of the Static Image Slide Show Overlay from the TRIK framework.
+Implementation details can be found in the code of the view's controller.";

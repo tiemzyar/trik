@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="TRIKCountryTVCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TRIKCountryTVCell" id="KGk-i7-Jjw" customClass="TRIKCountryTVCell" customModule="TiemzyaRiOSKit">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="39.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Country Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-8P-r72">
+                        <rect key="frame" x="10" y="0.0" width="230" height="39.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3E-Qi-3RD">
+                        <rect key="frame" x="10" y="38.5" width="230" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="lnT-t9-Jud"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dAt-8P-r72" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0TK-P0-fNe"/>
+                    <constraint firstAttribute="bottom" secondItem="B3E-Qi-3RD" secondAttribute="bottom" id="5kH-6D-Ghf"/>
+                    <constraint firstAttribute="bottom" secondItem="dAt-8P-r72" secondAttribute="bottom" id="Ih2-nS-3gQ"/>
+                    <constraint firstAttribute="trailing" secondItem="dAt-8P-r72" secondAttribute="trailing" constant="10" id="N1L-uI-lXA"/>
+                    <constraint firstItem="B3E-Qi-3RD" firstAttribute="leading" secondItem="dAt-8P-r72" secondAttribute="leading" id="WUH-C7-8mN"/>
+                    <constraint firstItem="B3E-Qi-3RD" firstAttribute="trailing" secondItem="dAt-8P-r72" secondAttribute="trailing" id="kzB-KW-mcR"/>
+                    <constraint firstItem="dAt-8P-r72" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="nwp-Fl-DlC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="dAt-8P-r72" id="1hc-lb-hsk"/>
+                <outlet property="separatorLine" destination="B3E-Qi-3RD" id="eo1-xY-Vxi"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
