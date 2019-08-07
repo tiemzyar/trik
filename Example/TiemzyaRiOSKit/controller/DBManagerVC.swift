@@ -57,7 +57,8 @@ class DBManagerVC: ExampleVC {
 	@IBOutlet weak var createEntryLabel: UILabel!
 	
 	/// The controller's database manager instance
-	lazy var dbManager: TRIKDatabaseManager = TRIKDatabaseManager()
+	lazy var dbManager: TRIKDatabaseManager = TRIKDatabaseManager(databaseDirectory: .library)
+	// -> for options see documentation of TRIKDatabaseManager's designated initializer
 	
 	/// Text field for specifying the title of an entry that should be created
 	@IBOutlet weak var entryTF: UITextField!

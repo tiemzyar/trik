@@ -64,6 +64,23 @@ class DBManagerTests: XCTestCase {
 		super.tearDown()
 	}
 	
+	// MARK: Helper methods
+	/**
+	Creates a url to a persistent store (identically to TRIKDatabaseManager) subject to a passed base url and returns its path.
+	
+	- parameters:
+		- baseURL: The base url of the storage location
+	
+	- returns: Path of the created url
+	*/
+	private func getPersistentStorePath(forBaseURL baseURL: URL) -> String {
+		var storeURL = baseURL.appendingPathComponent(TRIKConstant.FileManagement.DirectoryName.coreData)
+		storeURL = storeURL.appendingPathComponent(self.dbManager.databaseName)
+		storeURL = storeURL.appendingPathExtension(TRIKConstant.FileManagement.FileExtension.sqlite)
+		
+		return storeURL.path
+	}
+	
 	// MARK: Test methods
 	func testManagerInitDefault() {
 		// Create database manager instance with default values
@@ -73,6 +90,41 @@ class DBManagerTests: XCTestCase {
 		// Assert instantiation succeeded
 		XCTAssertNotNil(self.dbManager.appDBObjectContext.persistentStoreCoordinator, "Persistent store coordinator should not be nil")
 		XCTAssertNotNil(self.dbManager.appDBObjectContext.persistentStoreCoordinator?.managedObjectModel, "Managed object model should not be nil")
+		
+		// Assert default database directory has been selected ('Documents')
+		XCTAssertEqual(self.dbManager.databaseDirectory, TRIKDatabaseManager.StorageDirectory.documents, "Database manager's database directory does not match expected directory")
+		
+		// Assert persistent store has been added to application documents directory
+		guard let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
+			XCTAssertTrue(false, "No application documents directory found")
+			return
+		}
+		
+		XCTAssertTrue(FileManager.default.fileExists(atPath: getPersistentStorePath(forBaseURL: baseURL)),
+					  "Persistent store does not exist at expected location")
+	}
+	
+	func testManagerInitWithLibraryDirectory() {
+		// Create database manager instance with library as storage directory
+		self.dbManager = nil
+		self.dbManager = TRIKDatabaseManager(databaseDirectory: .library)
+		self.dbManager.testBundle = Bundle(for: type(of: self))
+		
+		// Assert instantiation succeeded
+		XCTAssertNotNil(self.dbManager.appDBObjectContext.persistentStoreCoordinator, "Persistent store coordinator should not be nil")
+		XCTAssertNotNil(self.dbManager.appDBObjectContext.persistentStoreCoordinator?.managedObjectModel, "Managed object model should not be nil")
+		
+		// Assert 'Library' has been selected as database directory
+		XCTAssertEqual(self.dbManager.databaseDirectory, TRIKDatabaseManager.StorageDirectory.library, "Database manager's database directory does not match expected directory")
+		
+		// Assert persistent store has been added to application library directory
+		guard let baseURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last else {
+			XCTAssertTrue(false, "No application library directory found")
+			return
+		}
+		
+		XCTAssertTrue(FileManager.default.fileExists(atPath: getPersistentStorePath(forBaseURL: baseURL)),
+					  "Persistent store does not exist at expected location")
 	}
 	
 	func testManagerInitCustomContext() {

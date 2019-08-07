@@ -35,7 +35,17 @@ Class for simplifying the creation of an interaction with a CoreData database wi
 */
 public class TRIKDatabaseManager: NSObject {
 	// MARK: Nested types
+	/**
+	Enumeration of possible storage directories for the database manager's persistent store.
 	
+	Cases:
+	- library (persistent store gets added to a subdirectory of the application library directory)
+	- documents (persistent store gets added to a subdirectory of the application documents directory)
+	*/
+	public enum StorageDirectory: Int {
+		case library = 0
+		case documents
+	}
 
 	// MARK: Type properties
 	
@@ -72,7 +82,15 @@ public class TRIKDatabaseManager: NSObject {
 	
 	/// The database manager's persistent store coordinator
 	private lazy var appDBStoreCoordinator: NSPersistentStoreCoordinator? = { [unowned self] in
-		guard let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
+		var storageDirectoryURL: URL? = nil
+		if self.databaseDirectory == TRIKDatabaseManager.StorageDirectory.documents {
+			storageDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+		}
+		else {
+			storageDirectoryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last
+		}
+		
+		guard let baseURL = storageDirectoryURL else {
 			return nil
 		}
 		
@@ -118,6 +136,9 @@ public class TRIKDatabaseManager: NSObject {
 	/// Stores the name of the database that is used by the database manager
 	public private (set) var databaseName: String
 	
+	/// Stores the directory to which the database manager's persistent store should be added
+	public private (set) var databaseDirectory: TRIKDatabaseManager.StorageDirectory
+	
 	/// Stores the name of the data model that is used by the database manager
 	public private (set) var dataModelName: String
 	
@@ -135,11 +156,14 @@ public class TRIKDatabaseManager: NSObject {
 	-
 	If no context is passed on initialization, the database manager will create its own managed object context (of type .mainQueueConcurrencyType), using the parameter dbName for creating its persistent store coordinator (psc) and the parameter modelName for the psc's managed object model.
 	
-	The peristent store will then be created within the application documents directory, subdirectory TRIKConstant.FileManagement.DirectoryName.coreData.
+	Subject to the parameter dbDirectory the peristent store will then be created within the application documents or
+	library directory, subdirectory TRIKConstant.FileManagement.DirectoryName.coreData.
 	
-	If a custom context is passed, then the parameters dbName and modelName will be ignored.
+	If a custom context is passed, the parameters dbName and modelName will be ignored.
 	
 	- parameters:
+		- dbDirectory: Storage directory for the database
+					(default = TRIKDatabaseManager.StorageDirectory.documents)
 		- dbName: Name of the database to use
 					(default = TRIKConstant.FileManagement.FileName.CoreData.databaseDefault)
 		- modelName: Name of the data model to use
@@ -149,7 +173,8 @@ public class TRIKDatabaseManager: NSObject {
 	
 	- returns: A fully set up instance of TRIKDatabaseManager
 	*/
-	public init(databaseName dbName: String = TRIKConstant.FileManagement.FileName.CoreData.databaseDefault,
+	public init(databaseDirectory dbDirectory: TRIKDatabaseManager.StorageDirectory = TRIKDatabaseManager.StorageDirectory.documents,
+				databaseName dbName: String = TRIKConstant.FileManagement.FileName.CoreData.databaseDefault,
 				dataModelName modelName: String = TRIKConstant.FileManagement.FileName.CoreData.modelDefault,
 				managedObjectContext context: NSManagedObjectContext? = nil) {
 		// Trim possible file extensions from database name
@@ -160,6 +185,7 @@ public class TRIKDatabaseManager: NSObject {
 		trimmedModelName = modelName.replacingOccurrences(of: ".\(TRIKConstant.FileManagement.FileExtension.xcDataModel)", with: "")
 		trimmedModelName = modelName.replacingOccurrences(of: ".\(TRIKConstant.FileManagement.FileExtension.xcDataModelD)", with: "")
 		
+		self.databaseDirectory = dbDirectory
 		self.databaseName = trimmedDBName
 		self.dataModelName = trimmedModelName
 		
