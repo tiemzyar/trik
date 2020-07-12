@@ -21,7 +21,6 @@
 		0F36CD7631C0AAD5BB3B012B8F805C83 /* TRIKButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D604231C6E4363F32695F000616D839 /* TRIKButtonBack.png */; };
 		132E0F619E4338E5D1B27E4C72076B3F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06639F7A76DB8A9D0D0E41CDD7A6684 /* Notifications.swift */; };
 		143BF9A6306C76B105EEFAF9B3808765 /* TRIKButtonDismissDarkCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = F6585B85E3CDD2B148837C42678DBE59 /* TRIKButtonDismissDarkCircle.png */; };
-		1879182FD18FD4C43EDA6303AA516FA2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2495A263CEAD1E6C850A54A33E5760A /* MobileCoreServices.framework */; };
 		19166EA11F3F7BE2BD12490B275B5849 /* TRIKLanguageOverlayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9263EF34BC1FCC3B648480F28FDB6E /* TRIKLanguageOverlayDelegate.swift */; };
 		1945CD5D63A1C164AEAAA9A33E85571E /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 341BDAD0026CDA8E7BCE35AC122E1C8C /* Alamofire-dummy.m */; };
 		1986B50C74F1697EA43F68335C93CEB3 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE3D7EDCA41F256D471B40BBFD3FCE /* MultipartFormData.swift */; };
@@ -34,6 +33,7 @@
 		2AAD7D8CE89FB4D6067AC7DB706B9F29 /* TRIKButtonNextDarkRoundedRect.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4B140BE3FB468C1F7BED7A0384554B /* TRIKButtonNextDarkRoundedRect.png */; };
 		2C61B040BA6A9A7AE66C4D9BA26D5520 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640F61D5BEE8132009BAEAA65B587A4 /* SessionDelegate.swift */; };
 		2DB7A7C14E7AB2006B30A5198B5FBA7D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E169632639478DDA08BE64A3F450EC /* CoreData.framework */; };
+		32D6BB0824BB178B00603CDF /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D6BB0624BB158700603CDF /* CoreServices.framework */; };
 		33794660B8FF7D44F3DCBC773200B4BF /* TRIKUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E991A0A9B9DBCEF31A4A41FD99FD1E /* TRIKUtility.swift */; };
 		3571F958A3907B3A806E62D50C2550D4 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5460AD0F6241621B45A17AB23A8E5B7 /* NetworkReachabilityManager.swift */; };
 		389F530D25A6D9F969EA4D8656DD68EE /* TRIKButtonDismissLightRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 276F52416BBFCA8DE856FAD79B4B9235 /* TRIKButtonDismissLightRect.png */; };
@@ -204,6 +204,7 @@
 		27B59193113ED863AF8A7579501D396F /* TRIKZoomableImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKZoomableImage.swift; sourceTree = "<group>"; };
 		2B5B070FF3976242090D8C273C41B2F9 /* Pods-TiemzyaRiOSKit_UITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TiemzyaRiOSKit_UITests-Info.plist"; sourceTree = "<group>"; };
 		2F08FF93D7389DCD0C41147F60F1B6D5 /* TRIKButtonDismissDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissDarkRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissDarkRect.png; sourceTree = "<group>"; };
+		32D6BB0624BB158700603CDF /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		32DB5272AD01ECD0B09A86818A7754C4 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		33115EC2A5164913C68F8BD170389EEE /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		340B79196F75A74D55BECF8DD7A4EB4A /* TRIKButtonNextDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextDarkRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextDarkRect.png; sourceTree = "<group>"; };
@@ -365,10 +366,10 @@
 				BAA3C00B5EACF9D54CC0E3B34B21B8DB /* Foundation.framework in Frameworks */,
 				01C5FAF6BB7D43C3480E82DA581D370E /* ImageIO.framework in Frameworks */,
 				06BA43B1A78A0435E0CC06671D71FADC /* MessageUI.framework in Frameworks */,
-				1879182FD18FD4C43EDA6303AA516FA2 /* MobileCoreServices.framework in Frameworks */,
 				D8B6AB9366E956999A8518A48752CBE9 /* QuartzCore.framework in Frameworks */,
 				8079223AA1434D00E67497970905FACB /* Security.framework in Frameworks */,
 				0478E0614212F5CB069A149E4345874C /* SystemConfiguration.framework in Frameworks */,
+				32D6BB0824BB178B00603CDF /* CoreServices.framework in Frameworks */,
 				4BE0DDFD20183E573C56A4266D3FE1AA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +398,7 @@
 		15776F8103C9D6B324EA71C2C9EFC0C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32D6BB0624BB158700603CDF /* CoreServices.framework */,
 				8CC7C72C8324CBF9C23E96FAC86E6EA5 /* Alamofire.framework */,
 				52EB4C1ADAC8218D05FD303C14ACF8C5 /* iOS */,
 			);

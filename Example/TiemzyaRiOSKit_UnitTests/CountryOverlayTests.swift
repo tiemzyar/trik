@@ -175,7 +175,7 @@ class CountryOverlayTests: XCTestCase {
 	
 	func testCountryFileValidityCheck() {
 		let bundle = Bundle(for: type(of: self))
-		var testFileURL = URL(fileURLWithPath: applicationDocumentsDirectory())
+		var testFileURL = URL(fileURLWithPath: TRIKUtil.FileManagement.getApplicationDocumentsDirectoryURL().path)
 		testFileURL.appendPathComponent("NoPlist")
 		testFileURL.appendPathExtension(TRIKConstant.FileManagement.FileExtension.plist)
 		

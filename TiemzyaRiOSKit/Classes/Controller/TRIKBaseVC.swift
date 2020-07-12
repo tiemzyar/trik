@@ -84,8 +84,6 @@ open class TRIKBaseVC: UIViewController {
         super.viewDidLoad()
 		
 		self.titleLabel.text = self.titleLabelText
-		
-		self.automaticallyAdjustsScrollViewInsets = false
     }
 
 	// MARK: -

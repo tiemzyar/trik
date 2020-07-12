@@ -81,12 +81,12 @@ public class TRIKLanguageOverlay: TRIKOverlay {
 	private static var allLanguages: [Dictionary<String, Any>] = {
 		var applicationLanguages: [Dictionary<String, Any>] = []
 		
-		let externalFile = checkLanguagesFileValidity(forExternalFile: true)
+		let externalFile = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		if externalFile.valid {
 			applicationLanguages = externalFile.content!
 		}
 		else {
-			let internalFile = checkLanguagesFileValidity()
+			let internalFile = TRIKUtil.Language.checkLanguagesFileValidity()
 			if internalFile.valid {
 				applicationLanguages = internalFile.content!
 			}
@@ -325,7 +325,7 @@ extension TRIKLanguageOverlay {
 				if let available = dict[TRIKConstant.PLISTKey.Language.available] as? Bool {
 					if available {
 						if let code = dict[TRIKConstant.PLISTKey.Language.code] as? String {
-							if code == currentLanguage(withFallback: self.fallbackLanguage).languageCode {
+							if code == TRIKUtil.Language.currentLanguage(withFallback: self.fallbackLanguage).languageCode {
 								if let language = dict[TRIKConstant.PLISTKey.Language.name] as? String {
 									self.selectedLanguage = language
 									setLanguage = true

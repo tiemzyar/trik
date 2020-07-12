@@ -71,9 +71,9 @@ class UtilityVC: ExampleVC {
 		print("Print: \(code)")
 		
 		// Retrieve ISO 639-1 language code for the current application language ...
-		print("Current language: \(currentLanguage())")
+		print("Current language: \(TRIKUtil.Language.currentLanguage())")
 		// ... with optional fallback (if current language does not match any entry in a list of application languages)
-		print("Current language: \(currentLanguage(withFallback: TRIKConstant.Language.Code.german))")
+		print("Current language: \(TRIKUtil.Language.currentLanguage(withFallback: TRIKConstant.Language.Code.german))")
 		
 		// Retrieve localized strings from Localizable.strings of app bundle
 		self.exampleDescriptionLabel.text = localizedString(for: "RUseVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)

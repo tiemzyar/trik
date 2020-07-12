@@ -291,7 +291,7 @@ extension TRIKTextInputVC {
 		- notification: NSNotification.Name.UIKeyboardWillChangeFrame
 	*/
 	@objc private func keyboardFrameWillChange(notification: Notification?) {
-		if var appearNotification = self.keyboardAppearanceNotification, var appearInfoDict = appearNotification.userInfo, var frameInfoDict = notification?.userInfo, let keyboardFrame = frameInfoDict[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+		if var appearNotification = self.keyboardAppearanceNotification, var appearInfoDict = appearNotification.userInfo, let frameInfoDict = notification?.userInfo, let keyboardFrame = frameInfoDict[UIKeyboardFrameEndUserInfoKey] as? CGRect {
 			appearInfoDict[UIKeyboardFrameEndUserInfoKey] = keyboardFrame
 			appearNotification.userInfo = appearInfoDict
 			self.keyboardAppearanceNotification = appearNotification
