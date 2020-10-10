@@ -724,14 +724,6 @@ public struct TRIKConstant {
 		public static let availableLanguages = "TRIK Available Languages"
 		/// User default key selected language
 		public static let selectedLanguage = "TRIK Selected Language"
-		
-		/**
-		TRIK framework pdf reader specific user default keys.
-		*/
-		public struct TRIKReader {
-			/// User default key flatten UI
-			public static let flattenUI = "TRIK Flatten UI"
-		}
 	}
 	
 	//==============================================================================
@@ -766,7 +758,3 @@ public struct TRIKConstant {
 		public static let radius = 7.0
 	}
 }
-
-
-
-
