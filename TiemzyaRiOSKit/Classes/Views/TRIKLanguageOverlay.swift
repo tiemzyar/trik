@@ -280,7 +280,7 @@ public class TRIKLanguageOverlay: TRIKOverlay {
 		UserDefaults.standard.set(avaLangs, forKey: TRIKConstant.UserDefaults.appleLanguages)
 		UserDefaults.standard.synchronize()
 		
-		let userInfo: [String: Any] = [TRIKConstant.Notification.Key.selectedLanguage: self.selectedLanguage]
+		let userInfo: [String: Any] = [TRIKConstant.Notification.Key.selectedLanguage: self.selectedLanguage!]
 		NotificationCenter.default.post(name: TRIKConstant.Notification.Name.languageOverlayDidSelectLanguage,
 										object: nil,
 										userInfo: userInfo)

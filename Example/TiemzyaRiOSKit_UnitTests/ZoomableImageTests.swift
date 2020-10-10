@@ -85,28 +85,28 @@ class ZoomableImageTests: XCTestCase {
 		self.zoomableImage = TRIKZoomableImage(frame: CGRect.zero)
 		self.zoomableImage.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(self.zoomableImage)
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage,
+		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
 											  attribute: NSLayoutConstraint.Attribute.top,
 											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: view,
 											  attribute: NSLayoutConstraint.Attribute.top,
 											  multiplier: 1.0,
 											  constant: 0.0))
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage,
+		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
 											  attribute: NSLayoutConstraint.Attribute.leading,
 											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: view,
 											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: 0.0))
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage,
+		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
 											  attribute: NSLayoutConstraint.Attribute.centerX,
 											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: view,
 											  attribute: NSLayoutConstraint.Attribute.centerX,
 											  multiplier: 1.0,
 											  constant: 0.0))
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage,
+		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
 											  attribute: NSLayoutConstraint.Attribute.centerY,
 											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: view,

@@ -126,14 +126,14 @@ open class TRIKBaseVC: UIViewController {
 		let button = UIButton(type: UIButton.ButtonType.custom)
 		self.previousViewButton = button
 		self.previousViewButton.setImage(buttonImage, for: UIControl.State.normal)
-		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton,
+		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton!,
 		                                                         attribute: NSLayoutConstraint.Attribute.height,
 		                                                         relatedBy: NSLayoutConstraint.Relation.equal,
 		                                                         toItem: nil,
 		                                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 		                                                         multiplier: 1.0,
 		                                                         constant: TRIKBaseVC.buttonSideLength))
-		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton,
+		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton!,
 		                                                         attribute: NSLayoutConstraint.Attribute.width,
 		                                                         relatedBy: NSLayoutConstraint.Relation.equal,
 		                                                         toItem: nil,

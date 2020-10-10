@@ -599,36 +599,36 @@ extension TRIKCountryOverlay {
 			self.languageSwitch.layer.cornerRadius = TRIKOverlay.cornerRadius
 			self.languageSwitch.layer.borderWidth = 1.0
 			self.languageSwitch.layer.masksToBounds = true
-			var attributes: [String: Any] = [NSAttributedString.Key.font.rawValue: self.fontContent]
-			var selectedAttributes: [String: Any] = [:]
+			var attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: self.fontContent]
+			var selectedAttributes: [NSAttributedString.Key: Any] = [:]
 			switch self.style {
 			case .white:
-				attributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.black
-				selectedAttributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Grey.light
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.black
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.light
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.white
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .light:
-				attributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Grey.dark
-				selectedAttributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Grey.light
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.dark
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.light
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.Grey.light
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .dark:
-				attributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Grey.light
-				selectedAttributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Grey.dark
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.light
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.light
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .black:
-				attributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.white
-				selectedAttributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Grey.dark
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.white
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.black
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.light
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .tiemzyar:
-				attributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.Blue.tiemzyar
-				selectedAttributes[NSAttributedString.Key.foregroundColor.rawValue] = TRIKConstant.Color.white
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Blue.tiemzyar
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.white
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.white
 				self.languageSwitch.tintColor = TRIKConstant.Color.Blue.tiemzyar
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor

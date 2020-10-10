@@ -329,15 +329,15 @@ extension TRIKTextInputVC {
 		
 		let convertedActiveViewOrigin = convertOrigin(ofView: aView, toView: self.firstSubview)
 		let tabBarHeight = self.tabBarController?.tabBar.frame.size.height ?? 0.0
-		var distance = fabs(self.firstSubview.frame.size.height - (convertedActiveViewOrigin.y + aView.frame.size.height) - height) - tabBarHeight
+		var distance = abs(self.firstSubview.frame.size.height - (convertedActiveViewOrigin.y + aView.frame.size.height) - height) - tabBarHeight
 		
 		if self.useActiveViewKeyboardPadding {
 			let keyboardWouldNotOverlapActiveViewWithoutPadding = (self.firstSubview.frame.size.height - (height - tabBarHeight)) >= (convertedActiveViewOrigin.y + aView.frame.size.height)
 			if keyboardWouldNotOverlapActiveViewWithoutPadding {
-				distance = fabs(self.keyboardPadding) - distance
+				distance = abs(self.keyboardPadding) - distance
 			}
 			else {
-				distance += fabs(self.keyboardPadding)
+				distance += abs(self.keyboardPadding)
 			}
 			
 			if direction == .up {
