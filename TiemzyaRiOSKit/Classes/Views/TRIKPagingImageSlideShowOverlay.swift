@@ -547,45 +547,45 @@ extension TRIKPagingImageSlideShowOverlay {
 		self.addSubview(self.slideShowScrollView)
 		self.bringButtonsToFront()
 		self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: self.slideShowScrollView,
-																  attribute: NSLayoutAttribute.width,
-																  relatedBy: NSLayoutRelation.greaterThanOrEqual,
+																  attribute: NSLayoutConstraint.Attribute.width,
+																  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 																  toItem: nil,
-																  attribute: NSLayoutAttribute.notAnAttribute,
+																  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 																  multiplier: 1.0,
 																  constant: TRIKImageSlideShowOverlay.minWidth))
 		self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: self.slideShowScrollView,
-																  attribute: NSLayoutAttribute.height,
-																  relatedBy: NSLayoutRelation.greaterThanOrEqual,
+																  attribute: NSLayoutConstraint.Attribute.height,
+																  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 																  toItem: nil,
-																  attribute: NSLayoutAttribute.notAnAttribute,
+																  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 																  multiplier: 1.0,
 																  constant: TRIKImageSlideShowOverlay.minHeight))
 		self.addConstraint(NSLayoutConstraint(item: self.slideShowScrollView,
-											  attribute: NSLayoutAttribute.top,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.top,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.top,
+											  attribute: NSLayoutConstraint.Attribute.top,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.slideShowScrollView,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.slideShowScrollView,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.slideShowScrollView,
-											  attribute: NSLayoutAttribute.bottom,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 		self.setupSlideShowLayout()
@@ -595,46 +595,46 @@ extension TRIKPagingImageSlideShowOverlay {
 		self.pageLabelContainer.translatesAutoresizingMaskIntoConstraints = false
 		self.pageLabelContainer.addSubview(self.pageLabel)
 		self.pageLabelContainer.addConstraint(NSLayoutConstraint(item: self.pageLabel,
-																 attribute: NSLayoutAttribute.top,
-																 relatedBy: NSLayoutRelation.equal,
+																 attribute: NSLayoutConstraint.Attribute.top,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: self.pageLabelContainer,
-																 attribute: NSLayoutAttribute.top,
+																 attribute: NSLayoutConstraint.Attribute.top,
 																 multiplier: 1.0,
 																 constant: TRIKOverlay.padding))
 		self.pageLabelContainer.addConstraint(NSLayoutConstraint(item: self.pageLabel,
-																 attribute: NSLayoutAttribute.leading,
-																 relatedBy: NSLayoutRelation.equal,
+																 attribute: NSLayoutConstraint.Attribute.leading,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: self.pageLabelContainer,
-																 attribute: NSLayoutAttribute.leading,
+																 attribute: NSLayoutConstraint.Attribute.leading,
 																 multiplier: 1.0,
 																 constant: TRIKOverlay.padding))
 		self.pageLabelContainer.addConstraint(NSLayoutConstraint(item: self.pageLabel,
-																 attribute: NSLayoutAttribute.centerX,
-																 relatedBy: NSLayoutRelation.equal,
+																 attribute: NSLayoutConstraint.Attribute.centerX,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: self.pageLabelContainer,
-																 attribute: NSLayoutAttribute.centerX,
+																 attribute: NSLayoutConstraint.Attribute.centerX,
 																 multiplier: 1.0,
 																 constant: 0.0))
 		self.pageLabelContainer.addConstraint(NSLayoutConstraint(item: self.pageLabel,
-																 attribute: NSLayoutAttribute.centerY,
-																 relatedBy: NSLayoutRelation.equal,
+																 attribute: NSLayoutConstraint.Attribute.centerY,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: self.pageLabelContainer,
-																 attribute: NSLayoutAttribute.centerY,
+																 attribute: NSLayoutConstraint.Attribute.centerY,
 																 multiplier: 1.0,
 																 constant: 0.0))
 		self.addSubview(self.pageLabelContainer)
 		self.addConstraint(NSLayoutConstraint(item: self.pageLabelContainer,
-											  attribute: NSLayoutAttribute.top,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.top,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.top,
+											  attribute: NSLayoutConstraint.Attribute.top,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.pageLabelContainer,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 	}
@@ -671,59 +671,59 @@ extension TRIKPagingImageSlideShowOverlay {
 				let currentStack = self.imageStacks[index]
 				if index == 0 {	// Only first stack
 					self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentStack,
-																			  attribute: NSLayoutAttribute.leading,
-																			  relatedBy: NSLayoutRelation.equal,
+																			  attribute: NSLayoutConstraint.Attribute.leading,
+																			  relatedBy: NSLayoutConstraint.Relation.equal,
 																			  toItem: self.slideShowScrollView,
-																			  attribute: NSLayoutAttribute.leading,
+																			  attribute: NSLayoutConstraint.Attribute.leading,
 																			  multiplier: 1.0,
 																			  constant: 0.0))
 				}
 				else {	// All other stacks
 					let previousStack = self.imageStacks[index - 1]
 					self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentStack,
-																			  attribute: NSLayoutAttribute.leading,
-																			  relatedBy: NSLayoutRelation.equal,
+																			  attribute: NSLayoutConstraint.Attribute.leading,
+																			  relatedBy: NSLayoutConstraint.Relation.equal,
 																			  toItem: previousStack,
-																			  attribute: NSLayoutAttribute.trailing,
+																			  attribute: NSLayoutConstraint.Attribute.trailing,
 																			  multiplier: 1.0,
 																			  constant: 0.0))
 				}
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentStack,
-																		  attribute: NSLayoutAttribute.width,
-																		  relatedBy: NSLayoutRelation.equal,
+																		  attribute: NSLayoutConstraint.Attribute.width,
+																		  relatedBy: NSLayoutConstraint.Relation.equal,
 																		  toItem: self.slideShowScrollView,
-																		  attribute: NSLayoutAttribute.width,
+																		  attribute: NSLayoutConstraint.Attribute.width,
 																		  multiplier: 1.0,
 																		  constant: 0.0))
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentStack,
-																		  attribute: NSLayoutAttribute.height,
-																		  relatedBy: NSLayoutRelation.equal,
+																		  attribute: NSLayoutConstraint.Attribute.height,
+																		  relatedBy: NSLayoutConstraint.Relation.equal,
 																		  toItem: self.slideShowScrollView,
-																		  attribute: NSLayoutAttribute.height,
+																		  attribute: NSLayoutConstraint.Attribute.height,
 																		  multiplier: 1.0,
 																		  constant: 0.0))
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentStack,
-																		  attribute: NSLayoutAttribute.top,
-																		  relatedBy: NSLayoutRelation.equal,
+																		  attribute: NSLayoutConstraint.Attribute.top,
+																		  relatedBy: NSLayoutConstraint.Relation.equal,
 																		  toItem: self.slideShowScrollView,
-																		  attribute: NSLayoutAttribute.top,
+																		  attribute: NSLayoutConstraint.Attribute.top,
 																		  multiplier: 1.0,
 																		  constant: 0.0))
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentStack,
-																		  attribute: NSLayoutAttribute.bottom,
-																		  relatedBy: NSLayoutRelation.equal,
+																		  attribute: NSLayoutConstraint.Attribute.bottom,
+																		  relatedBy: NSLayoutConstraint.Relation.equal,
 																		  toItem: self.slideShowScrollView,
-																		  attribute: NSLayoutAttribute.bottom,
+																		  attribute: NSLayoutConstraint.Attribute.bottom,
 																		  multiplier: 1.0,
 																		  constant: 0.0))
 			}
 			
 			// Only last stack
 			self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: self.imageStacks[self.imageStacks.count - 1],
-																	  attribute: NSLayoutAttribute.trailing,
-																	  relatedBy: NSLayoutRelation.equal,
+																	  attribute: NSLayoutConstraint.Attribute.trailing,
+																	  relatedBy: NSLayoutConstraint.Relation.equal,
 																	  toItem: self.slideShowScrollView,
-																	  attribute: NSLayoutAttribute.trailing,
+																	  attribute: NSLayoutConstraint.Attribute.trailing,
 																	  multiplier: 1.0,
 																	  constant: 0.0))
 		}
@@ -740,50 +740,50 @@ extension TRIKPagingImageSlideShowOverlay {
 				
 				if previousImage == nil {	// Only first image
 					self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: cImage,
-																			  attribute: NSLayoutAttribute.leading,
-																			  relatedBy: NSLayoutRelation.equal,
+																			  attribute: NSLayoutConstraint.Attribute.leading,
+																			  relatedBy: NSLayoutConstraint.Relation.equal,
 																			  toItem: self.slideShowScrollView,
-																			  attribute: NSLayoutAttribute.leading,
+																			  attribute: NSLayoutConstraint.Attribute.leading,
 																			  multiplier: 1.0,
 																			  constant: 0.0))
 				}
 				else { // All other images
 					let pImage = previousImage!
 					self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: cImage,
-																			  attribute: NSLayoutAttribute.leading,
-																			  relatedBy: NSLayoutRelation.equal,
+																			  attribute: NSLayoutConstraint.Attribute.leading,
+																			  relatedBy: NSLayoutConstraint.Relation.equal,
 																			  toItem: pImage,
-																			  attribute: NSLayoutAttribute.trailing,
+																			  attribute: NSLayoutConstraint.Attribute.trailing,
 																			  multiplier: 1.0,
 																			  constant: 0.0))
 				}
 				
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: cImage,
-													  attribute: NSLayoutAttribute.width,
-													  relatedBy: NSLayoutRelation.equal,
+													  attribute: NSLayoutConstraint.Attribute.width,
+													  relatedBy: NSLayoutConstraint.Relation.equal,
 													  toItem: self.slideShowScrollView,
-													  attribute: NSLayoutAttribute.width,
+													  attribute: NSLayoutConstraint.Attribute.width,
 													  multiplier: 1.0,
 													  constant: 0.0))
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: cImage,
-													  attribute: NSLayoutAttribute.height,
-													  relatedBy: NSLayoutRelation.equal,
+													  attribute: NSLayoutConstraint.Attribute.height,
+													  relatedBy: NSLayoutConstraint.Relation.equal,
 													  toItem: self.slideShowScrollView,
-													  attribute: NSLayoutAttribute.height,
+													  attribute: NSLayoutConstraint.Attribute.height,
 													  multiplier: 1.0,
 													  constant: 0.0))
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: cImage,
-																		  attribute: NSLayoutAttribute.top,
-																		  relatedBy: NSLayoutRelation.equal,
+																		  attribute: NSLayoutConstraint.Attribute.top,
+																		  relatedBy: NSLayoutConstraint.Relation.equal,
 																		  toItem: self.slideShowScrollView,
-																		  attribute: NSLayoutAttribute.top,
+																		  attribute: NSLayoutConstraint.Attribute.top,
 																		  multiplier: 1.0,
 																		  constant: 0.0))
 				self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: cImage,
-																		  attribute: NSLayoutAttribute.bottom,
-																		  relatedBy: NSLayoutRelation.equal,
+																		  attribute: NSLayoutConstraint.Attribute.bottom,
+																		  relatedBy: NSLayoutConstraint.Relation.equal,
 																		  toItem: self.slideShowScrollView,
-																		  attribute: NSLayoutAttribute.bottom,
+																		  attribute: NSLayoutConstraint.Attribute.bottom,
 																		  multiplier: 1.0,
 																		  constant: 0.0))
 				
@@ -792,10 +792,10 @@ extension TRIKPagingImageSlideShowOverlay {
 			
 			// Only last image
 			self.slideShowScrollView.addConstraint(NSLayoutConstraint(item: currentImage!,
-																	  attribute: NSLayoutAttribute.trailing,
-																	  relatedBy: NSLayoutRelation.equal,
+																	  attribute: NSLayoutConstraint.Attribute.trailing,
+																	  relatedBy: NSLayoutConstraint.Relation.equal,
 																	  toItem: self.slideShowScrollView,
-																	  attribute: NSLayoutAttribute.trailing,
+																	  attribute: NSLayoutConstraint.Attribute.trailing,
 																	  multiplier: 1.0,
 																	  constant: 0.0))
 		}

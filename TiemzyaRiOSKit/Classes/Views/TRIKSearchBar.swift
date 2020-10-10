@@ -257,40 +257,40 @@ extension TRIKSearchBar {
 		self.searchField.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(searchField)
 		let minWidth = NSLayoutConstraint(item: self.searchField,
-		                                  attribute: NSLayoutAttribute.width,
-		                                  relatedBy: NSLayoutRelation.greaterThanOrEqual,
+		                                  attribute: NSLayoutConstraint.Attribute.width,
+		                                  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 		                                  toItem: nil,
-		                                  attribute: NSLayoutAttribute.notAnAttribute,
+		                                  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 		                                  multiplier: 1.0,
 		                                  constant: TRIKSearchBar.searchFieldMinWidth)
 		minWidth.priority = UILayoutPriority(rawValue: 750)
 		self.searchField.addConstraint(minWidth)
 		self.searchField.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                                  attribute: NSLayoutAttribute.height,
-		                                                  relatedBy: NSLayoutRelation.equal,
+		                                                  attribute: NSLayoutConstraint.Attribute.height,
+		                                                  relatedBy: NSLayoutConstraint.Relation.equal,
 		                                                  toItem: nil,
-		                                                  attribute: NSLayoutAttribute.notAnAttribute,
+		                                                  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 		                                                  multiplier: 1.0,
 		                                                  constant: self.searchFieldHeight))
 		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutAttribute.top,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.top,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self,
-		                                      attribute: NSLayoutAttribute.top,
+		                                      attribute: NSLayoutConstraint.Attribute.top,
 		                                      multiplier: 1.0,
 		                                      constant: self.searchFieldPadding))
 		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutAttribute.leading,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.leading,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self,
-		                                      attribute: NSLayoutAttribute.leading,
+		                                      attribute: NSLayoutConstraint.Attribute.leading,
 		                                      multiplier: 1.0,
 		                                      constant: self.searchFieldPadding))
 		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutAttribute.bottom,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.bottom,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self,
-		                                      attribute: NSLayoutAttribute.bottom,
+		                                      attribute: NSLayoutConstraint.Attribute.bottom,
 		                                      multiplier: 1.0,
 		                                      constant: -self.searchFieldPadding))
 		
@@ -301,39 +301,39 @@ extension TRIKSearchBar {
 		self.cancelButton.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: TRIKSearchBar.subviewSpacing, bottom: 0.0, right: TRIKSearchBar.subviewSpacing)
 		self.addSubview(self.cancelButton)
 		self.constraintCancelButtonWidth = NSLayoutConstraint(item: self.cancelButton,
-		                                                      attribute: NSLayoutAttribute.width,
-		                                                      relatedBy: NSLayoutRelation.equal,
+		                                                      attribute: NSLayoutConstraint.Attribute.width,
+		                                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                                      toItem: nil,
-		                                                      attribute: NSLayoutAttribute.notAnAttribute,
+		                                                      attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 		                                                      multiplier: 1.0,
 		                                                      constant: 0.0)
 		self.cancelButton.addConstraint(self.constraintCancelButtonWidth)
 		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutAttribute.trailing,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.trailing,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self.cancelButton,
-		                                      attribute: NSLayoutAttribute.leading,
+		                                      attribute: NSLayoutConstraint.Attribute.leading,
 		                                      multiplier: 1.0,
 		                                      constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-		                                      attribute: NSLayoutAttribute.top,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.top,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self.searchField,
-		                                      attribute: NSLayoutAttribute.top,
+		                                      attribute: NSLayoutConstraint.Attribute.top,
 		                                      multiplier: 1.0,
 		                                      constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-		                                      attribute: NSLayoutAttribute.bottom,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.bottom,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self.searchField,
-		                                      attribute: NSLayoutAttribute.bottom,
+		                                      attribute: NSLayoutConstraint.Attribute.bottom,
 		                                      multiplier: 1.0,
 		                                      constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-		                                      attribute: NSLayoutAttribute.trailing,
-		                                      relatedBy: NSLayoutRelation.equal,
+		                                      attribute: NSLayoutConstraint.Attribute.trailing,
+		                                      relatedBy: NSLayoutConstraint.Relation.equal,
 		                                      toItem: self,
-		                                      attribute: NSLayoutAttribute.trailing,
+		                                      attribute: NSLayoutConstraint.Attribute.trailing,
 		                                      multiplier: 1.0,
 		                                      constant: -self.searchFieldPadding))
 	}
@@ -343,10 +343,10 @@ extension TRIKSearchBar {
 	*/
 	private func customize() {
 		// Search field
-		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldDidBeginEditing(_:)), for: UIControlEvents.editingDidBegin)
+		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldDidBeginEditing(_:)), for: UIControl.Event.editingDidBegin)
 		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldDidEndEditing(_:)), for: .editingDidEnd)
-		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldTextDidChange(_:)), for: UIControlEvents.editingChanged)
-		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldDidReturn(_:)), for: UIControlEvents.editingDidEndOnExit)
+		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldTextDidChange(_:)), for: UIControl.Event.editingChanged)
+		self.searchField.addTarget(self, action: #selector(TRIKSearchBar.searchFieldDidReturn(_:)), for: UIControl.Event.editingDidEndOnExit)
 		
 		// Search field left view
 		let leftViewFrame = CGRect(x: 0.0,
@@ -378,7 +378,7 @@ extension TRIKSearchBar {
 		let rightView = UIView(frame: rightViewFrame)
 		self.clearButton = UIButton(frame: rightViewImageFrame)
 		let clearImage = UIImage(named: "TRIKButtonClear", in: TRIKUtil.trikResourceBundle(), compatibleWith: nil)
-		self.clearButton!.setBackgroundImage(clearImage, for: UIControlState.normal)
+		self.clearButton!.setBackgroundImage(clearImage, for: UIControl.State.normal)
 		self.clearButton!.addTarget(self, action: #selector(TRIKSearchBar.clearButtonTapped(_:)), for: .touchUpInside)
 		rightView.addSubview(self.clearButton!)
 		self.searchField.rightView = rightView
@@ -390,7 +390,7 @@ extension TRIKSearchBar {
 		                                           in: TRIKUtil.trikResourceBundle()!,
 												   and: TRIKConstant.FileManagement.FileName.localizedStrings,
 												   fallback: TRIKConstant.Language.Code.english),
-		                           for: UIControlState.normal)
+		                           for: UIControl.State.normal)
 		self.cancelButton.addTarget(self, action: #selector(TRIKSearchBar.cancelButtonTapped(_:)), for: .touchUpInside)
 	}
 }

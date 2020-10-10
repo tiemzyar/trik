@@ -105,7 +105,7 @@ public extension UIAlertController {
 			self.alertWindow!.windowLevel = windowLevel + 1
 		}
 		else {
-			self.alertWindow!.windowLevel = UIWindowLevelAlert
+			self.alertWindow!.windowLevel = UIWindow.Level.alert
 		}
 		
 		self.convertPresentationOrigin()
@@ -163,31 +163,31 @@ public extension UIAlertController {
 			rootView.translatesAutoresizingMaskIntoConstraints = false
 			rootView.addSubview(srcView)
 			srcView.addConstraint(NSLayoutConstraint(item: srcView,
-			                                         attribute: NSLayoutAttribute.width,
-			                                         relatedBy: NSLayoutRelation.equal,
+			                                         attribute: NSLayoutConstraint.Attribute.width,
+			                                         relatedBy: NSLayoutConstraint.Relation.equal,
 			                                         toItem: nil,
-			                                         attribute: NSLayoutAttribute.notAnAttribute,
+			                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 			                                         multiplier: 1.0,
 			                                         constant: srcView.frame.size.width))
 			srcView.addConstraint(NSLayoutConstraint(item: srcView,
-			                                         attribute: NSLayoutAttribute.height,
-			                                         relatedBy: NSLayoutRelation.equal,
+			                                         attribute: NSLayoutConstraint.Attribute.height,
+			                                         relatedBy: NSLayoutConstraint.Relation.equal,
 			                                         toItem: nil,
-			                                         attribute: NSLayoutAttribute.notAnAttribute,
+			                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 			                                         multiplier: 1.0,
 			                                         constant: srcView.frame.size.height))
 			rootView.addConstraint(NSLayoutConstraint(item: srcView,
-			                                                   attribute: NSLayoutAttribute.top,
-			                                                   relatedBy: NSLayoutRelation.equal,
+			                                                   attribute: NSLayoutConstraint.Attribute.top,
+			                                                   relatedBy: NSLayoutConstraint.Relation.equal,
 			                                                   toItem: rootView,
-			                                                   attribute: NSLayoutAttribute.top,
+			                                                   attribute: NSLayoutConstraint.Attribute.top,
 			                                                   multiplier: 1.0,
 			                                                   constant: srcView.frame.origin.y))
 			rootView.addConstraint(NSLayoutConstraint(item: srcView,
-			                                                   attribute: NSLayoutAttribute.leading,
-			                                                   relatedBy: NSLayoutRelation.equal,
+			                                                   attribute: NSLayoutConstraint.Attribute.leading,
+			                                                   relatedBy: NSLayoutConstraint.Relation.equal,
 			                                                   toItem: rootView,
-			                                                   attribute: NSLayoutAttribute.leading,
+			                                                   attribute: NSLayoutConstraint.Attribute.leading,
 			                                                   multiplier: 1.0,
 			                                                   constant: srcView.frame.origin.x))
 			

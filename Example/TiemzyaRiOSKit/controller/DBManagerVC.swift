@@ -126,8 +126,8 @@ class DBManagerVC: ExampleVC {
 			let locButtonTitleCancel = localizedString(for: "DBManagerVC: Alert invalidEntry Button Cancel",
 													   fallback: TRIKConstant.Language.Code.english)
 			
-			let invalidEntry = UIAlertController(title: locAlertTitle, message: locAlertMessage, preferredStyle: UIAlertControllerStyle.alert)
-			let action = UIAlertAction(title: locButtonTitleCancel, style: UIAlertActionStyle.default, handler: nil)
+			let invalidEntry = UIAlertController(title: locAlertTitle, message: locAlertMessage, preferredStyle: UIAlertController.Style.alert)
+			let action = UIAlertAction(title: locButtonTitleCancel, style: UIAlertAction.Style.default, handler: nil)
 			invalidEntry.addAction(action)
 			
 			invalidEntry.show(animated: true)
@@ -332,7 +332,7 @@ extension DBManagerVC: UITableViewDelegate {
 		- editingStyle: The editing style of the table view
 		- indexPath: Index path for current section and row
 	*/
-	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			self.dbManager.deleteObject(self.tableEntries[indexPath.row])
 			self.tableEntries.remove(at: indexPath.row)

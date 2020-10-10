@@ -73,16 +73,16 @@ class AlertControllerExtVC: ExampleVC {
 		
 		let testAS = UIAlertController(title: locAlertTitle,
 									   message: nil,
-									   preferredStyle: UIAlertControllerStyle.actionSheet)
+									   preferredStyle: UIAlertController.Style.actionSheet)
 		var action = UIAlertAction(title: locButtonTitleDestruct,
-								   style: UIAlertActionStyle.destructive,
+								   style: UIAlertAction.Style.destructive,
 								   handler: { [weak testAS] (destructiveAction) in
 									devLog("Destroyed")
 									testAS?.dismiss()
 		})
 		testAS.addAction(action)
 		action = UIAlertAction(title: locButtonTitleCancel,
-							   style: UIAlertActionStyle.cancel,
+							   style: UIAlertAction.Style.cancel,
 							   handler: { [weak testAS] (cancelAction) in
 								devLog("Cancelled")
 								testAS?.dismiss()
@@ -120,16 +120,16 @@ class AlertControllerExtVC: ExampleVC {
 		
 		let testAlert = UIAlertController(title: locAlertTitle,
 										  message: locAlertMessage,
-										  preferredStyle: UIAlertControllerStyle.alert)
+										  preferredStyle: UIAlertController.Style.alert)
 		var action = UIAlertAction(title: locButtonTitleDestruct,
-								   style: UIAlertActionStyle.destructive,
+								   style: UIAlertAction.Style.destructive,
 								   handler: { [weak testAlert] (destructiveAction) in
 									devLog("Destroyed")
 									testAlert?.dismiss()
 		})
 		testAlert.addAction(action)
 		action = UIAlertAction(title: locButtonTitleCancel,
-							   style: UIAlertActionStyle.cancel,
+							   style: UIAlertAction.Style.cancel,
 							   handler: { [weak testAlert] (cancelAction) in
 								devLog("Cancelled")
 								testAlert?.dismiss()

@@ -53,7 +53,7 @@ public extension UIDevice {
 		
 		let idiom = self.userInterfaceIdiom
 		let screenSize = UIScreen.main.bounds.size
-		let screenHeightPortrait = UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation) ? screenSize.height : screenSize.width
+		let screenHeightPortrait = UIApplication.shared.statusBarOrientation.isPortrait ? screenSize.height : screenSize.width
 //		let screenScale = UIScreen.main.scale
 		
 		if idiom == UIUserInterfaceIdiom.phone {

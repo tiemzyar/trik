@@ -121,9 +121,9 @@ open class TRIKTextInputVC: TRIKBaseVC, TRIKKeyboardViewAnimationDelegate {
 		}
 		
 		// Register for keyboard appearance and frame change notifications
-		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardWillAppear(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardFrameWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardWillDisappear(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardWillAppear(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardFrameWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardWillDisappear(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
     }
 
@@ -188,8 +188,8 @@ open class TRIKTextInputVC: TRIKBaseVC, TRIKKeyboardViewAnimationDelegate {
 		label.text = string
 		label.sizeToFit()
 		let originalFrame = CGRect(origin: label.frame.origin, size: CGSize(width: label.frame.size.width, height: height))
-		let insets = UIEdgeInsetsMake(0.0, TRIKTextInputVC.labelInsetLeft, 0.0, 0.0)
-		let paddedFrame = UIEdgeInsetsInsetRect(originalFrame, insets)
+		let insets = UIEdgeInsets.init(top: 0.0, left: TRIKTextInputVC.labelInsetLeft, bottom: 0.0, right: 0.0)
+		let paddedFrame = originalFrame.inset(by: insets)
 		label.frame = paddedFrame
 		label.backgroundColor = TRIKConstant.Color.clear
 		label.baselineAdjustment = UIBaselineAdjustment.alignCenters
@@ -258,7 +258,7 @@ extension TRIKTextInputVC {
 	*/
 	@objc private func keyboardWillAppear(notification: Notification) {
 		// Guard notification contains info dict, and dict contains keyboard frame
-		guard let infoDict = notification.userInfo, let keyboardFrame = infoDict[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+		guard let infoDict = notification.userInfo, let keyboardFrame = infoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
 			return
 		}
 		
@@ -291,8 +291,8 @@ extension TRIKTextInputVC {
 		- notification: NSNotification.Name.UIKeyboardWillChangeFrame
 	*/
 	@objc private func keyboardFrameWillChange(notification: Notification?) {
-		if var appearNotification = self.keyboardAppearanceNotification, var appearInfoDict = appearNotification.userInfo, let frameInfoDict = notification?.userInfo, let keyboardFrame = frameInfoDict[UIKeyboardFrameEndUserInfoKey] as? CGRect {
-			appearInfoDict[UIKeyboardFrameEndUserInfoKey] = keyboardFrame
+		if var appearNotification = self.keyboardAppearanceNotification, var appearInfoDict = appearNotification.userInfo, let frameInfoDict = notification?.userInfo, let keyboardFrame = frameInfoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+			appearInfoDict[UIResponder.keyboardFrameEndUserInfoKey] = keyboardFrame
 			appearNotification.userInfo = appearInfoDict
 			self.keyboardAppearanceNotification = appearNotification
 		}

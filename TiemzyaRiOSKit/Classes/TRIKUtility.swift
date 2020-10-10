@@ -478,9 +478,9 @@ extension TRIKUtil {
 					
 					let noNetwork = UIAlertController(title: locAlertTitle,
 													  message: locAlertMessage,
-													  preferredStyle: UIAlertControllerStyle.alert)
+													  preferredStyle: UIAlertController.Style.alert)
 					let action = UIAlertAction(title: locButtonTitleCancel,
-											   style: UIAlertActionStyle.default,
+											   style: UIAlertAction.Style.default,
 											   handler: nil)
 					noNetwork.addAction(action)
 					
@@ -514,15 +514,15 @@ extension TRIKUtil {
 					
 					let noWifi = UIAlertController(title: locAlertTitle,
 												   message: locAlertMessage,
-												   preferredStyle: UIAlertControllerStyle.alert)
+												   preferredStyle: UIAlertController.Style.alert)
 					var action = UIAlertAction(title: locButtonTitleDestructive,
-											   style: UIAlertActionStyle.destructive,
+											   style: UIAlertAction.Style.destructive,
 											   handler: { (destructiveAction) in
 												NotificationCenter.default.post(name: TRIKConstant.Notification.Name.noWifiWarningContinue, object: nil)
 					})
 					noWifi.addAction(action)
 					action = UIAlertAction(title: locButtonTitleCancel,
-										   style: UIAlertActionStyle.cancel,
+										   style: UIAlertAction.Style.cancel,
 										   handler: { (cancelAction) in
 											NotificationCenter.default.post(name: TRIKConstant.Notification.Name.noWifiWarningCancel, object: nil)
 					})

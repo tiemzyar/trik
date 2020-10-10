@@ -317,78 +317,78 @@ extension TRIKOverlay {
 	private func setupOverlayLayout() {
 		if let sview = self.superview {
 			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutAttribute.centerX,
-												   relatedBy: NSLayoutRelation.equal,
+												   attribute: NSLayoutConstraint.Attribute.centerX,
+												   relatedBy: NSLayoutConstraint.Relation.equal,
 												   toItem: sview,
-												   attribute: NSLayoutAttribute.centerX,
+												   attribute: NSLayoutConstraint.Attribute.centerX,
 												   multiplier: 1.0,
 												   constant: 0.0))
 			switch self.position {
 			case .top:
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.top,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.top,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.top,
+													   attribute: NSLayoutConstraint.Attribute.top,
 													   multiplier: 1.0,
 													   constant: TRIKOverlay.padding))
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.bottom,
-													   relatedBy: NSLayoutRelation.lessThanOrEqual,
+													   attribute: NSLayoutConstraint.Attribute.bottom,
+													   relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.bottom,
+													   attribute: NSLayoutConstraint.Attribute.bottom,
 													   multiplier: 1.0,
 													   constant: -TRIKOverlay.padding))
 			case .center:
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.centerY,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.centerY,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.centerY,
+													   attribute: NSLayoutConstraint.Attribute.centerY,
 													   multiplier: 1.0,
 													   constant: 0.0))
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.top,
-													   relatedBy: NSLayoutRelation.greaterThanOrEqual,
+													   attribute: NSLayoutConstraint.Attribute.top,
+													   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.top,
+													   attribute: NSLayoutConstraint.Attribute.top,
 													   multiplier: 1.0,
 													   constant: TRIKOverlay.padding))
 			case .bottom:
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.bottom,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.bottom,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.bottom,
+													   attribute: NSLayoutConstraint.Attribute.bottom,
 													   multiplier: 1.0,
 													   constant: -TRIKOverlay.padding))
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.top,
-													   relatedBy: NSLayoutRelation.greaterThanOrEqual,
+													   attribute: NSLayoutConstraint.Attribute.top,
+													   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.top,
+													   attribute: NSLayoutConstraint.Attribute.top,
 													   multiplier: 1.0,
 													   constant: TRIKOverlay.padding))
 			case .full:
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.centerY,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.centerY,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.centerY,
+													   attribute: NSLayoutConstraint.Attribute.centerY,
 													   multiplier: 1.0,
 													   constant: 0.0))
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.top,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.top,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.top,
+													   attribute: NSLayoutConstraint.Attribute.top,
 													   multiplier: 1.0,
 													   constant: TRIKOverlay.padding))
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.leading,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.leading,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.leading,
+													   attribute: NSLayoutConstraint.Attribute.leading,
 													   multiplier: 1.0,
 													   constant: TRIKOverlay.padding))
 			}
@@ -396,10 +396,10 @@ extension TRIKOverlay {
 				self.position == .center ||
 				self.position == .bottom {
 				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutAttribute.leading,
-													   relatedBy: NSLayoutRelation.greaterThanOrEqual,
+													   attribute: NSLayoutConstraint.Attribute.leading,
+													   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 													   toItem: sview,
-													   attribute: NSLayoutAttribute.leading,
+													   attribute: NSLayoutConstraint.Attribute.leading,
 													   multiplier: 1.0,
 													   constant: TRIKOverlay.padding))
 			}
@@ -414,72 +414,72 @@ extension TRIKOverlay {
 		self.backgroundView.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.backgroundView)
 		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutAttribute.top,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.top,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.top,
+											  attribute: NSLayoutConstraint.Attribute.top,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutAttribute.bottom,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		
 		// Text
 		self.label.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.label)
-		self.label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: UILayoutConstraintAxis.vertical)
+		self.label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: NSLayoutConstraint.Axis.vertical)
 		self.label.addConstraint(NSLayoutConstraint(item: self.label,
-													attribute: NSLayoutAttribute.width,
-													relatedBy: NSLayoutRelation.greaterThanOrEqual,
+													attribute: NSLayoutConstraint.Attribute.width,
+													relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKOverlay.labelMinWidth))
 		self.addConstraint(NSLayoutConstraint(item: self.label,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.label,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 		self.labelConstraintAlignmentTop = NSLayoutConstraint(item: self.label,
-															  attribute: NSLayoutAttribute.top,
-															  relatedBy: NSLayoutRelation.greaterThanOrEqual,
+															  attribute: NSLayoutConstraint.Attribute.top,
+															  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 															  toItem: self,
-															  attribute: NSLayoutAttribute.top,
+															  attribute: NSLayoutConstraint.Attribute.top,
 															  multiplier: 1.0,
 															  constant: TRIKOverlay.padding)
 		self.addConstraint(self.labelConstraintAlignmentTop)
 		self.labelConstraintAlignmentBottom = NSLayoutConstraint(item: self.label,
-																 attribute: NSLayoutAttribute.bottom,
-																 relatedBy: NSLayoutRelation.lessThanOrEqual,
+																 attribute: NSLayoutConstraint.Attribute.bottom,
+																 relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
 																 toItem: self,
-																 attribute: NSLayoutAttribute.bottom,
+																 attribute: NSLayoutConstraint.Attribute.bottom,
 																 multiplier: 1.0,
 																 constant: -TRIKOverlay.padding)
 		self.addConstraint(self.labelConstraintAlignmentBottom)
