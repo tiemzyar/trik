@@ -27,7 +27,7 @@ target 'TiemzyaRiOSKit_UITests' do
 	trik
 end
 
-pod 'Alamofire', '~> 4.8.1'
+pod 'Alamofire', '~> 5.2.2'
 #pod 'RNCryptor', '~> 5.0'
 #pod 'Locksmith', '~> 3.0'
 #pod 'Zip', '~> 1.0'

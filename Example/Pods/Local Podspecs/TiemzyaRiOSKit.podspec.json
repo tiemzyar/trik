@@ -1,8 +1,8 @@
 {
   "name": "TiemzyaRiOSKit",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "summary": "This framework helps simplyfying some aspects of iOS development ...",
-  "description": "TODO: Add long description of the pod here ... must be longer than summary, mind you.",
+  "description": "TiemzyaRiOSKit is an iOS utility framework written in Swift. It offers simple-to-use functionality for working with localization, databases and overlays amongst others.",
   "homepage": "https://github.com/tiemzyar/trik",
   "license": {
     "type": "MIT",
@@ -12,8 +12,8 @@
     "tiemzyar": "tiemzyar@users.noreply.github.com"
   },
   "source": {
-    "git": "https://github.com/tiemzyar84/trik.git",
-    "tag": "1.0.0"
+    "git": "https://github.com/tiemzyar/trik.git",
+    "tag": "1.2.0"
   },
   "platforms": {
     "ios": "11.0"
@@ -31,7 +31,7 @@
     "CoreData",
     "CoreGraphics",
     "QuartzCore",
-    "MobileCoreServices",
+    "CoreServices",
     "SystemConfiguration",
     "Security",
     "MessageUI",
@@ -39,7 +39,7 @@
   ],
   "dependencies": {
     "Alamofire": [
-      "~> 4.8.1"
+      "~> 5.2.2"
     ]
   },
   "swift_version": "4.1"

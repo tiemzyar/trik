@@ -424,9 +424,18 @@ extension TRIKUtil {
 
 		/**
 		Starts monitoring network reachability in an application.
+		
+		- parameters:
+			- listener: Optional closure for listening to reachability status changes
 		*/
-		public static func startMonitoringReachability() {
-			self.sharedReachabilityManager?.startListening()
+		public static func startMonitoringReachability(listener: ((NetworkReachabilityManager.NetworkReachabilityStatus) -> ())? = nil) {
+			self.sharedReachabilityManager?.startListening {status in
+				guard let actualListener = listener else {
+					return
+				}
+				
+				actualListener(status)
+			}
 		}
 
 		/**
@@ -434,7 +443,7 @@ extension TRIKUtil {
 
 		- parameters:
 			- alert: Flag about whether or not to show an alert, if no network is reachable
-			- warning: Flag about whether or not to show a warning, if network is only reachable over wwan
+			- warning: Flag about whether or not to show a warning, if network is only reachable over cellular
 
 		- returns: True, if network is available, false otherwise
 		*/
@@ -446,7 +455,7 @@ extension TRIKUtil {
 			var locButtonTitleDestructive: String
 			var locButtonTitleCancel: String
 			
-			guard let reachabilityStatus = self.sharedReachabilityManager?.networkReachabilityStatus else {
+			guard let reachabilityStatus = self.sharedReachabilityManager?.status else {
 				return networkAvailable
 			}
 			if reachabilityStatus == .notReachable || reachabilityStatus == .unknown {
@@ -481,7 +490,7 @@ extension TRIKUtil {
 			else {
 				networkAvailable = true
 				
-				if reachabilityStatus == .reachable(NetworkReachabilityManager.ConnectionType.wwan) && warning {
+				if reachabilityStatus == .reachable(.cellular) && warning {
 					guard let bundle = TRIKUtil.trikResourceBundle() else {
 						return networkAvailable
 					}
