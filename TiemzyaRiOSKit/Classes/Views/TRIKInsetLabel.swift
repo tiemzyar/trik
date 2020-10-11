@@ -50,7 +50,7 @@ public class TRIKInsetLabel: UILabel {
 
 	// MARK: Type properties
 	/// Edge insets with zero points on all sides
-	public static let zeroInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+	public static let zeroInsets: UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 	
 
 	// MARK: Type methods
@@ -124,21 +124,21 @@ public class TRIKInsetLabel: UILabel {
 		- rect: The rectangle in which to draw the inset label's text
 	*/
 	override public func drawText(in rect: CGRect) {
-		super.drawText(in: UIEdgeInsetsInsetRect(rect, self.textInsets))
+		super.drawText(in: rect.inset(by: self.textInsets))
 	}
 
 	// MARK: -
 	// MARK: Instance methods
 	override public func textRect(forBounds bounds: CGRect,
 								  limitedToNumberOfLines numberOfLines: Int) -> CGRect {
-		let insetRect = UIEdgeInsetsInsetRect(bounds, self.textInsets)
+		let insetRect = bounds.inset(by: self.textInsets)
 		let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: self.numberOfLines)
 		let invertedInsets = UIEdgeInsets(top: -self.textInsets.top,
 										  left: -self.textInsets.left,
 										  bottom: -self.textInsets.bottom,
 										  right: -self.textInsets.right)
 		
-		return UIEdgeInsetsInsetRect(textRect, invertedInsets)
+		return textRect.inset(by: invertedInsets)
 	}
 }
 

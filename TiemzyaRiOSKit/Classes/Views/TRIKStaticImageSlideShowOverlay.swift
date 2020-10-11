@@ -208,7 +208,7 @@ public class TRIKStaticImageSlideShowOverlay: TRIKImageSlideShowOverlay {
 					if let img = image {
 						UIView.transition(with: self.currentImage.imageView,
 										  duration: TRIKConstant.AnimationTime.long,
-										  options: UIViewAnimationOptions.transitionCrossDissolve,
+										  options: UIView.AnimationOptions.transitionCrossDissolve,
 										  animations: {
 											self.currentImage.displayImage(img)
 						},
@@ -255,45 +255,45 @@ extension TRIKStaticImageSlideShowOverlay {
 		self.addSubview(self.currentImage)
 		self.bringButtonsToFront()
 		self.currentImage.addConstraint(NSLayoutConstraint(item: self.currentImage,
-														   attribute: NSLayoutAttribute.width,
-														   relatedBy: NSLayoutRelation.greaterThanOrEqual,
+														   attribute: NSLayoutConstraint.Attribute.width,
+														   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 														   toItem: nil,
-														   attribute: NSLayoutAttribute.notAnAttribute,
+														   attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 														   multiplier: 1.0,
 														   constant: TRIKImageSlideShowOverlay.minWidth))
 		self.currentImage.addConstraint(NSLayoutConstraint(item: self.currentImage,
-														   attribute: NSLayoutAttribute.height,
-														   relatedBy: NSLayoutRelation.greaterThanOrEqual,
+														   attribute: NSLayoutConstraint.Attribute.height,
+														   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 														   toItem: nil,
-														   attribute: NSLayoutAttribute.notAnAttribute,
+														   attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 														   multiplier: 1.0,
 														   constant: TRIKImageSlideShowOverlay.minHeight))
 		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutAttribute.top,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.top,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.top,
+											  attribute: NSLayoutConstraint.Attribute.top,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutAttribute.bottom,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: 0.0))
 	}

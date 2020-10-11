@@ -84,8 +84,6 @@ open class TRIKBaseVC: UIViewController {
         super.viewDidLoad()
 		
 		self.titleLabel.text = self.titleLabelText
-		
-		self.automaticallyAdjustsScrollViewInsets = false
     }
 
 	// MARK: -
@@ -125,24 +123,24 @@ open class TRIKBaseVC: UIViewController {
 			}
 		}
 		
-		let button = UIButton(type: UIButtonType.custom)
+		let button = UIButton(type: UIButton.ButtonType.custom)
 		self.previousViewButton = button
-		self.previousViewButton.setImage(buttonImage, for: UIControlState.normal)
-		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton,
-		                                                         attribute: NSLayoutAttribute.height,
-		                                                         relatedBy: NSLayoutRelation.equal,
+		self.previousViewButton.setImage(buttonImage, for: UIControl.State.normal)
+		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton!,
+		                                                         attribute: NSLayoutConstraint.Attribute.height,
+		                                                         relatedBy: NSLayoutConstraint.Relation.equal,
 		                                                         toItem: nil,
-		                                                         attribute: NSLayoutAttribute.notAnAttribute,
+		                                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 		                                                         multiplier: 1.0,
 		                                                         constant: TRIKBaseVC.buttonSideLength))
-		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton,
-		                                                         attribute: NSLayoutAttribute.width,
-		                                                         relatedBy: NSLayoutRelation.equal,
+		self.previousViewButton.addConstraint(NSLayoutConstraint(item: self.previousViewButton!,
+		                                                         attribute: NSLayoutConstraint.Attribute.width,
+		                                                         relatedBy: NSLayoutConstraint.Relation.equal,
 		                                                         toItem: nil,
-		                                                         attribute: NSLayoutAttribute.notAnAttribute,
+		                                                         attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 		                                                         multiplier: 1.0,
 		                                                         constant: TRIKBaseVC.buttonSideLength))
-		self.previousViewButton.addTarget(self, action: #selector(returnToPreviousView(sender:)), for: UIControlEvents.touchUpInside)
+		self.previousViewButton.addTarget(self, action: #selector(returnToPreviousView(sender:)), for: UIControl.Event.touchUpInside)
 		self.previousViewBarButton = UIBarButtonItem(customView: self.previousViewButton)
 		
 		buttons.insert(self.previousViewBarButton!, at: 0)

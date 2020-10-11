@@ -32,7 +32,7 @@ class InsetLabelTests: XCTestCase {
 	// MARK: Type properties
 	private static let controllerID = "InsetLabelController"
 	private static let labelTag = 101
-	private static let insetsIB = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0)
+	private static let insetsIB = UIEdgeInsets.init(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 	private static let insetsCode = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 	private static let testText = "Some text for testing"
 	

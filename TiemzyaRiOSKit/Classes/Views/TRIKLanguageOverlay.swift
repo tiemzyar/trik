@@ -81,12 +81,12 @@ public class TRIKLanguageOverlay: TRIKOverlay {
 	private static var allLanguages: [Dictionary<String, Any>] = {
 		var applicationLanguages: [Dictionary<String, Any>] = []
 		
-		let externalFile = checkLanguagesFileValidity(forExternalFile: true)
+		let externalFile = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		if externalFile.valid {
 			applicationLanguages = externalFile.content!
 		}
 		else {
-			let internalFile = checkLanguagesFileValidity()
+			let internalFile = TRIKUtil.Language.checkLanguagesFileValidity()
 			if internalFile.valid {
 				applicationLanguages = internalFile.content!
 			}
@@ -205,8 +205,8 @@ public class TRIKLanguageOverlay: TRIKOverlay {
 	            position: TRIKOverlay.Position = .center,
 	            fallbackLanguage code: String = TRIKConstant.Language.Code.english,
 				delegate: TRIKLanguageOverlayDelegate? = nil) {
-		self.languageTable = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
-		self.cancelButton = UIButton(type: UIButtonType.custom)
+		self.languageTable = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
+		self.cancelButton = UIButton(type: UIButton.ButtonType.custom)
 		self.delegate = delegate
 		self.fontHeader = headerFont
 		self.fontContent = contentFont
@@ -280,7 +280,7 @@ public class TRIKLanguageOverlay: TRIKOverlay {
 		UserDefaults.standard.set(avaLangs, forKey: TRIKConstant.UserDefaults.appleLanguages)
 		UserDefaults.standard.synchronize()
 		
-		let userInfo: [String: Any] = [TRIKConstant.Notification.Key.selectedLanguage: self.selectedLanguage]
+		let userInfo: [String: Any] = [TRIKConstant.Notification.Key.selectedLanguage: self.selectedLanguage!]
 		NotificationCenter.default.post(name: TRIKConstant.Notification.Name.languageOverlayDidSelectLanguage,
 										object: nil,
 										userInfo: userInfo)
@@ -325,7 +325,7 @@ extension TRIKLanguageOverlay {
 				if let available = dict[TRIKConstant.PLISTKey.Language.available] as? Bool {
 					if available {
 						if let code = dict[TRIKConstant.PLISTKey.Language.code] as? String {
-							if code == currentLanguage(withFallback: self.fallbackLanguage).languageCode {
+							if code == TRIKUtil.Language.currentLanguage(withFallback: self.fallbackLanguage).languageCode {
 								if let language = dict[TRIKConstant.PLISTKey.Language.name] as? String {
 									self.selectedLanguage = language
 									setLanguage = true
@@ -371,7 +371,7 @@ extension TRIKLanguageOverlay {
 			self.removeConstraint(self.labelConstraintAlignmentTop)
 			self.labelConstraintAlignmentTop = NSLayoutConstraint(item: ctFirstItem,
 																  attribute: self.labelConstraintAlignmentTop.firstAttribute,
-																  relatedBy: NSLayoutRelation.equal,
+																  relatedBy: NSLayoutConstraint.Relation.equal,
 																  toItem: self.labelConstraintAlignmentTop.secondItem,
 																  attribute: self.labelConstraintAlignmentTop.secondAttribute,
 																  multiplier: self.labelConstraintAlignmentTop.multiplier,
@@ -385,66 +385,66 @@ extension TRIKLanguageOverlay {
 		let calcHeight = CGFloat(TRIKLanguageOverlay.allLanguages.count) * TRIKLanguageOverlay.tvCellHeight + CGFloat(TRIKLanguageOverlay.tvSections) * TRIKLanguageOverlay.tvSectionHeaderHeight
 		let minHeight = max(calcHeight, TRIKLanguageOverlay.tvMinHeight)
 		let heightConstraint = NSLayoutConstraint(item: self.languageTable,
-												  attribute: NSLayoutAttribute.height,
-												  relatedBy: NSLayoutRelation.greaterThanOrEqual,
+												  attribute: NSLayoutConstraint.Attribute.height,
+												  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 												  toItem: nil,
-												  attribute: NSLayoutAttribute.notAnAttribute,
+												  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 												  multiplier: 1.0,
 												  constant: minHeight)
 		heightConstraint.priority = UILayoutPriority(rawValue: 750)
 		self.languageTable.addConstraint(heightConstraint)
 		self.addConstraint(NSLayoutConstraint(item: self.languageTable,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.languageTable,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.languageTable,
-											  attribute: NSLayoutAttribute.top,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.top,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self.label,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.subviewSpacing))
 		
 		// Cancel button
 		self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.cancelButton)
-		self.cancelButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: UILayoutConstraintAxis.vertical)
+		self.cancelButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: NSLayoutConstraint.Axis.vertical)
 		self.cancelButton.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-														   attribute: NSLayoutAttribute.height,
-														   relatedBy: NSLayoutRelation.equal,
+														   attribute: NSLayoutConstraint.Attribute.height,
+														   relatedBy: NSLayoutConstraint.Relation.equal,
 														   toItem: nil,
-														   attribute: NSLayoutAttribute.notAnAttribute,
+														   attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 														   multiplier: 1.0,
 														   constant: TRIKLanguageOverlay.buttonHeight))
 		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-											  attribute: NSLayoutAttribute.centerX,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.centerX,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.centerX,
+											  attribute: NSLayoutConstraint.Attribute.centerX,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-											  attribute: NSLayoutAttribute.top,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.top,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self.languageTable,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.subviewSpacing))
 		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-											  attribute: NSLayoutAttribute.bottom,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 	}
@@ -469,21 +469,21 @@ extension TRIKLanguageOverlay {
 											in: bundle,
 											and: TRIKConstant.FileManagement.FileName.localizedStrings,
 											fallback: TRIKConstant.Language.Code.english)
-			self.cancelButton.setTitle(locString, for: UIControlState.normal)
+			self.cancelButton.setTitle(locString, for: UIControl.State.normal)
 		}
 		let cancel = #selector(TRIKLanguageOverlay.cancelButtonTapped(_:))
-		self.cancelButton.addTarget(self, action: cancel, for: UIControlEvents.touchUpInside)
+		self.cancelButton.addTarget(self, action: cancel, for: UIControl.Event.touchUpInside)
 		
 		switch (self.style) {
 		case .white, .light:
-			self.cancelButton.setTitleColor(TRIKConstant.Color.Grey.dark, for:UIControlState.normal)
-			self.cancelButton.setTitleColor(TRIKConstant.Color.black, for:UIControlState.highlighted)
+			self.cancelButton.setTitleColor(TRIKConstant.Color.Grey.dark, for:UIControl.State.normal)
+			self.cancelButton.setTitleColor(TRIKConstant.Color.black, for:UIControl.State.highlighted)
 		case .dark, .black:
-			self.cancelButton.setTitleColor(TRIKConstant.Color.Grey.light, for:UIControlState.normal)
-			self.cancelButton.setTitleColor(TRIKConstant.Color.white, for:UIControlState.highlighted)
+			self.cancelButton.setTitleColor(TRIKConstant.Color.Grey.light, for:UIControl.State.normal)
+			self.cancelButton.setTitleColor(TRIKConstant.Color.white, for:UIControl.State.highlighted)
 		case .tiemzyar:
-			self.cancelButton.setTitleColor(TRIKConstant.Color.Blue.light, for:UIControlState.normal)
-			self.cancelButton.setTitleColor(TRIKConstant.Color.Grey.light, for:UIControlState.highlighted)
+			self.cancelButton.setTitleColor(TRIKConstant.Color.Blue.light, for:UIControl.State.normal)
+			self.cancelButton.setTitleColor(TRIKConstant.Color.Grey.light, for:UIControl.State.highlighted)
 		}
 	}
 }
@@ -761,15 +761,15 @@ extension TRIKLanguageOverlay: UITableViewDelegate {
 			
 			let changeLanguage = UIAlertController(title: locAlertTitle,
 			                                       message: nil,
-			                                       preferredStyle: UIAlertControllerStyle.actionSheet)
+			                                       preferredStyle: UIAlertController.Style.actionSheet)
 			var action = UIAlertAction(title: locButtonTitleDestruct,
-			                           style: UIAlertActionStyle.destructive,
+			                           style: UIAlertAction.Style.destructive,
 			                           handler: { [weak self] (destructiveAction) in
 										self?.actionSheetDidDestruct()
 			})
 			changeLanguage.addAction(action)
 			action = UIAlertAction(title: locButtonTitleCancel,
-			                       style: UIAlertActionStyle.cancel,
+			                       style: UIAlertAction.Style.cancel,
 			                       handler: { [weak self] (cancelAction) in
 									self?.actionSheetDidCancel()
 			})

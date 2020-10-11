@@ -264,24 +264,24 @@ extension TRIKBigTouchZoneSlider {
 		self.translatesAutoresizingMaskIntoConstraints = false
 		if let sview = self.superview, let aview = self.alignmentView {
 			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutAttribute.width,
-												   relatedBy: NSLayoutRelation.equal,
+												   attribute: NSLayoutConstraint.Attribute.width,
+												   relatedBy: NSLayoutConstraint.Relation.equal,
 												   toItem: aview,
-												   attribute: NSLayoutAttribute.width,
+												   attribute: NSLayoutConstraint.Attribute.width,
 												   multiplier: 1.0,
 												   constant: 0.0))
 			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutAttribute.centerX,
-												   relatedBy: NSLayoutRelation.equal,
+												   attribute: NSLayoutConstraint.Attribute.centerX,
+												   relatedBy: NSLayoutConstraint.Relation.equal,
 												   toItem: aview,
-												   attribute: NSLayoutAttribute.centerX,
+												   attribute: NSLayoutConstraint.Attribute.centerX,
 												   multiplier: 1.0,
 												   constant: 0.0))
 			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutAttribute.centerY,
-												   relatedBy: NSLayoutRelation.equal,
+												   attribute: NSLayoutConstraint.Attribute.centerY,
+												   relatedBy: NSLayoutConstraint.Relation.equal,
 												   toItem: aview,
-												   attribute: NSLayoutAttribute.centerY,
+												   attribute: NSLayoutConstraint.Attribute.centerY,
 												   multiplier: 1.0,
 												   constant: 0.0))
 		}

@@ -197,34 +197,34 @@ extension TRIKZoomableImage {
 		self.imageView.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.imageView)
 		self.constraintImageTop = NSLayoutConstraint(item: self.imageView,
-													 attribute: NSLayoutAttribute.top,
-													 relatedBy: NSLayoutRelation.equal,
+													 attribute: NSLayoutConstraint.Attribute.top,
+													 relatedBy: NSLayoutConstraint.Relation.equal,
 													 toItem: self,
-													 attribute: NSLayoutAttribute.top,
+													 attribute: NSLayoutConstraint.Attribute.top,
 													 multiplier: 1.0,
 													 constant: 0.0)
 		self.addConstraint(self.constraintImageTop!)
 		self.constraintImageLeading = NSLayoutConstraint(item: self.imageView,
-														 attribute: NSLayoutAttribute.leading,
-														 relatedBy: NSLayoutRelation.equal,
+														 attribute: NSLayoutConstraint.Attribute.leading,
+														 relatedBy: NSLayoutConstraint.Relation.equal,
 														 toItem: self,
-														 attribute: NSLayoutAttribute.leading,
+														 attribute: NSLayoutConstraint.Attribute.leading,
 														 multiplier: 1.0,
 														 constant: 0.0)
 		self.addConstraint(self.constraintImageLeading!)
 		self.constraintImageTrailing = NSLayoutConstraint(item: self.imageView,
-														  attribute: NSLayoutAttribute.trailing,
-														  relatedBy: NSLayoutRelation.equal,
+														  attribute: NSLayoutConstraint.Attribute.trailing,
+														  relatedBy: NSLayoutConstraint.Relation.equal,
 														  toItem: self,
-														  attribute: NSLayoutAttribute.trailing,
+														  attribute: NSLayoutConstraint.Attribute.trailing,
 														  multiplier: 1.0,
 														  constant: 0.0)
 		self.addConstraint(self.constraintImageTrailing!)
 		self.constraintImageBottom = NSLayoutConstraint(item: self.imageView,
-														attribute: NSLayoutAttribute.bottom,
-														relatedBy: NSLayoutRelation.equal,
+														attribute: NSLayoutConstraint.Attribute.bottom,
+														relatedBy: NSLayoutConstraint.Relation.equal,
 														toItem: self,
-														attribute: NSLayoutAttribute.bottom,
+														attribute: NSLayoutConstraint.Attribute.bottom,
 														multiplier: 1.0,
 														constant: 0.0)
 		self.addConstraint(self.constraintImageBottom!)
@@ -236,7 +236,7 @@ extension TRIKZoomableImage {
 	private func customize() {
 		self.backgroundColor = TRIKConstant.Color.clear
 		self.bouncesZoom = true
-		self.decelerationRate = UIScrollViewDecelerationRateFast
+		self.decelerationRate = UIScrollView.DecelerationRate.fast
 		self.delegate = self
 		self.showsHorizontalScrollIndicator = false
 		self.showsVerticalScrollIndicator = false

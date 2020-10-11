@@ -4,12 +4,42 @@
 Framework for simplyfying some aspects of iOS development
 
 Author: tiemzyar <br />
-Date: 2018-11-06 <br />
-Xcode-Version: 10.0
+Date: 2020-10-09 <br />
+Xcode-Version: 12.0.1
 
 ## Functionality
 
-Desctription of complete functionality will be added soon ...
+Overview:
+
+* Alert controller extension (easily create alerts or action sheets from any view, i.e. independent of view controllers)
+
+* Database manager (easily create and manage a local CoreData database)
+
+* Big touch zone slider (custom slider with increased touch zone)
+
+  The slider comes with customizing options for its values (min, max, initial, interval) and three different color styles.
+
+* Keyboard animation (automatic view animation for text field entries, when the keyboard and the text field would overlap)
+
+* Easily usable overlays
+  * Activity overlay (with info text and indicator or progress bar)
+  * Auto destroy overlay (temporary text overlay)
+  * Country overlay (select a country from a [complete or custom] list of countries)
+  * Language overlay (easily switch the application language)
+
+  All of these overlays come with different options for color style and position.
+
+* Easily usable image slide shows
+  * Static slide show (images fade in and out)
+  * Paging slide show (slide or page through images)
+  
+  The slide shows come with different options for button style, color style, position. The paging slide show additionally supports dual image layout. 
+
+Details:
+
+* A detailed description of the framework's functionality (including images) will be added some time in the future.
+
+* Until then you can just try out the example app included in the framework to see the functionality in action.
 
 ## Image and icon attribution
 

@@ -163,7 +163,7 @@ extension TRIKAutoDestroyOverlay {
 		self.removeConstraint(self.labelConstraintAlignmentTop)
 		self.labelConstraintAlignmentTop = NSLayoutConstraint(item: ctFirstItem,
 															  attribute: self.labelConstraintAlignmentTop.firstAttribute,
-															  relatedBy: NSLayoutRelation.equal,
+															  relatedBy: NSLayoutConstraint.Relation.equal,
 															  toItem: self.labelConstraintAlignmentTop.secondItem,
 															  attribute: self.labelConstraintAlignmentTop.secondAttribute,
 															  multiplier: self.labelConstraintAlignmentTop.multiplier,
@@ -172,7 +172,7 @@ extension TRIKAutoDestroyOverlay {
 		self.removeConstraint(self.labelConstraintAlignmentBottom)
 		self.labelConstraintAlignmentBottom = NSLayoutConstraint(item: cbFirstItem,
 																 attribute: self.labelConstraintAlignmentBottom.firstAttribute,
-																 relatedBy: NSLayoutRelation.equal,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: self.labelConstraintAlignmentBottom.secondItem,
 																 attribute: self.labelConstraintAlignmentBottom.secondAttribute,
 																 multiplier: self.labelConstraintAlignmentBottom.multiplier,

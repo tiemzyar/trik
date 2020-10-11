@@ -76,7 +76,7 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 	
 	/// Image to display when a slide show image cannot be found or accessed or is broken
 	internal static var dummyImage: UIImage? = {
-		let languageCode = currentLanguage(withFallback: TRIKConstant.Language.Code.english).languageCode
+		let languageCode = TRIKUtil.Language.currentLanguage(withFallback: TRIKConstant.Language.Code.english).languageCode
 		
 		guard let bundle = TRIKUtil.trikResourceBundle(), let path = bundle.path(forResource: languageCode, ofType: TRIKConstant.FileManagement.FileExtension.lproj) else {
 			return nil
@@ -429,16 +429,16 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 	*/
 	internal func bringButtonsToFront() {
 		if let dismiss = self.dismissButton {
-			self.bringSubview(toFront: dismiss)
+			self.bringSubviewToFront(dismiss)
 		}
 		if let previous = self.previousImageButton {
-			self.bringSubview(toFront: previous)
+			self.bringSubviewToFront(previous)
 		}
 		if let next = self.nextImageButton {
-			self.bringSubview(toFront: next)
+			self.bringSubviewToFront(next)
 		}
 		if let indicatorContainer = self.indicatorContainerView {
-			self.bringSubview(toFront: indicatorContainer)
+			self.bringSubviewToFront(indicatorContainer)
 		}
 	}
 	
@@ -602,84 +602,84 @@ extension TRIKImageSlideShowOverlay {
 			button.translatesAutoresizingMaskIntoConstraints = false
 			self.addSubview(button)
 			button.addConstraint(NSLayoutConstraint(item: button,
-													attribute: NSLayoutAttribute.height,
-													relatedBy: NSLayoutRelation.equal,
+													attribute: NSLayoutConstraint.Attribute.height,
+													relatedBy: NSLayoutConstraint.Relation.equal,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKImageSlideShowOverlay.buttonSideLength))
 			button.addConstraint(NSLayoutConstraint(item: button,
-													attribute: NSLayoutAttribute.width,
-													relatedBy: NSLayoutRelation.equal,
+													attribute: NSLayoutConstraint.Attribute.width,
+													relatedBy: NSLayoutConstraint.Relation.equal,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKImageSlideShowOverlay.buttonSideLength))
 			self.addConstraint(NSLayoutConstraint(item: button,
-												  attribute: NSLayoutAttribute.top,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.top,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.top,
+												  attribute: NSLayoutConstraint.Attribute.top,
 												  multiplier: 1.0,
 												  constant: TRIKOverlay.padding))
 			self.addConstraint(NSLayoutConstraint(item: button,
-												  attribute: NSLayoutAttribute.trailing,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.trailing,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.trailing,
+												  attribute: NSLayoutConstraint.Attribute.trailing,
 												  multiplier: 1.0,
 												  constant: -TRIKOverlay.padding))
 		}
 		
 		// Activity indicator
-		self.indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+		self.indicator = UIActivityIndicatorView(style: .whiteLarge)
 		self.indicatorContainerView = UIView(frame: CGRect.zero)
 		if let indicator = self.indicator, let container = self.indicatorContainerView {
 			indicator.translatesAutoresizingMaskIntoConstraints = false
 			container.translatesAutoresizingMaskIntoConstraints = false
 			container.addSubview(indicator)
 			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutAttribute.top,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.top,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: container,
-													   attribute: NSLayoutAttribute.top,
+													   attribute: NSLayoutConstraint.Attribute.top,
 													   multiplier: 1.0,
 													   constant: TRIKImageSlideShowOverlay.indicatorPadding))
 			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutAttribute.leading,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.leading,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: container,
-													   attribute: NSLayoutAttribute.leading,
+													   attribute: NSLayoutConstraint.Attribute.leading,
 													   multiplier: 1.0,
 													   constant: TRIKImageSlideShowOverlay.indicatorPadding))
 			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutAttribute.centerX,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.centerX,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: container,
-													   attribute: NSLayoutAttribute.centerX,
+													   attribute: NSLayoutConstraint.Attribute.centerX,
 													   multiplier: 1.0,
 													   constant: 0.0))
 			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutAttribute.centerY,
-													   relatedBy: NSLayoutRelation.equal,
+													   attribute: NSLayoutConstraint.Attribute.centerY,
+													   relatedBy: NSLayoutConstraint.Relation.equal,
 													   toItem: container,
-													   attribute: NSLayoutAttribute.centerY,
+													   attribute: NSLayoutConstraint.Attribute.centerY,
 													   multiplier: 1.0,
 													   constant: 0.0))
 			
 			self.addSubview(container)
 			self.addConstraint(NSLayoutConstraint(item: container,
-												  attribute: NSLayoutAttribute.centerX,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.centerX,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.centerX,
+												  attribute: NSLayoutConstraint.Attribute.centerX,
 												  multiplier: 1.0,
 												  constant: 0.0))
 			self.addConstraint(NSLayoutConstraint(item: container,
-												  attribute: NSLayoutAttribute.centerY,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.centerY,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.centerY,
+												  attribute: NSLayoutConstraint.Attribute.centerY,
 												  multiplier: 1.0,
 												  constant: 0.0))
 		}
@@ -713,31 +713,31 @@ extension TRIKImageSlideShowOverlay {
 			pButton.translatesAutoresizingMaskIntoConstraints = false
 			self.addSubview(pButton)
 			pButton.addConstraint(NSLayoutConstraint(item: pButton,
-													attribute: NSLayoutAttribute.height,
-													relatedBy: NSLayoutRelation.equal,
+													attribute: NSLayoutConstraint.Attribute.height,
+													relatedBy: NSLayoutConstraint.Relation.equal,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKImageSlideShowOverlay.buttonSideLength))
 			pButton.addConstraint(NSLayoutConstraint(item: pButton,
-													attribute: NSLayoutAttribute.width,
-													relatedBy: NSLayoutRelation.equal,
+													attribute: NSLayoutConstraint.Attribute.width,
+													relatedBy: NSLayoutConstraint.Relation.equal,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKImageSlideShowOverlay.buttonSideLength))
 			self.addConstraint(NSLayoutConstraint(item: pButton,
-												  attribute: NSLayoutAttribute.leading,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.leading,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.leading,
+												  attribute: NSLayoutConstraint.Attribute.leading,
 												  multiplier: 1.0,
 												  constant: TRIKOverlay.padding))
 			self.addConstraint(NSLayoutConstraint(item: pButton,
-												  attribute: NSLayoutAttribute.centerY,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.centerY,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.centerY,
+												  attribute: NSLayoutConstraint.Attribute.centerY,
 												  multiplier: 1.0,
 												  constant: 0.0))
 			
@@ -747,31 +747,31 @@ extension TRIKImageSlideShowOverlay {
 			nButton.translatesAutoresizingMaskIntoConstraints = false
 			self.addSubview(nButton)
 			nButton.addConstraint(NSLayoutConstraint(item: nButton,
-													attribute: NSLayoutAttribute.height,
-													relatedBy: NSLayoutRelation.equal,
+													attribute: NSLayoutConstraint.Attribute.height,
+													relatedBy: NSLayoutConstraint.Relation.equal,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKImageSlideShowOverlay.buttonSideLength))
 			nButton.addConstraint(NSLayoutConstraint(item: nButton,
-													attribute: NSLayoutAttribute.width,
-													relatedBy: NSLayoutRelation.equal,
+													attribute: NSLayoutConstraint.Attribute.width,
+													relatedBy: NSLayoutConstraint.Relation.equal,
 													toItem: nil,
-													attribute: NSLayoutAttribute.notAnAttribute,
+													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 													multiplier: 1.0,
 													constant: TRIKImageSlideShowOverlay.buttonSideLength))
 			self.addConstraint(NSLayoutConstraint(item: nButton,
-												  attribute: NSLayoutAttribute.trailing,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.trailing,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.trailing,
+												  attribute: NSLayoutConstraint.Attribute.trailing,
 												  multiplier: 1.0,
 												  constant: -TRIKOverlay.padding))
 			self.addConstraint(NSLayoutConstraint(item: nButton,
-												  attribute: NSLayoutAttribute.centerY,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.centerY,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.centerY,
+												  attribute: NSLayoutConstraint.Attribute.centerY,
 												  multiplier: 1.0,
 												  constant: 0.0))
 		}

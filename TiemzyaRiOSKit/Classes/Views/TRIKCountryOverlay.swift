@@ -346,7 +346,7 @@ public class TRIKCountryOverlay: TRIKOverlay {
 		self.localizationEnabled = localizationEnabled
 		
 		self.countrySearchBar = TRIKSearchBar(searchFieldHeight: TRIKCountryOverlay.languageSwitchHeight, roundCorners: true)
-		self.countryTable = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+		self.countryTable = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
 		let languages = [localizedString(for: "CSOverlay: Segmented Controle Language Local",
 		                                 in: TRIKUtil.trikResourceBundle()!,
 										 and: TRIKConstant.FileManagement.FileName.localizedStrings,
@@ -422,7 +422,7 @@ public class TRIKCountryOverlay: TRIKOverlay {
 		self.tableData = self.sortedCountries
 		self.countryTable.reloadData()
 		self.countryTable.scrollToRow(at: IndexPath(row: 0, section: 0),
-									  at: UITableViewScrollPosition.top,
+									  at: UITableView.ScrollPosition.top,
 									  animated: true)
 	}
 	
@@ -452,38 +452,38 @@ extension TRIKCountryOverlay {
 			self.languageSwitch.translatesAutoresizingMaskIntoConstraints = false
 			self.addSubview(self.languageSwitch)
 			self.languageSwitch.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-																 attribute: NSLayoutAttribute.width,
-																 relatedBy: NSLayoutRelation.equal,
+																 attribute: NSLayoutConstraint.Attribute.width,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: nil,
-																 attribute: NSLayoutAttribute.notAnAttribute,
+																 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 																 multiplier: 1.0,
 																 constant: languageSwitchWidth))
 			self.languageSwitch.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-																 attribute: NSLayoutAttribute.height,
-																 relatedBy: NSLayoutRelation.equal,
+																 attribute: NSLayoutConstraint.Attribute.height,
+																 relatedBy: NSLayoutConstraint.Relation.equal,
 																 toItem: nil,
-																 attribute: NSLayoutAttribute.notAnAttribute,
+																 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 																 multiplier: 1.0,
 																 constant: TRIKCountryOverlay.languageSwitchHeight))
 			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutAttribute.top,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.top,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.top,
+												  attribute: NSLayoutConstraint.Attribute.top,
 												  multiplier: 1.0,
 												  constant: TRIKOverlay.padding))
 			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutAttribute.leading,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.leading,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.leading,
+												  attribute: NSLayoutConstraint.Attribute.leading,
 												  multiplier: 1.0,
 												  constant: TRIKOverlay.padding))
 			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutAttribute.trailing,
-												  relatedBy: NSLayoutRelation.lessThanOrEqual,
+												  attribute: NSLayoutConstraint.Attribute.trailing,
+												  relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.trailing,
+												  attribute: NSLayoutConstraint.Attribute.trailing,
 												  multiplier: 1.0,
 												  constant: -TRIKOverlay.padding))
 		}
@@ -493,19 +493,19 @@ extension TRIKCountryOverlay {
 		self.addSubview(self.countrySearchBar)
 		if self.localizationEnabled {
 			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutAttribute.bottom,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.bottom,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self.countrySearchBar,
-												  attribute: NSLayoutAttribute.top,
+												  attribute: NSLayoutConstraint.Attribute.top,
 												  multiplier: 1.0,
 												  constant: -TRIKOverlay.subviewSpacing))
 		}
 		else {
 			self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-												  attribute: NSLayoutAttribute.top,
-												  relatedBy: NSLayoutRelation.equal,
+												  attribute: NSLayoutConstraint.Attribute.top,
+												  relatedBy: NSLayoutConstraint.Relation.equal,
 												  toItem: self,
-												  attribute: NSLayoutAttribute.top,
+												  attribute: NSLayoutConstraint.Attribute.top,
 												  multiplier: 1.0,
 												  constant: TRIKOverlay.padding))
 		}
@@ -514,70 +514,70 @@ extension TRIKCountryOverlay {
 		self.countryTable.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.countryTable)
 		let heightConstraint = NSLayoutConstraint(item: self.countryTable,
-												  attribute: NSLayoutAttribute.height,
-												  relatedBy: NSLayoutRelation.greaterThanOrEqual,
+												  attribute: NSLayoutConstraint.Attribute.height,
+												  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 												  toItem: nil,
-												  attribute: NSLayoutAttribute.notAnAttribute,
+												  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 												  multiplier: 1.0,
 												  constant: TRIKCountryOverlay.tvMinHeight)
 		heightConstraint.priority = UILayoutPriority(rawValue: 750)
 		self.countryTable.addConstraint(heightConstraint)
 		let widthConstraint = NSLayoutConstraint(item: self.countryTable,
-												 attribute: NSLayoutAttribute.width,
-												 relatedBy: NSLayoutRelation.greaterThanOrEqual,
+												 attribute: NSLayoutConstraint.Attribute.width,
+												 relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
 												 toItem: nil,
-												 attribute: NSLayoutAttribute.notAnAttribute,
+												 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
 												 multiplier: 1.0,
 												 constant: TRIKCountryOverlay.tvMinWidth)
 		widthConstraint.priority = UILayoutPriority(rawValue: 750)
 		self.countryTable.addConstraint(widthConstraint)
 		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutAttribute.width,
-											  relatedBy: NSLayoutRelation.lessThanOrEqual,
+											  attribute: NSLayoutConstraint.Attribute.width,
+											  relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
 											  toItem: self.countryTable,
-											  attribute: NSLayoutAttribute.width,
+											  attribute: NSLayoutConstraint.Attribute.width,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self.countryTable,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self.countryTable,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: 0.0))
 		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutAttribute.bottom,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self.countryTable,
-											  attribute: NSLayoutAttribute.top,
+											  attribute: NSLayoutConstraint.Attribute.top,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.subviewSpacing))
 		self.addConstraint(NSLayoutConstraint(item: self.countryTable,
-											  attribute: NSLayoutAttribute.leading,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.leading,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.leading,
+											  attribute: NSLayoutConstraint.Attribute.leading,
 											  multiplier: 1.0,
 											  constant: TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.countryTable,
-											  attribute: NSLayoutAttribute.trailing,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.trailing,
+											  attribute: NSLayoutConstraint.Attribute.trailing,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 		self.addConstraint(NSLayoutConstraint(item: self.countryTable,
-											  attribute: NSLayoutAttribute.bottom,
-											  relatedBy: NSLayoutRelation.equal,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
 											  toItem: self,
-											  attribute: NSLayoutAttribute.bottom,
+											  attribute: NSLayoutConstraint.Attribute.bottom,
 											  multiplier: 1.0,
 											  constant: -TRIKOverlay.padding))
 	}
@@ -599,36 +599,36 @@ extension TRIKCountryOverlay {
 			self.languageSwitch.layer.cornerRadius = TRIKOverlay.cornerRadius
 			self.languageSwitch.layer.borderWidth = 1.0
 			self.languageSwitch.layer.masksToBounds = true
-			var attributes: [String: Any] = [NSAttributedStringKey.font.rawValue: self.fontContent]
-			var selectedAttributes: [String: Any] = [:]
+			var attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: self.fontContent]
+			var selectedAttributes: [NSAttributedString.Key: Any] = [:]
 			switch self.style {
 			case .white:
-				attributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.black
-				selectedAttributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Grey.light
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.black
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.light
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.white
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .light:
-				attributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Grey.dark
-				selectedAttributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Grey.light
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.dark
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.light
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.Grey.light
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .dark:
-				attributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Grey.light
-				selectedAttributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Grey.dark
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.light
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.light
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .black:
-				attributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.white
-				selectedAttributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Grey.dark
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.white
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Grey.dark
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.black
 				self.languageSwitch.tintColor = TRIKConstant.Color.Grey.light
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
 			case .tiemzyar:
-				attributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.Blue.tiemzyar
-				selectedAttributes[NSAttributedStringKey.foregroundColor.rawValue] = TRIKConstant.Color.white
+				attributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.Blue.tiemzyar
+				selectedAttributes[NSAttributedString.Key.foregroundColor] = TRIKConstant.Color.white
 				self.languageSwitch.backgroundColor = TRIKConstant.Color.white
 				self.languageSwitch.tintColor = TRIKConstant.Color.Blue.tiemzyar
 				self.languageSwitch.layer.borderColor = self.languageSwitch.tintColor.cgColor
@@ -637,7 +637,7 @@ extension TRIKCountryOverlay {
 			self.languageSwitch.setTitleTextAttributes(selectedAttributes, for: .selected)
 			self.languageSwitch.selectedSegmentIndex = self.selectedLocale.rawValue
 			let resetTable = #selector(TRIKCountryOverlay.resetTable)
-			self.languageSwitch.addTarget(self, action: resetTable, for: UIControlEvents.valueChanged)
+			self.languageSwitch.addTarget(self, action: resetTable, for: UIControl.Event.valueChanged)
 		}
 	}
 	
@@ -656,7 +656,7 @@ extension TRIKCountryOverlay {
 																				in: TRIKUtil.trikResourceBundle()!,
 																				and: TRIKConstant.FileManagement.FileName.localizedStrings,
 																				fallback: TRIKConstant.Language.Code.english),
-														attributes: [NSAttributedStringKey.font: self.fontContent])
+														attributes: [NSAttributedString.Key.font: self.fontContent])
 		
 		// Search bar elements
 		self.countrySearchBar.cancelButton.titleLabel?.font = self.fontHeader
@@ -665,7 +665,7 @@ extension TRIKCountryOverlay {
 		case .white:
 			self.countrySearchBar.backgroundColor = TRIKConstant.Color.white
 			self.countrySearchBar.searchField.textColor = TRIKConstant.Color.black
-			placeholderText.addAttributes([NSAttributedStringKey.foregroundColor: TRIKConstant.Color.Grey.dark], range: NSMakeRange(0, placeholderText.length))
+			placeholderText.addAttributes([NSAttributedString.Key.foregroundColor: TRIKConstant.Color.Grey.dark], range: NSMakeRange(0, placeholderText.length))
 			
 			self.countrySearchBar.searchIcon?.image = self.countrySearchBar.searchIcon?.image?.withRenderingMode(.alwaysTemplate)
 			self.countrySearchBar.searchIcon?.tintColor = TRIKConstant.Color.black
@@ -678,7 +678,7 @@ extension TRIKCountryOverlay {
 		case .light:
 			self.countrySearchBar.backgroundColor = TRIKConstant.Color.Grey.light
 			self.countrySearchBar.searchField.textColor = TRIKConstant.Color.Grey.dark
-			placeholderText.addAttributes([NSAttributedStringKey.foregroundColor: TRIKConstant.Color.Grey.medium], range: NSMakeRange(0, placeholderText.length))
+			placeholderText.addAttributes([NSAttributedString.Key.foregroundColor: TRIKConstant.Color.Grey.medium], range: NSMakeRange(0, placeholderText.length))
 			
 			self.countrySearchBar.searchIcon?.image = self.countrySearchBar.searchIcon?.image?.withRenderingMode(.alwaysTemplate)
 			self.countrySearchBar.searchIcon?.tintColor = TRIKConstant.Color.Grey.dark
@@ -691,7 +691,7 @@ extension TRIKCountryOverlay {
 		case .dark:
 			self.countrySearchBar.backgroundColor = TRIKConstant.Color.Grey.dark
 			self.countrySearchBar.searchField.textColor = TRIKConstant.Color.Grey.light
-			placeholderText.addAttributes([NSAttributedStringKey.foregroundColor: TRIKConstant.Color.Grey.medium], range: NSMakeRange(0, placeholderText.length))
+			placeholderText.addAttributes([NSAttributedString.Key.foregroundColor: TRIKConstant.Color.Grey.medium], range: NSMakeRange(0, placeholderText.length))
 			
 			self.countrySearchBar.searchIcon?.image = self.countrySearchBar.searchIcon?.image?.withRenderingMode(.alwaysTemplate)
 			self.countrySearchBar.searchIcon?.tintColor = TRIKConstant.Color.Grey.light
@@ -704,7 +704,7 @@ extension TRIKCountryOverlay {
 		case .black:
 			self.countrySearchBar.backgroundColor = TRIKConstant.Color.black
 			self.countrySearchBar.searchField.textColor = TRIKConstant.Color.white
-			placeholderText.addAttributes([NSAttributedStringKey.foregroundColor: TRIKConstant.Color.Grey.dark], range: NSMakeRange(0, placeholderText.length))
+			placeholderText.addAttributes([NSAttributedString.Key.foregroundColor: TRIKConstant.Color.Grey.dark], range: NSMakeRange(0, placeholderText.length))
 			
 			self.countrySearchBar.searchIcon?.image = self.countrySearchBar.searchIcon?.image?.withRenderingMode(.alwaysTemplate)
 			self.countrySearchBar.searchIcon?.tintColor = TRIKConstant.Color.Grey.dark
@@ -717,7 +717,7 @@ extension TRIKCountryOverlay {
 		case .tiemzyar:
 			self.countrySearchBar.backgroundColor = TRIKConstant.Color.white
 			self.countrySearchBar.searchField.textColor = TRIKConstant.Color.Blue.tiemzyar
-			placeholderText.addAttributes([NSAttributedStringKey.foregroundColor: TRIKConstant.Color.Grey.dark],
+			placeholderText.addAttributes([NSAttributedString.Key.foregroundColor: TRIKConstant.Color.Grey.dark],
 										  range: NSMakeRange(0, placeholderText.length))
 			
 			self.countrySearchBar.searchIcon?.image = self.countrySearchBar.searchIcon?.image?.withRenderingMode(.alwaysTemplate)

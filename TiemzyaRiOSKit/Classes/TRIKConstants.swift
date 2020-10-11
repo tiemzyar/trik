@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 25.09.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2020 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -145,19 +145,29 @@ public struct TRIKConstant {
 		A collection of blue colors.
 		*/
 		public struct Blue {
-			/// Light blue color
+			/// Light blue color (#00b2e2)
 			public static var light: UIColor {
 				return UIColor(red: 0/255.0, green: 178/255.0, blue: 226/255.0, alpha: 1.0)
 			}
 			
-			/// Medium blue color
+			/// Medium blue color (#2266aa)
 			public static var medium: UIColor {
 				return UIColor(red: 34/255.0, green: 102/255.0, blue: 170/255.0, alpha: 1.0)
 			}
 			
-			/// Dark blue color
+			/// Special blue color (#154c81)
 			public static var tiemzyar: UIColor {
-				return UIColor(red: 8/255.0, green: 62/255.0, blue: 124/255.0, alpha: 1.0)
+				return UIColor(red: 21/255.0, green: 76/255.0, blue: 129/255.0, alpha: 1.0)
+			}
+		}
+		
+		/**
+		A collection of green colors.
+		*/
+		public struct Green {
+			/// Special green color (#08705f)
+			public static var tiemzyar: UIColor {
+				return UIColor(red: 8/255.0, green: 112/255.0, blue: 95/255.0, alpha: 1.0)
 			}
 		}
 		
@@ -187,22 +197,22 @@ public struct TRIKConstant {
 		//==============================================================================
 		/// Black color
 		public static var black: UIColor {
-			return UIColor.black
+			return .black
 		}
 		
 		/// Clear color
 		public static var clear: UIColor {
-			return UIColor.clear
+			return .clear
 		}
 		
 		/// Red color
 		public static var red: UIColor {
-			return UIColor.red
+			return .red
 		}
 		
 		/// White color
 		public static var white: UIColor {
-			return UIColor.white
+			return .white
 		}
 	}
 	
@@ -340,6 +350,9 @@ public struct TRIKConstant {
 			/// File extension .framework
 			public static let framework = "framework"
 			
+			/// File extension .heif
+			public static let heif = "heif"
+			
 			/// File extension .html
 			public static let html = "html"
 			
@@ -375,6 +388,9 @@ public struct TRIKConstant {
 			
 			/// File extension .xml
 			public static let xml = "xml"
+			
+			/// File extension .zip
+			public static let zip = "zip"
 		}
 		
 		/**
@@ -708,14 +724,6 @@ public struct TRIKConstant {
 		public static let availableLanguages = "TRIK Available Languages"
 		/// User default key selected language
 		public static let selectedLanguage = "TRIK Selected Language"
-		
-		/**
-		TRIK framework pdf reader specific user default keys.
-		*/
-		public struct TRIKReader {
-			/// User default key flatten UI
-			public static let flattenUI = "TRIK Flatten UI"
-		}
 	}
 	
 	//==============================================================================
@@ -750,7 +758,3 @@ public struct TRIKConstant {
 		public static let radius = 7.0
 	}
 }
-
-
-
-

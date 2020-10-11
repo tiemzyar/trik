@@ -91,7 +91,7 @@ class UtilityTests: XCTestCase {
 	}
 	
 	func testFetchingApplicationDocumentsDirectory() {
-		let dir1 = applicationDocumentsDirectory()
+		let dir1 = TRIKUtil.FileManagement.getApplicationDocumentsDirectoryURL().path
 		let dir2 = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 		// Assert fetched directory is correct
 		XCTAssertEqual(dir1, dir2, "Fetched directory does not match expected directory")
@@ -105,27 +105,27 @@ class UtilityTests: XCTestCase {
 		let fileWithPeriodsAndExtension = "\(fileWithPeriodsNoExtension)\(fileExtension)"
 		
 		// No extension to strip
-		var fileName = trimFileExtension(fromFile: fileWithoutExtension)
+		var fileName = TRIKUtil.FileManagement.trimFileExtension(fromFile: fileWithoutExtension)
 		XCTAssertEqual(fileName, fileWithoutExtension, "Stripped file name does not match expected name")
 		
 		// Extension to strip, no extra periods in file name
-		fileName = trimFileExtension(fromFile: fileWithExtension)
+		fileName = TRIKUtil.FileManagement.trimFileExtension(fromFile: fileWithExtension)
 		XCTAssertEqual(fileName, fileWithoutExtension, "Stripped file name does not match expected name")
 		
 		// Extension to strip, plus periods in file name
-		fileName = trimFileExtension(fromFile: fileWithPeriodsAndExtension)
+		fileName = TRIKUtil.FileManagement.trimFileExtension(fromFile: fileWithPeriodsAndExtension)
 		XCTAssertEqual(fileName, fileWithPeriodsNoExtension, "Stripped file name does not match expected name")
 	}
 	
 	func testLanguageFileValidityCheck() {
 		let bundle = Bundle(for: type(of: self))
-		var testFileURL = URL(fileURLWithPath: applicationDocumentsDirectory())
+		var testFileURL = URL(fileURLWithPath: TRIKUtil.FileManagement.getApplicationDocumentsDirectoryURL().path)
 		testFileURL.appendPathComponent("NoPlist")
 		testFileURL.appendPathExtension(TRIKConstant.FileManagement.FileExtension.plist)
 		
 		// Test non-existent file
-		TRIKUtil.languageFileTestPath = testFileURL.path
-		var result = checkLanguagesFileValidity(forExternalFile: true)
+		TRIKUtil.Language.languageFileTestPath = testFileURL.path
+		var result = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		// Assert file is invalid
 		XCTAssertFalse(result.valid, "Validity check result for languages file should not be valid")
 		
@@ -134,7 +134,7 @@ class UtilityTests: XCTestCase {
 		FileManager.default.createFile(atPath: testFileURL.path,
 									   contents: data,
 									   attributes: nil)
-		result = checkLanguagesFileValidity(forExternalFile: true)
+		result = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		// Assert file is invalid
 		XCTAssertFalse(result.valid, "Validity check result for languages file should not be valid")
 		
@@ -145,40 +145,40 @@ class UtilityTests: XCTestCase {
 		}
 		
 		// Test incorrect file structure
-		TRIKUtil.languageFileTestPath = bundle.path(forResource: "LanguagesIncorrectStructure", ofType: TRIKConstant.FileManagement.FileExtension.plist)
-		result = checkLanguagesFileValidity(forExternalFile: true)
+		TRIKUtil.Language.languageFileTestPath = bundle.path(forResource: "LanguagesIncorrectStructure", ofType: TRIKConstant.FileManagement.FileExtension.plist)
+		result = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		// Assert file is invalid
 		XCTAssertFalse(result.valid, "Validity check result for languages file should not be valid")
 		
 		// Test empty languages array
-		TRIKUtil.languageFileTestPath = bundle.path(forResource: "LanguagesEmpty", ofType: TRIKConstant.FileManagement.FileExtension.plist)
-		result = checkLanguagesFileValidity(forExternalFile: true)
+		TRIKUtil.Language.languageFileTestPath = bundle.path(forResource: "LanguagesEmpty", ofType: TRIKConstant.FileManagement.FileExtension.plist)
+		result = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		// Assert file is invalid
 		XCTAssertFalse(result.valid, "Validity check result for languages file should not be valid")
 		
 		// Test wrong language key
-		TRIKUtil.languageFileTestPath = bundle.path(forResource: "LanguagesWrongKey", ofType: TRIKConstant.FileManagement.FileExtension.plist)
-		result = checkLanguagesFileValidity(forExternalFile: true)
+		TRIKUtil.Language.languageFileTestPath = bundle.path(forResource: "LanguagesWrongKey", ofType: TRIKConstant.FileManagement.FileExtension.plist)
+		result = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		// Assert file is invalid
 		XCTAssertFalse(result.valid, "Validity check result for languages file should not be valid")
 		
 		// Test valid external languages file
-		TRIKUtil.languageFileTestPath = bundle.path(forResource: "LanguagesValidExternal", ofType: TRIKConstant.FileManagement.FileExtension.plist)
-		result = checkLanguagesFileValidity(forExternalFile: true)
+		TRIKUtil.Language.languageFileTestPath = bundle.path(forResource: "LanguagesValidExternal", ofType: TRIKConstant.FileManagement.FileExtension.plist)
+		result = TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: true)
 		// Assert file is valid
 		XCTAssertTrue(result.valid, "Validity check result for languages file should be valid")
 		
 		// Test TRIK framework internal languages file
-		TRIKUtil.languageFileTestPath = nil
-		result = checkLanguagesFileValidity()
+		TRIKUtil.Language.languageFileTestPath = nil
+		result = TRIKUtil.Language.checkLanguagesFileValidity()
 		// Assert file is valid
 		XCTAssertTrue(result.valid, "Validity check result for languages file should be valid")
 	}
 	
 	func testReachabilityCheck() {
-		_ = sharedReachabilityManager
-		startMonitoringReachability()
-		let isReachable = reachabilityCheck(withAlert: false)
+		_ = TRIKUtil.Network.sharedReachabilityManager
+		TRIKUtil.Network.startMonitoringReachability()
+		let isReachable = TRIKUtil.Network.reachabilityCheck(withAlert: false)
 		
 		XCTAssertTrue(isReachable, "As long as the testing computer is connected to the internet, isReachable should be true")
 	}
