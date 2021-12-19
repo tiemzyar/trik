@@ -2,7 +2,7 @@
 //  TestEntry+CoreDataProperties.swift
 //  
 //
-//  Created by Manuel Zhou on 29.06.19.
+//  Created by tiemzyar on 29.06.19.
 //  Copyright © 2018 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
