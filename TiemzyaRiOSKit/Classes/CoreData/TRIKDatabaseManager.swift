@@ -31,7 +31,7 @@ import CoreData
 // MARK: -
 // MARK: Implementation
 /**
-Class for simplifying the creation of an interaction with a CoreData database within an application.
+Class for simplifying the creation of and interaction with a CoreData database within an application.
 */
 public class TRIKDatabaseManager: NSObject {
 	// MARK: Nested types
@@ -46,12 +46,6 @@ public class TRIKDatabaseManager: NSObject {
 		case library = 0
 		case documents
 	}
-
-	// MARK: Type properties
-	
-
-	// MARK: Type methods
-	
 
 	// MARK: -
 	// MARK: Instance properties
@@ -81,7 +75,7 @@ public class TRIKDatabaseManager: NSObject {
 	}()
 	
 	/// The database manager's persistent store coordinator
-	private lazy var appDBStoreCoordinator: NSPersistentStoreCoordinator? = { [unowned self] in
+	private (set) lazy var appDBStoreCoordinator: NSPersistentStoreCoordinator? = { [unowned self] in
 		var storageDirectoryURL: URL? = nil
 		if self.databaseDirectory == TRIKDatabaseManager.StorageDirectory.documents {
 			storageDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
