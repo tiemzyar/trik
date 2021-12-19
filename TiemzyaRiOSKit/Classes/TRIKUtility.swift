@@ -86,7 +86,9 @@ public func localizedString(for key: String,
 
 // MARK: Logging
 /**
-Logs a string (or the string reflection of an object) to the console if DEBUGLOGS is defined in the 'Other Swift Flags' section of a project's build settings.
+Logs a string (or the string-reflection of an object) to the console.
+
+The logging-functionality is only active, when a project is run in debug-mode. When run in release-mode, the functionality is deactivated.
 
 - parameters:
 	- object: Object to log
@@ -112,7 +114,7 @@ public func devLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ 
 
 #if NOLOGS
 	/**
-	Deactivates the system print function if NOLOGS is defined in the 'Other Swift Flags' section of a project's build settings.
+	Deactivates the system function `print(...)`, if NOLOGS is defined in the 'Active Compilation Conditions' section of this framework's build settings.
 	*/
 	public func print(_ items: Any...) {}
 #endif
