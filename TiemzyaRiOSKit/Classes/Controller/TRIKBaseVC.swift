@@ -31,23 +31,10 @@ import UIKit
 // MARK: Implementation
 /**
 View controller that can be used as base view controller for all view controllers in an application that make use of a toolbar and backwards navigation functionality.
-
-Metadata:
--
-Author: tiemzyar
-
-Revision history:
-- Created controller
 */
 open class TRIKBaseVC: UIViewController {
-	// MARK: Nested types
-
-
 	// MARK: Type properties
 	private static let buttonSideLength: CGFloat = 30.0
-
-	// MARK: Type methods
-
 
 	// MARK: -
 	// MARK: Instance properties
@@ -94,7 +81,7 @@ open class TRIKBaseVC: UIViewController {
 	- parameters:
 		- sender: UI element triggering the method call
 	*/
-	@IBAction public func returnToPreviousView(sender: Any?) {
+	@IBAction open func returnToPreviousView(sender: Any?) {
 		if let navVC = self.navigationController {
 			navVC.popViewController(animated: false)
 		}

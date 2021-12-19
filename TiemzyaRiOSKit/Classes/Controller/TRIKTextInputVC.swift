@@ -32,13 +32,6 @@ import QuartzCore
 // MARK: Implementation
 /**
 View controller with common functionality of controllers that allow text input by the user.
-
-Metadata:
--
-Author: tiemzyar
-
-Revision history:
-- Created controller
 */
 open class TRIKTextInputVC: TRIKBaseVC, TRIKKeyboardViewAnimationDelegate {
 	// MARK: Nested types
@@ -115,7 +108,7 @@ open class TRIKTextInputVC: TRIKBaseVC, TRIKKeyboardViewAnimationDelegate {
 	override open func viewDidLoad() {
         super.viewDidLoad()
 		
-		// Set the caret color for all text fields of the controller's view
+		// Make sure that the first subview of the controller is set
 		if self.firstSubview == nil {
 			self.firstSubview = self.view
 		}

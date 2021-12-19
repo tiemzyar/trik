@@ -4,8 +4,8 @@
 Framework for simplyfying some aspects of iOS development
 
 Author: tiemzyar <br />
-Date: 2020-10-09 <br />
-Xcode-Version: 12.0.1
+Date: 2021-12-19 <br />
+Xcode-Version: 13.1
 
 ## Functionality
 

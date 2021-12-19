@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 09.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2021 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,22 +24,18 @@
 //  THE SOFTWARE.
 //
 
+// MARK: Imports
 import Foundation
 import UIKit
 
-/**
+// MARK: -
+// MARK: Window
+/*
 Extension of UIAlertController for presentation within a dedicated UIWindow instance.
 
 Discussion
 -
 See http://stackoverflow.com/a/30941356 for additional information.
-
-Metadata
--
-Author: tiemzyar
-
-Revision history:
-- Created extension
 */
 public extension UIAlertController {
 	/// Contains the necessary keys for using associated objects
@@ -89,29 +85,77 @@ public extension UIAlertController {
 			self?.convertPresentationOrigin()
 		}
 		
-		guard let delegate = UIApplication.shared.delegate, let w = delegate.window, let window = w else {
+		self.alertWindow = self.createAlertWindow()
+		guard let window = self.alertWindow else {
 			return
 		}
 		
-		self.alertWindow = UIWindow(frame: window.frame)
-		self.alertWindow!.screen = UIScreen.main
-		self.alertWindow!.rootViewController = TRIKAlertVC()
+		// Check for usage of UISceneDelegate and set window scene or screen accordingly
+		if #available(iOS 13.0, *), let scene = self.getFirstActiveWindowScene() {
+			window.windowScene = scene
+		}
+		else {
+			window.screen = UIScreen.main
+		}
+		
+		window.rootViewController = TRIKAlertVC()
 		
 		// Set window's tintColor (prevents button titles from being illegible due to clear color)
-		self.alertWindow!.tintColor = TRIKConstant.Color.Grey.medium
+		window.tintColor = TRIKConstant.Color.Grey.medium
 		
 		// Set window level to above top window (prevents actionsheets from being hidden behind the keyboard)
 		if let windowLevel = UIApplication.shared.windows.last?.windowLevel {
-			self.alertWindow!.windowLevel = windowLevel + 1
+			window.windowLevel = windowLevel + 1
 		}
 		else {
-			self.alertWindow!.windowLevel = UIWindow.Level.alert
+			window.windowLevel = UIWindow.Level.alert
 		}
 		
 		self.convertPresentationOrigin()
 		
-		self.alertWindow!.makeKeyAndVisible()
-		self.alertWindow!.rootViewController!.present(self, animated: animated, completion: nil)
+		window.makeKeyAndVisible()
+		window.rootViewController!.present(self, animated: animated, completion: nil)
+	}
+	
+	/**
+	Creates a dedicated UIWindow instance for displaying an alert.
+	
+	- returns: The created window or nil, if a window could neither be created from an application's scenes nor from its delegate's window
+	*/
+	private func createAlertWindow() -> UIWindow? {
+		// Check for usage of UISceneDelegate and create window from scene or app delegate window accordingly
+		if #available(iOS 13.0, *), let scene = self.getFirstActiveWindowScene() {
+			return UIWindow(windowScene: scene)
+		}
+		else {
+			return createAlertWindowFromAppDelegateWindow()
+		}
+	}
+	
+	/**
+	Gets the first active window scene of an application.
+	
+	- returns: First active window scene or nil, if no active window scene is available
+	*/
+	@available(iOS 13.0, *)
+	private func getFirstActiveWindowScene() -> UIWindowScene? {
+		return UIApplication.shared
+			.connectedScenes
+			.filter { $0 is UIWindowScene && $0.activationState == .foregroundActive }
+			.first as? UIWindowScene
+	}
+	
+	/**
+	Creates a dedicated UIWindow instance for displaying an alert, using an application delegate's window as base.
+	
+	- returns: The created window or nil, if an application's delegate does not reference a window instance
+	*/
+	private func createAlertWindowFromAppDelegateWindow() -> UIWindow? {
+		guard let delegate = UIApplication.shared.delegate, let w = delegate.window, let window = w else {
+			return nil
+		}
+		
+		return UIWindow(frame: window.frame)
 	}
 	
 	/**
@@ -127,7 +171,9 @@ public extension UIAlertController {
 	}
 	
 	/**
-	If the alert controller is presented as popover (i.e. on an iPad), converts the frames of the controller's presentation sources (sourceView or barButtonItem) to the coordinate space of the controller's alert window.
+	Converts the frames of the alert controller's presentation sources (sourceView or barButtonItem) to the coordinate space of the controller's alert window.
+	
+	The conversion will only be done if the controller is presented as popover (i.e. on an iPad).
 	*/
 	private func convertPresentationOrigin() {
 		guard let ppc = self.popoverPresentationController,
