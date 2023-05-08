@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 # source 'https://<specs-url>/specs.git'
 
 # Specify platform version
-platform :ios, "12.0"
+platform :ios, "14.0"
 # Swift requires framework usage
 use_frameworks!
 
@@ -27,7 +27,7 @@ target 'TiemzyaRiOSKit_UITests' do
 	trik
 end
 
-pod 'Alamofire', '~> 5.2.2'
+pod 'Alamofire', '~> 5.6.4'
 #pod 'RNCryptor', '~> 5.0'
 #pod 'Locksmith', '~> 3.0'
 #pod 'Zip', '~> 1.0'

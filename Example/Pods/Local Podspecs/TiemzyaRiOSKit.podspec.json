@@ -1,6 +1,6 @@
 {
   "name": "TiemzyaRiOSKit",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "summary": "This framework helps simplyfying some aspects of iOS development ...",
   "description": "TiemzyaRiOSKit is an iOS utility framework written in Swift. It offers simple-to-use functionality for working with localization, databases and overlays amongst others.",
   "homepage": "https://github.com/tiemzyar/trik",
@@ -13,12 +13,12 @@
   },
   "source": {
     "git": "https://github.com/tiemzyar/trik.git",
-    "tag": "1.2.0"
+    "tag": "2.0.0"
   },
   "platforms": {
-    "ios": "11.0"
+    "ios": "14.0"
   },
-  "swift_versions": "4.1",
+  "swift_versions": "5.0",
   "source_files": "TiemzyaRiOSKit/Classes/**/*",
   "resource_bundles": {
     "TiemzyaRiOSKit": [
@@ -39,8 +39,8 @@
   ],
   "dependencies": {
     "Alamofire": [
-      "~> 5.2.2"
+      "~> 5.6.4"
     ]
   },
-  "swift_version": "4.1"
+  "swift_version": "5.0"
 }
