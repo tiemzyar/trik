@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 25.09.18.
-//  Copyright © 2018-2020 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -446,13 +446,17 @@ extension TRIKUtil {
 		Performs a network reachability check.
 
 		- parameters:
-			- alert: Flag about whether or not to show an alert, if no network is reachable
-			- warning: Flag about whether or not to show a warning, if network is only reachable over cellular
+			- alert: Flag about whether or not to show an alert, if no network is reachable (default: `false`)
+			- warning: Flag about whether or not to show a warning, if network is only reachable over cellular (default: `false`)
+			- completion: Completion handler to execute after checking reachability
 
-		- returns: True, if network is available, false otherwise
+		- returns: Network availability status (within completion)
 		*/
-		public static func reachabilityCheck(withAlert alert: Bool = true, cellularWarning warning: Bool = false) -> Bool {
-			var networkAvailable = false
+		public static func reachabilityCheck(withAlert alert: Bool = false,
+											 cellularWarning warning: Bool = false,
+											 completion: @escaping (_ availabilityStatus: (isNetworkAvailable: Bool, isCellularNetwork: Bool)) -> Void) {
+			
+			var networkAvailablilityStatus = (isNetworkAvailable: false, isCellularNetwork: false)
 			
 			var locAlertTitle: String
 			var locAlertMessage: String
@@ -460,13 +464,11 @@ extension TRIKUtil {
 			var locButtonTitleCancel: String
 			
 			guard let reachabilityStatus = self.sharedReachabilityManager?.status else {
-				return networkAvailable
+				return completion(networkAvailablilityStatus)
 			}
+			
 			if reachabilityStatus == .notReachable || reachabilityStatus == .unknown {
-				guard let bundle = TRIKUtil.trikResourceBundle() else {
-					return networkAvailable
-				}
-				if alert {
+				if alert, let bundle = TRIKUtil.trikResourceBundle() {
 					locAlertTitle = localizedString(forKey: "TRIKUtil: Alert noNetwork Title",
 													bundle: bundle,
 													table: TRIKConstant.FileManagement.FileName.localizedStrings)
@@ -487,49 +489,56 @@ extension TRIKUtil {
 					
 					noNetwork.show(animated: true)
 				}
+				
+				completion(networkAvailablilityStatus)
 			}
 			else {
-				networkAvailable = true
+				networkAvailablilityStatus.isNetworkAvailable = true
 				
-				if reachabilityStatus == .reachable(.cellular) && warning {
-					guard let bundle = TRIKUtil.trikResourceBundle() else {
-						return networkAvailable
+				if reachabilityStatus == .reachable(.cellular) {
+					networkAvailablilityStatus.isCellularNetwork = true
+					
+					if warning, let bundle = TRIKUtil.trikResourceBundle() {
+						locAlertTitle = localizedString(forKey: "TRIKUtil: Alert noWifi Title",
+														bundle: bundle,
+														table: TRIKConstant.FileManagement.FileName.localizedStrings)
+						locAlertMessage = localizedString(forKey: "TRIKUtil: Alert noWifi Message",
+														  bundle: bundle,
+														  table: TRIKConstant.FileManagement.FileName.localizedStrings)
+						locButtonTitleCancel = localizedString(forKey: "TRIKUtil: Alert noWifi Button Cancel",
+															   bundle: bundle,
+															   table: TRIKConstant.FileManagement.FileName.localizedStrings)
+						locButtonTitleDestructive = localizedString(forKey: "TRIKUtil: Alert noWifi Button Destructive",
+																	bundle: bundle,
+																	table: TRIKConstant.FileManagement.FileName.localizedStrings)
+						
+						let noWifi = UIAlertController(title: locAlertTitle,
+													   message: locAlertMessage,
+													   preferredStyle: UIAlertController.Style.alert)
+						var action = UIAlertAction(title: locButtonTitleDestructive,
+												   style: UIAlertAction.Style.destructive,
+												   handler: { (destructiveAction) in
+													NotificationCenter.default.post(name: TRIKConstant.Notification.Name.noWifiWarningContinue, object: nil)
+						})
+						noWifi.addAction(action)
+						action = UIAlertAction(title: locButtonTitleCancel,
+											   style: UIAlertAction.Style.cancel,
+											   handler: { (cancelAction) in
+												NotificationCenter.default.post(name: TRIKConstant.Notification.Name.noWifiWarningCancel, object: nil)
+						})
+						noWifi.addAction(action)
+						
+						noWifi.show(animated: true)
 					}
-					
-					locAlertTitle = localizedString(forKey: "TRIKUtil: Alert noWifi Title",
-													bundle: bundle,
-													table: TRIKConstant.FileManagement.FileName.localizedStrings)
-					locAlertMessage = localizedString(forKey: "TRIKUtil: Alert noWifi Message",
-													  bundle: bundle,
-													  table: TRIKConstant.FileManagement.FileName.localizedStrings)
-					locButtonTitleCancel = localizedString(forKey: "TRIKUtil: Alert noWifi Button Cancel",
-														   bundle: bundle,
-														   table: TRIKConstant.FileManagement.FileName.localizedStrings)
-					locButtonTitleDestructive = localizedString(forKey: "TRIKUtil: Alert noWifi Button Destructive",
-																bundle: bundle,
-																table: TRIKConstant.FileManagement.FileName.localizedStrings)
-					
-					let noWifi = UIAlertController(title: locAlertTitle,
-												   message: locAlertMessage,
-												   preferredStyle: UIAlertController.Style.alert)
-					var action = UIAlertAction(title: locButtonTitleDestructive,
-											   style: UIAlertAction.Style.destructive,
-											   handler: { (destructiveAction) in
-												NotificationCenter.default.post(name: TRIKConstant.Notification.Name.noWifiWarningContinue, object: nil)
-					})
-					noWifi.addAction(action)
-					action = UIAlertAction(title: locButtonTitleCancel,
-										   style: UIAlertAction.Style.cancel,
-										   handler: { (cancelAction) in
-											NotificationCenter.default.post(name: TRIKConstant.Notification.Name.noWifiWarningCancel, object: nil)
-					})
-					noWifi.addAction(action)
-					
-					noWifi.show(animated: true)
 				}
 			}
 			
-			return networkAvailable
+			return completion(networkAvailablilityStatus)
+		}
+		
+		@available(*, deprecated, message: "This method will always return false; use 'reachabilityCheck(withAlert:cellularWarning:completion:)' instead")
+		public static func reachabilityCheck(withAlert alert: Bool = true, cellularWarning warning: Bool = false) -> Bool {
+			return false
 		}
 	}
 }

@@ -30,7 +30,7 @@ import CoreData
 
 @testable import TiemzyaRiOSKit
 
-class UtilityTests: XCTestCase {
+class UtilityTests: CommonTestBase {
 	// MARK: Type properties
 
 
@@ -178,9 +178,17 @@ class UtilityTests: XCTestCase {
 	func testReachabilityCheck() {
 		_ = TRIKUtil.Network.sharedReachabilityManager
 		TRIKUtil.Network.startMonitoringReachability()
-		let isReachable = TRIKUtil.Network.reachabilityCheck(withAlert: false)
 		
-		XCTAssertTrue(isReachable, "As long as the testing computer is connected to the internet, isReachable should be true")
+		let checkExpectation = expectation(description: "Expecting reachability check completion")
+		TRIKUtil.Network.reachabilityCheck { availabilityStatus in
+			XCTAssertTrue(availabilityStatus.isNetworkAvailable, "As long as the testing computer is connected to the internet, isReachable should be true")
+			XCTAssertFalse(availabilityStatus.isCellularNetwork)
+			
+			checkExpectation.fulfill()
+		}
+		
+		self.waitForExpectations()
+		
 	}
 	
 	// MARK: Support methods
