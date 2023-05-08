@@ -34,27 +34,27 @@ import Alamofire
 
 // MARK: Localization
 /**
-Retrieves a localized string for the passed key from a passed bundle and table.
+Retrieves a localized string for a given key from a given bundle and table.
 
 Discussion
 -
-The optional fallback language will be used if for the current application language there is no string associated with key.
+The optional fallback language will be used, if there is no string associated with the given key for the current application language.
 
 - parameters:
 	- key: The key for the localized string
 	- bundle: The bundle containing the file with localized strings
-				(default: Bundle.main)
+				(default: `Bundle.main`)
 	- table: The name of the .strings file containing the localized string
 				(default: nil, i.e. Localizable.strings)
 	- code: Code for the fallback language to use
-				(default: nil)
+				(default: `TRIKConstant.Language.Code.english`)
 
-- returns: The localized string or TRIKConstant.SpecialString.moltuae, if there is no string associated with key
+- returns: The localized string or ``TRIKConstant.SpecialString.moltuae``, if there is no string associated with the given key
 */
-public func localizedString(for key: String,
-							in bundle: Bundle = Bundle.main,
-							and table: String? = nil,
-							fallback code: String? = nil) -> String {
+public func localizedString(forKey key: String,
+							bundle: Bundle = Bundle.main,
+							table: String? = nil,
+							fallback code: String? = TRIKConstant.Language.Code.english) -> String {
 	
 	// Try using directory of locale for current language
 	var path = bundle.path(forResource: TRIKUtil.Language.currentLanguage().languageCode,
@@ -368,7 +368,9 @@ extension TRIKUtil {
 
 		- returns: Tuple consisting of a language code and a Bool about whether that code is a fallback
 		*/
-		public static func currentLanguage(withFallback fallback: String = TRIKConstant.Language.Code.english) -> (languageCode: String, isFallback: Bool) {
+		public static func currentLanguage(withFallback fallback: String = TRIKConstant.Language.Code.english)
+		-> (languageCode: String, isFallback: Bool) {
+			
 			let retValue = (languageCode: fallback, isFallback: true)
 			let languages = UserDefaults.standard.object(forKey: TRIKConstant.UserDefaults.appleLanguages)
 			
@@ -465,18 +467,15 @@ extension TRIKUtil {
 					return networkAvailable
 				}
 				if alert {
-					locAlertTitle = localizedString(for: "TRIKUtil: Alert noNetwork Title",
-													in: bundle,
-													and: TRIKConstant.FileManagement.FileName.localizedStrings,
-													fallback: TRIKConstant.Language.Code.english)
-					locAlertMessage = localizedString(for: "TRIKUtil: Alert noNetwork Message",
-													  in: bundle,
-													  and: TRIKConstant.FileManagement.FileName.localizedStrings,
-													  fallback: TRIKConstant.Language.Code.english)
-					locButtonTitleCancel = localizedString(for: "TRIKUtil: Alert noNetwork Button Cancel",
-														   in: bundle,
-														   and: TRIKConstant.FileManagement.FileName.localizedStrings,
-														   fallback: TRIKConstant.Language.Code.english)
+					locAlertTitle = localizedString(forKey: "TRIKUtil: Alert noNetwork Title",
+													bundle: bundle,
+													table: TRIKConstant.FileManagement.FileName.localizedStrings)
+					locAlertMessage = localizedString(forKey: "TRIKUtil: Alert noNetwork Message",
+													  bundle: bundle,
+													  table: TRIKConstant.FileManagement.FileName.localizedStrings)
+					locButtonTitleCancel = localizedString(forKey: "TRIKUtil: Alert noNetwork Button Cancel",
+														   bundle: bundle,
+														   table: TRIKConstant.FileManagement.FileName.localizedStrings)
 					
 					let noNetwork = UIAlertController(title: locAlertTitle,
 													  message: locAlertMessage,
@@ -497,22 +496,18 @@ extension TRIKUtil {
 						return networkAvailable
 					}
 					
-					locAlertTitle = localizedString(for: "TRIKUtil: Alert noWifi Title",
-													in: bundle,
-													and: TRIKConstant.FileManagement.FileName.localizedStrings,
-													fallback: TRIKConstant.Language.Code.english)
-					locAlertMessage = localizedString(for: "TRIKUtil: Alert noWifi Message",
-													  in: bundle,
-													  and: TRIKConstant.FileManagement.FileName.localizedStrings,
-													  fallback: TRIKConstant.Language.Code.english)
-					locButtonTitleCancel = localizedString(for: "TRIKUtil: Alert noWifi Button Cancel",
-														   in: bundle,
-														   and: TRIKConstant.FileManagement.FileName.localizedStrings,
-														   fallback: TRIKConstant.Language.Code.english)
-					locButtonTitleDestructive = localizedString(for: "TRIKUtil: Alert noWifi Button Destructive",
-																in: bundle,
-																and: TRIKConstant.FileManagement.FileName.localizedStrings,
-																fallback: TRIKConstant.Language.Code.english)
+					locAlertTitle = localizedString(forKey: "TRIKUtil: Alert noWifi Title",
+													bundle: bundle,
+													table: TRIKConstant.FileManagement.FileName.localizedStrings)
+					locAlertMessage = localizedString(forKey: "TRIKUtil: Alert noWifi Message",
+													  bundle: bundle,
+													  table: TRIKConstant.FileManagement.FileName.localizedStrings)
+					locButtonTitleCancel = localizedString(forKey: "TRIKUtil: Alert noWifi Button Cancel",
+														   bundle: bundle,
+														   table: TRIKConstant.FileManagement.FileName.localizedStrings)
+					locButtonTitleDestructive = localizedString(forKey: "TRIKUtil: Alert noWifi Button Destructive",
+																bundle: bundle,
+																table: TRIKConstant.FileManagement.FileName.localizedStrings)
 					
 					let noWifi = UIAlertController(title: locAlertTitle,
 												   message: locAlertMessage,
@@ -543,71 +538,11 @@ extension TRIKUtil {
 // MARK: -
 // MARK: Legacy methods and variables
 
-/**
-Convenience method for retrieving the path to an application's documents directory.
-
-This method is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIkUtil.FileManagement.getApplicationDocumentsDirectoryURL().path' instead")
-public func applicationDocumentsDirectory() -> String {
-	return TRIKUtil.FileManagement.getApplicationDocumentsDirectoryURL().path
-}
-
-/**
-Trims the file extension from a file name.
-
-This method is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIkUtil.FileManagement.trimFileExtension(fromFile:)' instead")
-public func trimFileExtension(fromFile fileName: String) -> String {
-	return TRIKUtil.FileManagement.trimFileExtension(fromFile: fileName)
-}
-
-/**
-Subject to the parameter externalFile checks whether the TRIK framework internal languages file or an external languages file is valid.
-
-This method is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIkUtil.Language.checkLanguagesFileValidity(forExternalFile:)' instead")
-internal func checkLanguagesFileValidity(forExternalFile externalFile: Bool = false) -> (valid: Bool, content: [Dictionary<String, Any>]?) {
-	return TRIKUtil.Language.checkLanguagesFileValidity(forExternalFile: externalFile)
-}
-
-/**
-Retrieves the current application language as ISO 639-1 language code or a fallback code, if it was not possible to retrieve the current application language.
-
-This method is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIkUtil.Language.currentLanguage(withFallback:)' instead")
-public func currentLanguage(withFallback fallback: String = TRIKConstant.Language.Code.english) -> (languageCode: String, isFallback: Bool) {
-	return TRIKUtil.Language.currentLanguage(withFallback: fallback)
-}
-
-/**
-Shared network reachability manager for an application
-
-This variable is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIKUtil.Network.sharedReachabilityManager' instead")
-public let sharedReachabilityManager = TRIKUtil.Network.sharedReachabilityManager
-
-/**
-Starts monitoring network reachability in an application.
-
-This method is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIKUtil.Network.startMonitoringReachability()' instead")
-public func startMonitoringReachability() {
-	TRIKUtil.Network.startMonitoringReachability()
-	_ = reachabilityCheck()
-}
-
-/**
-Performs a network reachability check.
-
-This method is deprecated and will be removed in a future version of this framework.
-*/
-@available(*, deprecated, message: "Use 'TRIKUtil.Network.reachabilityCheck(withAlert:, cellularWarning:)' instead")
-public func reachabilityCheck(withAlert alert: Bool = true, cellularWarning warning: Bool = false) -> Bool {
-	return TRIKUtil.Network.reachabilityCheck(withAlert: alert, cellularWarning: warning)
+@available(*, deprecated, message: "Use 'localizedString(forKey:bundle:table:fallback:)' instead")
+public func localizedString(for key: String,
+							in bundle: Bundle = Bundle.main,
+							and table: String? = nil,
+							fallback code: String? = nil) -> String {
+	
+	return localizedString(forKey: key, bundle: bundle, table: table, fallback: code)
 }

@@ -71,11 +71,14 @@ class AutoDestroyOverlayVC: OverlayVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "ADOverlayVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.destructionDelayDescLabel.text = localizedString(for: "ADOverlayVC: Label Destruction Delay", fallback: TRIKConstant.Language.Code.german)
-		self.tapToDestroyLabel.text = localizedString(for: "ADOverlayVC: Label Tap To Destroy", fallback: TRIKConstant.Language.Code.german)
-		self.addOverlayButton.setTitle(localizedString(for: "ADOverlayVC: Button Add Overlay",
-													   fallback: TRIKConstant.Language.Code.german),
+		self.exampleDescriptionLabel.text = localizedString(forKey: "ADOverlayVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.destructionDelayDescLabel.text = localizedString(forKey: "ADOverlayVC: Label Destruction Delay",
+															  fallback: Locale.appFallbackLanguage)
+		self.tapToDestroyLabel.text = localizedString(forKey: "ADOverlayVC: Label Tap To Destroy",
+													  fallback: Locale.appFallbackLanguage)
+		self.addOverlayButton.setTitle(localizedString(forKey: "ADOverlayVC: Button Add Overlay",
+													   fallback: Locale.appFallbackLanguage),
 									   for: .normal)
 		
 		self.determineDestructionDelay()

@@ -386,10 +386,9 @@ extension TRIKSearchBar {
 		
 		// Cancel button
 		self.cancelButton.setTitleColor(TRIKConstant.Color.black, for: .normal)
-		self.cancelButton.setTitle(localizedString(for: "SearchBar: Button Cancel Title",
-		                                           in: TRIKUtil.trikResourceBundle()!,
-												   and: TRIKConstant.FileManagement.FileName.localizedStrings,
-												   fallback: TRIKConstant.Language.Code.english),
+		self.cancelButton.setTitle(localizedString(forKey: "SearchBar: Button Cancel Title",
+												   bundle: TRIKUtil.trikResourceBundle()!,
+												   table: TRIKConstant.FileManagement.FileName.localizedStrings),
 		                           for: UIControl.State.normal)
 		self.cancelButton.addTarget(self, action: #selector(TRIKSearchBar.cancelButtonTapped(_:)), for: .touchUpInside)
 	}

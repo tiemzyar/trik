@@ -74,7 +74,8 @@ class KeyboardAnimationVC: ExampleVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "KAnimVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "KAnimVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
 		
 		self.referenceTextFields(inView: self.view, resetExistingReferences: true)
 		

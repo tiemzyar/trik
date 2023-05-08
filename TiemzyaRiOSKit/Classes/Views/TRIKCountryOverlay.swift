@@ -347,10 +347,9 @@ public class TRIKCountryOverlay: TRIKOverlay {
 		
 		self.countrySearchBar = TRIKSearchBar(searchFieldHeight: TRIKCountryOverlay.languageSwitchHeight, roundCorners: true)
 		self.countryTable = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
-		let languages = [localizedString(for: "CSOverlay: Segmented Controle Language Local",
-		                                 in: TRIKUtil.trikResourceBundle()!,
-										 and: TRIKConstant.FileManagement.FileName.localizedStrings,
-										 fallback: TRIKConstant.Language.Code.english),
+		let languages = [localizedString(forKey: "CSOverlay: Segmented Control Language Local",
+		                                 bundle: TRIKUtil.trikResourceBundle()!,
+										 table: TRIKConstant.FileManagement.FileName.localizedStrings),
 		                 TRIKConstant.Language.Code.english,
 		                 TRIKConstant.Language.Code.german]
 		self.languageSwitch = UISegmentedControl(items: languages)
@@ -652,10 +651,9 @@ extension TRIKCountryOverlay {
 		self.countrySearchBar.searchField.keyboardType = .asciiCapable
 		self.countrySearchBar.searchField.returnKeyType = .search
 		self.countrySearchBar.searchField.font = self.fontContent
-		let placeholderText = NSMutableAttributedString(string: localizedString(for: "CSOverlay: Search Bar Placeholder",
-																				in: TRIKUtil.trikResourceBundle()!,
-																				and: TRIKConstant.FileManagement.FileName.localizedStrings,
-																				fallback: TRIKConstant.Language.Code.english),
+		let placeholderText = NSMutableAttributedString(string: localizedString(forKey: "CSOverlay: Search Bar Placeholder",
+																				bundle: TRIKUtil.trikResourceBundle()!,
+																				table: TRIKConstant.FileManagement.FileName.localizedStrings),
 														attributes: [NSAttributedString.Key.font: self.fontContent])
 		
 		// Search bar elements
@@ -957,10 +955,9 @@ extension TRIKCountryOverlay: UITableViewDataSource {
 			header.titleLabel.textColor = TRIKConstant.Color.white
 		}
 
-		header.titleLabel.text = localizedString(for: "CSOverlay: Table Section Header",
-												 in: TRIKUtil.trikResourceBundle()!,
-												 and: TRIKConstant.FileManagement.FileName.localizedStrings,
-												 fallback: TRIKConstant.Language.Code.english)
+		header.titleLabel.text = localizedString(forKey: "CSOverlay: Table Section Header",
+												 bundle: TRIKUtil.trikResourceBundle()!,
+												 table: TRIKConstant.FileManagement.FileName.localizedStrings)
 		
 		return header
 	}

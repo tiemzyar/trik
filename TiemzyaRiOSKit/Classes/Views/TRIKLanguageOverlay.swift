@@ -63,7 +63,7 @@ The structure should look like:
 </plist>
 ```
 
-Note that, when using TRIK framework's method localizedString(for:) for localized string retrieval, code also represents the name of the .lproj folder containing the relevant .strings file.
+Note that, when using TRIK framework's method localizedString(forKey:) for localized string retrieval, code also represents the name of the .lproj folder containing the relevant .strings file.
 
 Metadata:
 -
@@ -465,10 +465,9 @@ extension TRIKLanguageOverlay {
 		// Cancel button
 		self.cancelButton.titleLabel!.font = self.fontHeader
 		if let bundle = TRIKUtil.trikResourceBundle() {
-			let locString = localizedString(for: "LangOverlay: Button Cancel",
-											in: bundle,
-											and: TRIKConstant.FileManagement.FileName.localizedStrings,
-											fallback: TRIKConstant.Language.Code.english)
+			let locString = localizedString(forKey: "LangOverlay: Button Cancel",
+											bundle: bundle,
+											table: TRIKConstant.FileManagement.FileName.localizedStrings)
 			self.cancelButton.setTitle(locString, for: UIControl.State.normal)
 		}
 		let cancel = #selector(TRIKLanguageOverlay.cancelButtonTapped(_:))
@@ -626,15 +625,13 @@ extension TRIKLanguageOverlay: UITableViewDataSource {
 		var locString: String
 		switch section {
 		case 0:
-			locString = localizedString(for: "LangOverlay: Table Header Section 0",
-										in: bundle,
-										and: TRIKConstant.FileManagement.FileName.localizedStrings,
-										fallback: TRIKConstant.Language.Code.english)
+			locString = localizedString(forKey: "LangOverlay: Table Header Section 0",
+										bundle: bundle,
+										table: TRIKConstant.FileManagement.FileName.localizedStrings)
 		case 1:
-			locString = localizedString(for: "LangOverlay: Table Header Section 1",
-										in: bundle,
-										and: TRIKConstant.FileManagement.FileName.localizedStrings,
-										fallback: TRIKConstant.Language.Code.english)
+			locString = localizedString(forKey: "LangOverlay: Table Header Section 1",
+										bundle: bundle,
+										table: TRIKConstant.FileManagement.FileName.localizedStrings)
 		default:
 			locString = TRIKConstant.SpecialString.empty
 		}
@@ -746,18 +743,15 @@ extension TRIKLanguageOverlay: UITableViewDelegate {
 			}
 			
 			self.selectedCell = indexPath
-			let locAlertTitle = localizedString(for: "LangOverlay: Actionsheet changeLanguage Title",
-												in: bundle,
-												and: TRIKConstant.FileManagement.FileName.localizedStrings,
-												fallback: TRIKConstant.Language.Code.english)
-			let locButtonTitleDestruct = localizedString(for: "LangOverlay: Actionsheet changeLanguage Button Destructive",
-														 in: bundle,
-														 and: TRIKConstant.FileManagement.FileName.localizedStrings,
-														 fallback: TRIKConstant.Language.Code.english)
-			let locButtonTitleCancel = localizedString(for: "LangOverlay: Actionsheet changeLanguage Button Cancel",
-													   in: bundle,
-													   and: TRIKConstant.FileManagement.FileName.localizedStrings,
-													   fallback: TRIKConstant.Language.Code.english)
+			let locAlertTitle = localizedString(forKey: "LangOverlay: Actionsheet changeLanguage Title",
+												bundle: bundle,
+												table: TRIKConstant.FileManagement.FileName.localizedStrings)
+			let locButtonTitleDestruct = localizedString(forKey: "LangOverlay: Actionsheet changeLanguage Button Destructive",
+														 bundle: bundle,
+														 table: TRIKConstant.FileManagement.FileName.localizedStrings)
+			let locButtonTitleCancel = localizedString(forKey: "LangOverlay: Actionsheet changeLanguage Button Cancel",
+													   bundle: bundle,
+													   table: TRIKConstant.FileManagement.FileName.localizedStrings)
 			
 			let changeLanguage = UIAlertController(title: locAlertTitle,
 			                                       message: nil,

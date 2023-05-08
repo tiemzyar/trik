@@ -73,21 +73,25 @@ class UtilityVC: ExampleVC {
 		// Retrieve ISO 639-1 language code for the current application language ...
 		print("Current language: \(TRIKUtil.Language.currentLanguage())")
 		// ... with optional fallback (if current language does not match any entry in a list of application languages)
-		print("Current language: \(TRIKUtil.Language.currentLanguage(withFallback: TRIKConstant.Language.Code.german))")
+		print("Current language: \(TRIKUtil.Language.currentLanguage(withFallback: Locale.appFallbackLanguage))")
 		
 		// Retrieve localized strings from Localizable.strings of app bundle
-		self.exampleDescriptionLabel.text = localizedString(for: "RUseVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.stringUsageDescLabel.text = localizedString(for: "RUseVC: Label String Usage Desc", fallback: TRIKConstant.Language.Code.german)
-		self.imageUsageDescLabel.text = localizedString(for: "RUseVC: Label Image Usage Desc", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "RUseVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.stringUsageDescLabel.text = localizedString(forKey: "RUseVC: Label String Usage Desc",
+														 fallback: Locale.appFallbackLanguage)
+		self.imageUsageDescLabel.text = localizedString(forKey: "RUseVC: Label Image Usage Desc",
+														fallback: Locale.appFallbackLanguage)
 		
 		// Retrieve localized strings from TRIK framework
-		self.localizedStringLabel.text = localizedString(for: "CSOverlay: Search Bar Placeholder",
-														 in: TRIKUtil.trikResourceBundle() ?? Bundle.main,
-														 and: "TRIKLocalizable",
-														 fallback: TRIKConstant.Language.Code.english)
+		self.localizedStringLabel.text = localizedString(forKey: "CSOverlay: Search Bar Placeholder",
+														 bundle: TRIKUtil.trikResourceBundle() ?? Bundle.main,
+														 table: "TRIKLocalizable",
+														 fallback: Locale.appFallbackLanguage)
 		
 		// Use TRIK image resources
-		if let imagePath = TRIKUtil.trikResourceBundle()?.path(forResource: "TRIKSliderThumbImageBlue", ofType: TRIKConstant.FileManagement.FileExtension.png) {
+		if let imagePath = TRIKUtil.trikResourceBundle()?.path(forResource: "TRIKSliderThumbImageBlue",
+															   ofType: TRIKConstant.FileManagement.FileExtension.png) {
 			if let image = UIImage(contentsOfFile: imagePath) {
 				self.resourceIV.image = image
 			}

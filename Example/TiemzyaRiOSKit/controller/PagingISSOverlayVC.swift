@@ -60,8 +60,10 @@ class PagingISSOverlayVC: ISSOverlayVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "PISSOverlayVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.dualLayoutLabel.text = localizedString(for: "PISSOverlayVC: Label Dual Layout", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "PISSOverlayVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.dualLayoutLabel.text = localizedString(forKey: "PISSOverlayVC: Label Dual Layout",
+													fallback: Locale.appFallbackLanguage)
     }
 
 	// MARK: -

@@ -57,7 +57,8 @@ class LanguageOverlayVC: OverlayVC {
 		
 		// If you select a language for which no localization exists (i.e. no ".lproj" folder), the fallback localization will be used
 		// (That is what happens when you select Spanish as language in the example app)
-		self.exampleDescriptionLabel.text = localizedString(for: "LOverlayVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "LOverlayVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
     }
 
 	// MARK: -
@@ -78,7 +79,8 @@ class LanguageOverlayVC: OverlayVC {
 		super.createOverlay()
 		
 		self.overlay = TRIKLanguageOverlay(superview: self.firstSubview,
-										   text: localizedString(for: "LOverlayVC: Overlay Title", fallback: TRIKConstant.Language.Code.german),
+										   text: localizedString(forKey: "LOverlayVC: Overlay Title",
+																 fallback: Locale.appFallbackLanguage),
 										   titleFont: UIFont.boldSystemFont(ofSize: 20.0),
 										   headerFont: UIFont.boldSystemFont(ofSize: 15.0),
 										   contentFont: UIFont.systemFont(ofSize: 12.0),

@@ -77,9 +77,12 @@ class DBManagerVC: ExampleVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "DBManagerVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.createEntryLabel.text = localizedString(for: "DBManagerVC: Label Create Entry", fallback: TRIKConstant.Language.Code.german)
-		self.entryTF.placeholder = localizedString(for: "DBManagerVC: Text Field Entry Placeholder", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "DBManagerVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.createEntryLabel.text = localizedString(forKey: "DBManagerVC: Label Create Entry",
+													 fallback: Locale.appFallbackLanguage)
+		self.entryTF.placeholder = localizedString(forKey: "DBManagerVC: Text Field Entry Placeholder",
+												   fallback: Locale.appFallbackLanguage)
 		
 		let descriptors = [NSSortDescriptor(keyPath: \TableEntry.creationDate, ascending: true)]
 		// Configure the database manager's fetched results controller for a specific entity
@@ -119,12 +122,12 @@ class DBManagerVC: ExampleVC {
 			entryIsInvalid = true
 		}
 		if entryIsInvalid {
-			let locAlertTitle = localizedString(for: "DBManagerVC: Alert invalidEntry Title",
-												fallback: TRIKConstant.Language.Code.english)
-			let locAlertMessage = localizedString(for: "DBManagerVC: Alert invalidEntry Message",
-												  fallback: TRIKConstant.Language.Code.english)
-			let locButtonTitleCancel = localizedString(for: "DBManagerVC: Alert invalidEntry Button Cancel",
-													   fallback: TRIKConstant.Language.Code.english)
+			let locAlertTitle = localizedString(forKey: "DBManagerVC: Alert invalidEntry Title",
+												fallback: Locale.appFallbackLanguage)
+			let locAlertMessage = localizedString(forKey: "DBManagerVC: Alert invalidEntry Message",
+												  fallback: Locale.appFallbackLanguage)
+			let locButtonTitleCancel = localizedString(forKey: "DBManagerVC: Alert invalidEntry Button Cancel",
+													   fallback: Locale.appFallbackLanguage)
 			
 			let invalidEntry = UIAlertController(title: locAlertTitle, message: locAlertMessage, preferredStyle: UIAlertController.Style.alert)
 			let action = UIAlertAction(title: locButtonTitleCancel, style: UIAlertAction.Style.default, handler: nil)
@@ -233,8 +236,8 @@ extension DBManagerVC: UITableViewDataSource {
 	public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let header = tableView.dequeueReusableCell(withIdentifier: DBManagerVC.tvCellIdHeader)
 		
-		header?.textLabel?.text = localizedString(for: "DBManagerVC: Table Section Header",
-												  fallback: TRIKConstant.Language.Code.german)
+		header?.textLabel?.text = localizedString(forKey: "DBManagerVC: Table Section Header",
+												  fallback: Locale.appFallbackLanguage)
 		
 		return header
 	}
@@ -266,12 +269,12 @@ extension DBManagerVC: UITableViewDataSource {
 		
 		let text: String
 		if self.tableEntries.count == 1 {
-			text = localizedString(for: "DBManagerVC: Table Section Footer Singular",
-								   fallback: TRIKConstant.Language.Code.german)
+			text = localizedString(forKey: "DBManagerVC: Table Section Footer Singular",
+								   fallback: Locale.appFallbackLanguage)
 		}
 		else {
-			text = localizedString(for: "DBManagerVC: Table Section Footer Plural",
-								   fallback: TRIKConstant.Language.Code.german)
+			text = localizedString(forKey: "DBManagerVC: Table Section Footer Plural",
+								   fallback: Locale.appFallbackLanguage)
 		}
 		
 		footer?.textLabel?.text = "\(self.tableEntries.count) \(text)"
@@ -298,7 +301,8 @@ extension DBManagerVC: UITableViewDataSource {
 
 		// Cell specific configuration
 		let entry = self.tableEntries[indexPath.row]
-		let description = localizedString(for: "DBManagerVC: Label Creation Date", fallback: TRIKConstant.Language.Code.german)
+		let description = localizedString(forKey: "DBManagerVC: Label Creation Date",
+										  fallback: Locale.appFallbackLanguage)
 		cell.textLabel?.text = entry.title
 		if let creationDate = entry.creationDate {
 			cell.detailTextLabel?.text = "\(description) \(creationDate)"

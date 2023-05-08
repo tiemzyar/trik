@@ -76,7 +76,7 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 	
 	/// Image to display when a slide show image cannot be found or accessed or is broken
 	internal static var dummyImage: UIImage? = {
-		let languageCode = TRIKUtil.Language.currentLanguage(withFallback: TRIKConstant.Language.Code.english).languageCode
+		let languageCode = TRIKUtil.Language.currentLanguage().languageCode
 		
 		guard let bundle = TRIKUtil.trikResourceBundle(), let path = bundle.path(forResource: languageCode, ofType: TRIKConstant.FileManagement.FileExtension.lproj) else {
 			return nil

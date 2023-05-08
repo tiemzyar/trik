@@ -55,7 +55,8 @@ class StaticISSOverlayVC: ISSOverlayVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "SISSOverlayVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "SISSOverlayVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
     }
 
 

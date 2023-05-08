@@ -122,20 +122,29 @@ class BigTouchZoneSliderVC: ExampleVC {
 		self.useActiveViewKeyboardPadding = true
 		self.keyboardPadding = 100.0
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "BTZSliderVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.sliderStyleLabel.text = localizedString(for: "BTZSliderVC: Label Slider Style", fallback: TRIKConstant.Language.Code.german)
-		self.digitsOnlyLabel.text = localizedString(for: "BTZSliderVC: Label Digits Only", fallback: TRIKConstant.Language.Code.german)
-		self.minValLabel.text = localizedString(for: "BTZSliderVC: Label Min Value", fallback: TRIKConstant.Language.Code.german)
-		self.maxValLabel.text = localizedString(for: "BTZSliderVC: Label Max Value", fallback: TRIKConstant.Language.Code.german)
-		self.initialValLabel.text = localizedString(for: "BTZSliderVC: Label Initial Value", fallback: TRIKConstant.Language.Code.german)
-		self.intervalLabel.text = localizedString(for: "BTZSliderVC: Label Interval", fallback: TRIKConstant.Language.Code.german)
-		self.sliderIBLabel.text = localizedString(for: "BTZSliderVC: Label Slider IB", fallback: TRIKConstant.Language.Code.german)
-		self.sliderCodeLabel.text = localizedString(for: "BTZSliderVC: Label Slider Code", fallback: TRIKConstant.Language.Code.german)
-		self.dismissButton.setTitle(localizedString(for: "BTZSliderVC: Button Dismiss",
-													fallback: TRIKConstant.Language.Code.german),
+		self.exampleDescriptionLabel.text = localizedString(forKey: "BTZSliderVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.sliderStyleLabel.text = localizedString(forKey: "BTZSliderVC: Label Slider Style",
+													 fallback: Locale.appFallbackLanguage)
+		self.digitsOnlyLabel.text = localizedString(forKey: "BTZSliderVC: Label Digits Only",
+													fallback: Locale.appFallbackLanguage)
+		self.minValLabel.text = localizedString(forKey: "BTZSliderVC: Label Min Value",
+												fallback: Locale.appFallbackLanguage)
+		self.maxValLabel.text = localizedString(forKey: "BTZSliderVC: Label Max Value",
+												fallback: Locale.appFallbackLanguage)
+		self.initialValLabel.text = localizedString(forKey: "BTZSliderVC: Label Initial Value",
+													fallback: Locale.appFallbackLanguage)
+		self.intervalLabel.text = localizedString(forKey: "BTZSliderVC: Label Interval",
+												  fallback: Locale.appFallbackLanguage)
+		self.sliderIBLabel.text = localizedString(forKey: "BTZSliderVC: Label Slider IB",
+												  fallback: Locale.appFallbackLanguage)
+		self.sliderCodeLabel.text = localizedString(forKey: "BTZSliderVC: Label Slider Code",
+													fallback: Locale.appFallbackLanguage)
+		self.dismissButton.setTitle(localizedString(forKey: "BTZSliderVC: Button Dismiss",
+													fallback: Locale.appFallbackLanguage),
 									for: .normal)
-		self.presentButton.setTitle(localizedString(for: "BTZSliderVC: Button Present",
-													fallback: TRIKConstant.Language.Code.german),
+		self.presentButton.setTitle(localizedString(forKey: "BTZSliderVC: Button Present",
+													fallback: Locale.appFallbackLanguage),
 									for: .normal)
 		
 		self.sliderCodeValueLabel.text = nil

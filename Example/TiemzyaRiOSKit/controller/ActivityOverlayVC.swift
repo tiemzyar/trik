@@ -83,10 +83,14 @@ class ActivityOverlayVC: OverlayVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "ActOverlayVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.activityStyleLabel.text = localizedString(for: "ActOverlayVC: Label Activity Style", fallback: TRIKConstant.Language.Code.german)
-		self.progressSliderLabel.text = localizedString(for: "ActOverlayVC: Label Progress Slider", fallback: TRIKConstant.Language.Code.german)
-		self.useButtonLabel.text = localizedString(for: "ActOverlayVC: Label Use Button", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "ActOverlayVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.activityStyleLabel.text = localizedString(forKey: "ActOverlayVC: Label Activity Style",
+													   fallback: Locale.appFallbackLanguage)
+		self.progressSliderLabel.text = localizedString(forKey: "ActOverlayVC: Label Progress Slider",
+														fallback: Locale.appFallbackLanguage)
+		self.useButtonLabel.text = localizedString(forKey: "ActOverlayVC: Label Use Button",
+												   fallback: Locale.appFallbackLanguage)
 		
 		if let style = ActivityOverlayVC.ActivityStyle.init(rawValue: self.activityStyleControl.selectedSegmentIndex) {
 			self.selectedActivity = style

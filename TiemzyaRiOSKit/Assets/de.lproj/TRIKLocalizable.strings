@@ -31,7 +31,7 @@ Sind Sie sicher, dass Sie fortfahren möchten?";
 
 /* TRIKCountryOverlay */
 "CSOverlay: Search Bar Placeholder" = "Ländername";
-"CSOverlay: Segmented Controle Language Local" = "Lokal";
+"CSOverlay: Segmented Control Language Local" = "Lokal";
 "CSOverlay: Table Section Header" = "Wählen Sie ein Land";
 
 /* TRIKSearchBar */

@@ -124,11 +124,16 @@ class ISSOverlayVC: OverlayVC {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.buttonStyleLabel.text = localizedString(for: "ISSOverlayVC: Label Button Style", fallback: TRIKConstant.Language.Code.german)
-		self.buttonAlphaLabel.text = localizedString(for: "ISSOverlayVC: Label Button Alpha", fallback: TRIKConstant.Language.Code.german)
-		self.dismissEnabledLabel.text = localizedString(for: "ISSOverlayVC: Label Dismiss Enabled", fallback: TRIKConstant.Language.Code.german)
-		self.pagingEnabledLabel.text = localizedString(for: "ISSOverlayVC: Label Paging Enabled", fallback: TRIKConstant.Language.Code.german)
-		self.preloadImagesLabel.text = localizedString(for: "ISSOverlayVC: Label Preload Images", fallback: TRIKConstant.Language.Code.german)
+		self.buttonStyleLabel.text = localizedString(forKey: "ISSOverlayVC: Label Button Style",
+													 fallback: Locale.appFallbackLanguage)
+		self.buttonAlphaLabel.text = localizedString(forKey: "ISSOverlayVC: Label Button Alpha",
+													 fallback: Locale.appFallbackLanguage)
+		self.dismissEnabledLabel.text = localizedString(forKey: "ISSOverlayVC: Label Dismiss Enabled",
+														fallback: Locale.appFallbackLanguage)
+		self.pagingEnabledLabel.text = localizedString(forKey: "ISSOverlayVC: Label Paging Enabled",
+													   fallback: Locale.appFallbackLanguage)
+		self.preloadImagesLabel.text = localizedString(forKey: "ISSOverlayVC: Label Preload Images",
+													   fallback: Locale.appFallbackLanguage)
 		
 		self.determineButtonStyle()
 		self.determineButtonAlpha()

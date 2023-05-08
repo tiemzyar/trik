@@ -55,7 +55,8 @@ class AlertControllerExtVC: ExampleVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "ACExtVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "ACExtVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
     }
 
 	// MARK: -
@@ -67,9 +68,12 @@ class AlertControllerExtVC: ExampleVC {
 		- sender: The button or bar button triggering the method call
 	*/
 	@IBAction func testActionSheet(_ sender: Any) {
-		let locAlertTitle = localizedString(for: "ACExtVC: ActionSheet Test Title", fallback: TRIKConstant.Language.Code.english)
-		let locButtonTitleDestruct = localizedString(for: "ACExtVC: ActionSheet Test Button Destructive", fallback: TRIKConstant.Language.Code.english)
-		let locButtonTitleCancel = localizedString(for: "ACExtVC: ActionSheet Test Button Cancel", fallback: TRIKConstant.Language.Code.english)
+		let locAlertTitle = localizedString(forKey: "ACExtVC: ActionSheet Test Title",
+											fallback: Locale.appFallbackLanguage)
+		let locButtonTitleDestruct = localizedString(forKey: "ACExtVC: ActionSheet Test Button Destructive",
+													 fallback: Locale.appFallbackLanguage)
+		let locButtonTitleCancel = localizedString(forKey: "ACExtVC: ActionSheet Test Button Cancel",
+												   fallback: Locale.appFallbackLanguage)
 		
 		let testAS = UIAlertController(title: locAlertTitle,
 									   message: nil,
@@ -113,10 +117,14 @@ class AlertControllerExtVC: ExampleVC {
 		- sender: The button or bar button triggering the method call
 	*/
 	@IBAction func testAlert(_ sender: Any) {
-		let locAlertTitle = localizedString(for: "ACExtVC: Alert Test Title", fallback: TRIKConstant.Language.Code.english)
-		let locAlertMessage = localizedString(for: "ACExtVC: Alert Test Message", fallback: TRIKConstant.Language.Code.english)
-		let locButtonTitleDestruct = localizedString(for: "ACExtVC: Alert Test Button Destructive", fallback: TRIKConstant.Language.Code.english)
-		let locButtonTitleCancel = localizedString(for: "ACExtVC: Alert Test Button Cancel", fallback: TRIKConstant.Language.Code.english)
+		let locAlertTitle = localizedString(forKey: "ACExtVC: Alert Test Title",
+											fallback: Locale.appFallbackLanguage)
+		let locAlertMessage = localizedString(forKey: "ACExtVC: Alert Test Message",
+											  fallback: Locale.appFallbackLanguage)
+		let locButtonTitleDestruct = localizedString(forKey: "ACExtVC: Alert Test Button Destructive",
+													 fallback: Locale.appFallbackLanguage)
+		let locButtonTitleCancel = localizedString(forKey: "ACExtVC: Alert Test Button Cancel",
+												   fallback: Locale.appFallbackLanguage)
 		
 		let testAlert = UIAlertController(title: locAlertTitle,
 										  message: locAlertMessage,

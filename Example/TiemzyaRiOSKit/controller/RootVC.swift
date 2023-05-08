@@ -55,9 +55,10 @@ class RootVC: StatusBarStyleVC {
 	// MARK: -
 	// MARK: View lifecycle
 	override func viewDidLoad() {
-		self.titleLabel.text = localizedString(for: "RootVC: Title", fallback: TRIKConstant.Language.Code.german)
-		self.utilityButton.setTitle(localizedString(for: "RootVC: Button Utility",
-													fallback: TRIKConstant.Language.Code.german),
+		self.titleLabel.text = localizedString(forKey: "RootVC: Title",
+											   fallback: Locale.appFallbackLanguage)
+		self.utilityButton.setTitle(localizedString(forKey: "RootVC: Button Utility",
+													fallback: Locale.appFallbackLanguage),
 									for: .normal)
 		self.navVCStackCountLabel.text = "C: \(self.navigationController!.viewControllers.count)"
 	}

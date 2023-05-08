@@ -86,13 +86,20 @@ class CountryOverlayVC: OverlayVC {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.exampleDescriptionLabel.text = localizedString(for: "COverlayVC: Label Example Desc", fallback: TRIKConstant.Language.Code.german)
-		self.countryCodeNumDescLabel.text = localizedString(for: "COverlayVC: Label Country Code Num Desc", fallback: TRIKConstant.Language.Code.german)
-		self.countryCode2DescLabel.text = localizedString(for: "COverlayVC: Label Country Code 2 Desc", fallback: TRIKConstant.Language.Code.german)
-		self.countryCode3DescLabel.text = localizedString(for: "COverlayVC: Label Country Code 3 Desc", fallback: TRIKConstant.Language.Code.german)
-		self.countryNameDescLabel.text = localizedString(for: "COverlayVC: Label Country Name Desc", fallback: TRIKConstant.Language.Code.german)
-		self.localizationEnabledLabel.text = localizedString(for: "COverlayVC: Label Localization Enabled", fallback: TRIKConstant.Language.Code.german)
-		self.selectedCountryLabel.text = localizedString(for: "COverlayVC: Label Selected Country", fallback: TRIKConstant.Language.Code.german)
+		self.exampleDescriptionLabel.text = localizedString(forKey: "COverlayVC: Label Example Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.countryCodeNumDescLabel.text = localizedString(forKey: "COverlayVC: Label Country Code Num Desc",
+															fallback: Locale.appFallbackLanguage)
+		self.countryCode2DescLabel.text = localizedString(forKey: "COverlayVC: Label Country Code 2 Desc",
+														  fallback: Locale.appFallbackLanguage)
+		self.countryCode3DescLabel.text = localizedString(forKey: "COverlayVC: Label Country Code 3 Desc",
+														  fallback: Locale.appFallbackLanguage)
+		self.countryNameDescLabel.text = localizedString(forKey: "COverlayVC: Label Country Name Desc",
+														 fallback: Locale.appFallbackLanguage)
+		self.localizationEnabledLabel.text = localizedString(forKey: "COverlayVC: Label Localization Enabled",
+															 fallback: Locale.appFallbackLanguage)
+		self.selectedCountryLabel.text = localizedString(forKey: "COverlayVC: Label Selected Country",
+														 fallback: Locale.appFallbackLanguage)
 		
 		self.useActiveViewKeyboardPadding = true
 		self.keyboardPadding = 100.0

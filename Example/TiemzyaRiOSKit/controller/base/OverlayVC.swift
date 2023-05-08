@@ -83,14 +83,16 @@ class OverlayVC: ExampleVC {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.colorStyleLabel.text = localizedString(for: "OverlayVC: Label Color Style", fallback: TRIKConstant.Language.Code.german)
-		self.positionLabel.text = localizedString(for: "OverlayVC: Label Position", fallback: TRIKConstant.Language.Code.german)
-		self.dismissOverlayButton?.setTitle(localizedString(for: "OverlayVC: Button Dismiss",
-														   fallback: TRIKConstant.Language.Code.german),
-										   for: .normal)
-		self.presentOverlayButton?.setTitle(localizedString(for: "OverlayVC: Button Present",
-														   fallback: TRIKConstant.Language.Code.german),
-										   for: .normal)
+		self.colorStyleLabel.text = localizedString(forKey: "OverlayVC: Label Color Style",
+													fallback: Locale.appFallbackLanguage)
+		self.positionLabel.text = localizedString(forKey: "OverlayVC: Label Position",
+												  fallback: Locale.appFallbackLanguage)
+		self.dismissOverlayButton?.setTitle(localizedString(forKey: "OverlayVC: Button Dismiss",
+															fallback: Locale.appFallbackLanguage),
+											for: .normal)
+		self.presentOverlayButton?.setTitle(localizedString(forKey: "OverlayVC: Button Present",
+															fallback: Locale.appFallbackLanguage),
+											for: .normal)
 		
 		self.determineStyle()
 		self.determinePosition()
