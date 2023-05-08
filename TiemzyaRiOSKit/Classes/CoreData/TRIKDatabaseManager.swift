@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 12.12.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -49,12 +49,18 @@ public class TRIKDatabaseManager: NSObject {
 
 	// MARK: -
 	// MARK: Instance properties
-	/// The database manager's managed object context
+	/// The database manager's main managed object context, which operates on the main queue
 	public lazy var appDBObjectContext: NSManagedObjectContext = { [unowned self] in
 		let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		context.persistentStoreCoordinator = self.appDBStoreCoordinator
+		context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
 		
 		return context
+	}()
+	
+	/// The database manager's background managed object context, which is a child of ``appDBObjectContext``
+	public lazy var backgroundChildContext: NSManagedObjectContext = { [unowned self] in
+		return self.createPrivateBackgroundContext()
 	}()
 	
 	/// The database manager's managed object model
@@ -191,17 +197,34 @@ public class TRIKDatabaseManager: NSObject {
 			self.appDBObjectModel = self.appDBStoreCoordinator?.managedObjectModel
 		}
 	}
-
+	
+	/**
+	Creates a managed object context, which operates on a private background queue, and has the database manager's main context as parent.
+	
+	- returns: Created context
+	*/
+	private func createPrivateBackgroundContext() -> NSManagedObjectContext {
+		let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+		moc.parent = self.appDBObjectContext
+		moc.automaticallyMergesChangesFromParent = true
+		
+		return moc
+	}
+	
 	// MARK: -
 	// MARK: Instance methods
 	/**
-	Configures the database managers fetched results controller for a given entity.
+	Configures the database managers fetched results controller with a fetch request for a given entity.
 	
 	- parameters:
-		- entityName: Name of the entity to fetch
-		- sortDescriptors: Sort descriptors to use for fetches
-		- predicate: Predicate to use for fetches
+		- entityName: Name of the entity used for fetch request configuration
+		- sortDescriptors: Sort descriptors for fetch request configuration
+		- predicate: Predicate for fetch request configuration
 						(default = nil)
+		- fetchLimit: Limit for results to fetch
+					(default = 0)
+		- context: Managed object context to use for fetches
+						(default = nil --> uses the database manager's default context)
 		- keyPath: Key path to use for fetches
 					(default = nil)
 		- cache: Cache to use for fetches
@@ -210,7 +233,9 @@ public class TRIKDatabaseManager: NSObject {
 	@discardableResult public func configureFRC(forEntity entityName: String,
 												withSortDescriptors sortDescriptors: [NSSortDescriptor],
 												predicate: NSPredicate? = nil,
-												usingSectionNameKeyPath keyPath: String? = nil,
+												fetchLimit: Int = 0,
+												usingContext context: NSManagedObjectContext? = nil,
+												sectionNameKeyPath keyPath: String? = nil,
 												cache: String? = "Root") -> Bool {
 		guard self.appDBObjectModel?.entitiesByName[entityName] != nil,
 			!sortDescriptors.isEmpty else {
@@ -220,9 +245,11 @@ public class TRIKDatabaseManager: NSObject {
 		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
 		fetchRequest.sortDescriptors = sortDescriptors
 		fetchRequest.predicate = predicate
+		fetchRequest.fetchLimit = fetchLimit
 		
+		let contextToUse = context ?? self.appDBObjectContext
 		self.appFRC = NSFetchedResultsController(fetchRequest: fetchRequest,
-												 managedObjectContext: self.appDBObjectContext,
+												 managedObjectContext: contextToUse,
 												 sectionNameKeyPath: keyPath,
 												 cacheName: cache)
 		self.appFRC!.delegate = self
@@ -259,13 +286,31 @@ public class TRIKDatabaseManager: NSObject {
 	*/
 	public func deleteObject(_ object: NSManagedObject) {
 		self.appDBObjectContext.delete(object)
+		self.storeChangesWithErrorLogging()
+	}
+	
+	/**
+	Deletes the passed objects from the database manager's main managed object context as well as from an application's persistent store.
+	
+	Stores changes after each batch, printing debug logs in case of an error.
+	
+	- parameters:
+		- objects: The objects to delete
+		- batchSize: Amount of deleted objects after which the database manager attempts to store changes, before deleting more object's
+	*/
+	public func deleteObjects(_ objects: [NSManagedObject], withBatchSize batchSize: Int = 10) {
+		var deletedObjectCounter = 0
+		for object in objects {
+			self.appDBObjectContext.delete(object)
+			
+			if deletedObjectCounter % batchSize == 0 {
+				self.storeChangesWithErrorLogging()
+			}
+			
+			deletedObjectCounter += 1
+		}
 		
-		do {
-			try self.storeChanges()
-		}
-		catch let error as NSError {
-			logErrors(containedIn: error, message: "Deletion failed with error(s):")
-		}
+		self.storeChangesWithErrorLogging()
 	}
 	
 	/**
@@ -287,10 +332,6 @@ public class TRIKDatabaseManager: NSObject {
 		try self.storeChanges()
 	}
 	
-	// Even better for memory: Using batch delete request
-	// Works directly on the persistent store without loading entities into memory
-	// Managed object context is unaware of changes
-	// Validation rules may not be effective
 	/**
 	Performs a batch delete of all objects for a passed entity on an application's persistent store.
 	
@@ -310,11 +351,36 @@ public class TRIKDatabaseManager: NSObject {
 	}
 	
 	/**
-	Stores the changes made on the database manager's managed object context to an application's persistent store, if the are any changes.
+	Stores changes made on the database manager's main managed object context to an application's persistent store, if the are any changes.
 	*/
 	public func storeChanges() throws {
 		if self.appDBObjectContext.hasChanges {
 			try self.appDBObjectContext.save()
+		}
+	}
+	
+	/**
+	Stores changes made on the database manager's background managed object context to its main managed object context, if the are any changes.
+	*/
+	public func storeBackgroundChanges() throws {
+		if self.backgroundChildContext.hasChanges {
+			try self.backgroundChildContext.save()
+		}
+	}
+	
+	/**
+	Stores the changes made on the database manager's managed object context to an application's persistent store, if the are any changes.
+	Catches and logs all errors that might occur.
+	*/
+	public func storeChangesWithErrorLogging()  {
+		if self.appDBObjectContext.hasChanges {
+			do {
+				try self.storeChanges()
+			}
+			catch let error as NSError {
+				logErrors(containedIn: error, message: "Storing changes failed with error(s):")
+				devLog("Error debug description: \(error.debugDescription)")
+			}
 		}
 	}
 }
