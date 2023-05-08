@@ -70,6 +70,7 @@
 		0BF2858D2028497B0088F5A3 /* CountriesEmptyNamesKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF2858C2028497B0088F5A3 /* CountriesEmptyNamesKey.plist */; };
 		0BF7881F1FB9A1A5001569B8 /* LanguageOverlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF7881E1FB9A1A5001569B8 /* LanguageOverlayVC.swift */; };
 		2D1C117C2A098A0200B2B51D /* Locale+FallbackLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C117B2A098A0200B2B51D /* Locale+FallbackLanguage.swift */; };
+		2D1C117E2A09B0E700B2B51D /* CommonTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */; };
 		32A9451F22F6F0AF00C63B15 /* image-28.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A944B222F6F0AA00C63B15 /* image-28.jpg */; };
 		32A9452022F6F0AF00C63B15 /* image-28.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A944B222F6F0AA00C63B15 /* image-28.jpg */; };
 		32A9452122F6F0AF00C63B15 /* image-12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A944B322F6F0AB00C63B15 /* image-12.jpg */; };
@@ -279,6 +280,7 @@
 		0BF2858C2028497B0088F5A3 /* CountriesEmptyNamesKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountriesEmptyNamesKey.plist; sourceTree = "<group>"; };
 		0BF7881E1FB9A1A5001569B8 /* LanguageOverlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageOverlayVC.swift; sourceTree = "<group>"; };
 		2D1C117B2A098A0200B2B51D /* Locale+FallbackLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+FallbackLanguage.swift"; sourceTree = SOURCE_ROOT; };
+		2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTestBase.swift; sourceTree = "<group>"; };
 		32A944B222F6F0AA00C63B15 /* image-28.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-28.jpg"; sourceTree = "<group>"; };
 		32A944B322F6F0AB00C63B15 /* image-12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-12.jpg"; sourceTree = "<group>"; };
 		32A944B422F6F0AB00C63B15 /* image-42.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-42.jpg"; sourceTree = "<group>"; };
@@ -867,6 +869,7 @@
 				0B36E92C2020684800708850 /* coreData */,
 				32624CE622C7B10F006E82DA /* sources */,
 				32624CE522C7AEB6006E82DA /* ui */,
+				2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */,
 				0B75966720079A8A00DDA35F /* InsetLabelTests.swift */,
 				0B2EBCAC200DC77D00C65884 /* BaseVCTests.swift */,
 				0B2EBCAE200DDD0D00C65884 /* TextInputVCTests.swift */,
@@ -1366,6 +1369,7 @@
 				0B5A81192022032C00B0EFD8 /* OverlayTests.swift in Sources */,
 				0B7CC14E20285AF1002F4CB1 /* LanguageOverlayTests.swift in Sources */,
 				0B721CD82031D74B0016F0AC /* UtilityTests.swift in Sources */,
+				2D1C117E2A09B0E700B2B51D /* CommonTestBase.swift in Sources */,
 				0B721CD62031D08A0016F0AC /* ConstantsTests.swift in Sources */,
 				32CB76AD22D8A4EF00F1B041 /* AppDBModel.xcdatamodeld in Sources */,
 				32F0DDEB22C7C366003E3B5E /* TestEntry+CoreDataClass.swift in Sources */,

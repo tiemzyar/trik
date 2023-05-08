@@ -29,7 +29,7 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
-class PagingISSOverlayTests: XCTestCase {
+class PagingISSOverlayTests: CommonTestBase {
 	// MARK: Type properties
 	private static let controllerNavID = "NavVC"
 	
@@ -467,6 +467,7 @@ class PagingISSOverlayTests: XCTestCase {
 		
 		waitForExpectations(timeout: 5.0) { (_) in
 			self.overlay.imagePaths = self.imagePaths
+			self.waitWithoutBlockingMainThread(for: 1)
 			self.overlay.images = self.images
 		}
 	}
