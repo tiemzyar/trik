@@ -197,25 +197,25 @@
 
 /* Begin PBXFileReference section */
 		02F0E367AD0EFC79467D657D126B9FBD /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		03EC0BEB82C6FC0032640796C920D3D0 /* TRIKConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRIKConstants.swift; path = TiemzyaRiOSKit/Classes/TRIKConstants.swift; sourceTree = "<group>"; };
-		04F257D182DCDDA3616B6EF9C65C0ABC /* TRIKButtonNextDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextDarkRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextDarkRect.png; sourceTree = "<group>"; };
-		09DCAF67F800B888F9A7A29B9D8DC3F2 /* TRIKButtonClear.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonClear.png; path = TiemzyaRiOSKit/Assets/TRIKButtonClear.png; sourceTree = "<group>"; };
+		03EC0BEB82C6FC0032640796C920D3D0 /* TRIKConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKConstants.swift; sourceTree = "<group>"; };
+		04F257D182DCDDA3616B6EF9C65C0ABC /* TRIKButtonNextDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonNextDarkRect.png; sourceTree = "<group>"; };
+		09DCAF67F800B888F9A7A29B9D8DC3F2 /* TRIKButtonClear.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonClear.png; sourceTree = "<group>"; };
 		0A3EB6508561F9676FE95486B422B72D /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		0D996D79E28283EE33D6F3506BC54E21 /* TRIKButtonDismissDarkRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissDarkRoundedRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissDarkRoundedRect.png; sourceTree = "<group>"; };
+		0D996D79E28283EE33D6F3506BC54E21 /* TRIKButtonDismissDarkRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonDismissDarkRoundedRect.png; sourceTree = "<group>"; };
 		0F57E03DFEBE807BE7167F37AE70CCBE /* TRIKCountryTVCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKCountryTVCell.swift; sourceTree = "<group>"; };
 		121FE912E2D2DF35CADE272FE6F5F5BB /* TiemzyaRiOSKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TiemzyaRiOSKit-prefix.pch"; sourceTree = "<group>"; };
 		15D0A888B6B006A1A7EEB01E95E4D87F /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationInterceptor.swift; path = Source/AuthenticationInterceptor.swift; sourceTree = "<group>"; };
-		162D86B7B6B5D35BE419A04DF4FE342F /* TRIKButtonDismissDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissDarkRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissDarkRect.png; sourceTree = "<group>"; };
+		162D86B7B6B5D35BE419A04DF4FE342F /* TRIKButtonDismissDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonDismissDarkRect.png; sourceTree = "<group>"; };
 		1702CC84A5584E01B73E620405BBEEE7 /* Pods-TiemzyaRiOSKit_UnitTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TiemzyaRiOSKit_UnitTests-dummy.m"; sourceTree = "<group>"; };
 		1774BF767AC3195D750B0871A8FCDFD2 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		182033E9A6905A038E4EBCEF9C9F45C0 /* HTTPHeaders.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPHeaders.swift; path = Source/HTTPHeaders.swift; sourceTree = "<group>"; };
 		185AC07810E34011F61A251446C148C2 /* TRIKUIAlertController+Window.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TRIKUIAlertController+Window.swift"; sourceTree = "<group>"; };
 		187635C7042B8E910F4E8BF8A2F31A2D /* Pods-TiemzyaRiOSKit_UITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TiemzyaRiOSKit_UITests-umbrella.h"; sourceTree = "<group>"; };
-		18F35000AC382789A997192D45A4C4CD /* TRIKButtonNextLightRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextLightRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextLightRect.png; sourceTree = "<group>"; };
-		194764D0C2D4BD2A816957A3C71FE867 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		18F35000AC382789A997192D45A4C4CD /* TRIKButtonNextLightRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonNextLightRect.png; sourceTree = "<group>"; };
+		194764D0C2D4BD2A816957A3C71FE867 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		19B9DC57828C893A0DBC04D18ECCE398 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		1EE35A2285A81160ADE8BFC49EB7ED49 /* Pods-TiemzyaRiOSKit_UITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TiemzyaRiOSKit_UITests-dummy.m"; sourceTree = "<group>"; };
-		1FA67E99B574D4750013BB3C2AA12FDB /* TRIKButtonPreviousLightRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonPreviousLightRoundedRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonPreviousLightRoundedRect.png; sourceTree = "<group>"; };
+		1FA67E99B574D4750013BB3C2AA12FDB /* TRIKButtonPreviousLightRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonPreviousLightRoundedRect.png; sourceTree = "<group>"; };
 		2224F84CD7F63CAE429A4A43DBAA41F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		22C0358AF91050F7165A498B56C81FDB /* Pods-TiemzyaRiOSKit_UITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TiemzyaRiOSKit_UITests"; path = Pods_TiemzyaRiOSKit_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		232AEA81993A782D036395A7E76B0791 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		2A35AA383B0322648386EF285798BBD0 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		2B5B070FF3976242090D8C273C41B2F9 /* Pods-TiemzyaRiOSKit_UITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TiemzyaRiOSKit_UITests-Info.plist"; sourceTree = "<group>"; };
 		2BB7B50F44B0626C4301C17C89851C74 /* TRIKBaseVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKBaseVC.swift; sourceTree = "<group>"; };
-		2E27C41EAD90A72A08B34A2D7283DDE1 /* TRIKButtonNextDarkCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextDarkCircle.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextDarkCircle.png; sourceTree = "<group>"; };
+		2E27C41EAD90A72A08B34A2D7283DDE1 /* TRIKButtonNextDarkCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonNextDarkCircle.png; sourceTree = "<group>"; };
 		33F68A89CCBD12FD9EE75C8770132E49 /* TRIKSearchBarDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKSearchBarDelegate.swift; sourceTree = "<group>"; };
 		3423DDAB27DA675FAD3F4CEFD00A0087 /* URLConvertible+URLRequestConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLConvertible+URLRequestConvertible.swift"; path = "Source/URLConvertible+URLRequestConvertible.swift"; sourceTree = "<group>"; };
 		360FFF5C476D1C3EC2A69BB4A2D9F0FF /* TRIKBigTouchZoneSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKBigTouchZoneSlider.swift; sourceTree = "<group>"; };
@@ -235,13 +235,13 @@
 		3B0D97FB483508422ACE73BA88223F05 /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Source/Session.swift; sourceTree = "<group>"; };
 		3CC368DADD01EB0B5CA9AFE7C9846B57 /* TiemzyaRiOSKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TiemzyaRiOSKit-Info.plist"; sourceTree = "<group>"; };
 		422A52403D79A5E6E4B697008477BCC2 /* TiemzyaRiOSKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TiemzyaRiOSKit.debug.xcconfig; sourceTree = "<group>"; };
-		422D456DC405C9B1AF7026B7299394C2 /* TRIKButtonPreviousDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonPreviousDarkRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonPreviousDarkRect.png; sourceTree = "<group>"; };
+		422D456DC405C9B1AF7026B7299394C2 /* TRIKButtonPreviousDarkRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonPreviousDarkRect.png; sourceTree = "<group>"; };
 		42D611F243BC3328826FE250D806EC26 /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		4318EBDE792277E1CCA40E84E9534D28 /* TRIKInsetLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKInsetLabel.swift; sourceTree = "<group>"; };
-		4474D414959AD28D52105C62537AD4B1 /* TRIKButtonPreviousLightCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonPreviousLightCircle.png; path = TiemzyaRiOSKit/Assets/TRIKButtonPreviousLightCircle.png; sourceTree = "<group>"; };
+		4474D414959AD28D52105C62537AD4B1 /* TRIKButtonPreviousLightCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonPreviousLightCircle.png; sourceTree = "<group>"; };
 		4558B5B94DBA36B0809296E33BCDECF1 /* TRIKSegueNoAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKSegueNoAnimation.swift; sourceTree = "<group>"; };
 		45D5BB2D02E3DB9723FEBCAD7AA1D080 /* TRIKLanguageTVCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKLanguageTVCell.swift; sourceTree = "<group>"; };
-		475AD18BD74CE00F3E2E00731E905E7B /* TRIKSliderThumbImageGrey.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKSliderThumbImageGrey.png; path = TiemzyaRiOSKit/Assets/TRIKSliderThumbImageGrey.png; sourceTree = "<group>"; };
+		475AD18BD74CE00F3E2E00731E905E7B /* TRIKSliderThumbImageGrey.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKSliderThumbImageGrey.png; sourceTree = "<group>"; };
 		47DFCB8FA58015D2F0126EFB683CD108 /* MultipartUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartUpload.swift; path = Source/MultipartUpload.swift; sourceTree = "<group>"; };
 		4847996096F3C4D881006D74085641B5 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		4A0F9CBC87264EB1B5B841925808649D /* ParameterEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoder.swift; path = Source/ParameterEncoder.swift; sourceTree = "<group>"; };
@@ -257,21 +257,21 @@
 		5DF0A0974AB3647E46E265B59FAFE7DC /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/RequestInterceptor.swift; sourceTree = "<group>"; };
 		5E18464B771E1C754E352149BC4B78D1 /* Pods-TiemzyaRiOSKit_UnitTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TiemzyaRiOSKit_UnitTests-frameworks.sh"; sourceTree = "<group>"; };
 		5F323CA464FF77BC558D2BAE2DA10FAE /* TRIKStaticImageSlideShowOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKStaticImageSlideShowOverlay.swift; sourceTree = "<group>"; };
-		60666E27F27A65801A48EA612061DBE6 /* TRIKButtonSearch.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonSearch.png; path = TiemzyaRiOSKit/Assets/TRIKButtonSearch.png; sourceTree = "<group>"; };
+		60666E27F27A65801A48EA612061DBE6 /* TRIKButtonSearch.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonSearch.png; sourceTree = "<group>"; };
 		6196C11D7E777C7E3A84D51D17C0EE8C /* Pods-TiemzyaRiOSKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TiemzyaRiOSKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		6222C137A20AC47D4EE1E272EA9907AF /* TRIKLanguageOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKLanguageOverlay.swift; sourceTree = "<group>"; };
-		68B22CCD8963346311237046D1C7ADD0 /* TRIKButtonDismissLightCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissLightCircle.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissLightCircle.png; sourceTree = "<group>"; };
+		68B22CCD8963346311237046D1C7ADD0 /* TRIKButtonDismissLightCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonDismissLightCircle.png; sourceTree = "<group>"; };
 		68FCB2484DAA24E598B051E4C68B2432 /* Pods-TiemzyaRiOSKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TiemzyaRiOSKit_Example-dummy.m"; sourceTree = "<group>"; };
-		696E09A0638AE3BCF134A988D91B3A38 /* TRIKLanguages.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = TRIKLanguages.plist; path = TiemzyaRiOSKit/Assets/TRIKLanguages.plist; sourceTree = "<group>"; };
+		696E09A0638AE3BCF134A988D91B3A38 /* TRIKLanguages.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = TRIKLanguages.plist; sourceTree = "<group>"; };
 		6A5C5C2EB8D06645E249123E1284CD16 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		6BE452FF5D07144D1EC91431620F8529 /* Pods-TiemzyaRiOSKit_UITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TiemzyaRiOSKit_UITests.modulemap"; sourceTree = "<group>"; };
 		6D19944393970C1F09CDC2904AD40A95 /* RetryPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RetryPolicy.swift; path = Source/RetryPolicy.swift; sourceTree = "<group>"; };
 		6E761F63EACA04B9944E3B8D8CDAF64C /* RequestTaskMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestTaskMap.swift; path = Source/RequestTaskMap.swift; sourceTree = "<group>"; };
-		6EA057464143C41BCB519013023D0DF7 /* TRIKSliderThumbImageBlack.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKSliderThumbImageBlack.png; path = TiemzyaRiOSKit/Assets/TRIKSliderThumbImageBlack.png; sourceTree = "<group>"; };
+		6EA057464143C41BCB519013023D0DF7 /* TRIKSliderThumbImageBlack.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKSliderThumbImageBlack.png; sourceTree = "<group>"; };
 		707C6986E8C63AA4BA5F90B6C45D8D8A /* Pods-TiemzyaRiOSKit_UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TiemzyaRiOSKit_UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		717700B23478BFC9261269EEC9FABE6E /* ServerTrustEvaluation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustEvaluation.swift; path = Source/ServerTrustEvaluation.swift; sourceTree = "<group>"; };
 		756DF2C6E68A448D9ECA8551A2371719 /* UIView+ViewHierarchy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+ViewHierarchy.swift"; sourceTree = "<group>"; };
-		75F73AA2BE9989188B58B426651102D5 /* TRIKButtonNextLightCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextLightCircle.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextLightCircle.png; sourceTree = "<group>"; };
+		75F73AA2BE9989188B58B426651102D5 /* TRIKButtonNextLightCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonNextLightCircle.png; sourceTree = "<group>"; };
 		7B7FEC59BD1F5D40301E3AEE03D7DC45 /* TRIKSearchBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKSearchBar.swift; sourceTree = "<group>"; };
 		7B8E04D5E075C16F7BEF95DE74675D3E /* Pods-TiemzyaRiOSKit_UITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TiemzyaRiOSKit_UITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		7CFFBA6C4C305EBC24679E3176FBA357 /* Pods-TiemzyaRiOSKit_UnitTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TiemzyaRiOSKit_UnitTests.modulemap"; sourceTree = "<group>"; };
@@ -291,9 +291,9 @@
 		9429E09ACA40025B318451DB5BBD5429 /* StringEncoding+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringEncoding+Alamofire.swift"; path = "Source/StringEncoding+Alamofire.swift"; sourceTree = "<group>"; };
 		9B7A0DD7BF66728B022BBF66EB37F979 /* TRIKLocalizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = TRIKLocalizable.strings; path = de.lproj/TRIKLocalizable.strings; sourceTree = "<group>"; };
 		9CD27E56025A1A7F604285792B21A6B1 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DAA3AFA33A4CFA6349797F981DF5C44 /* TRIKTVSectionHeader.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = TRIKTVSectionHeader.xib; sourceTree = "<group>"; };
-		9EB8DBFF820D1E183F82D740ED090558 /* TRIKButtonPreviousDarkRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonPreviousDarkRoundedRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonPreviousDarkRoundedRect.png; sourceTree = "<group>"; };
+		9EB8DBFF820D1E183F82D740ED090558 /* TRIKButtonPreviousDarkRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonPreviousDarkRoundedRect.png; sourceTree = "<group>"; };
 		9ED3461C5DFC21297FC63E51C7B53200 /* Pods-TiemzyaRiOSKit_UITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TiemzyaRiOSKit_UITests-frameworks.sh"; sourceTree = "<group>"; };
 		9F52D01F3AE08A0878A675117F07B987 /* TRIKLanguageOverlayDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKLanguageOverlayDelegate.swift; sourceTree = "<group>"; };
 		A0FEA7D0ABAF694A3F75736158344A91 /* EventMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventMonitor.swift; path = Source/EventMonitor.swift; sourceTree = "<group>"; };
@@ -301,17 +301,17 @@
 		A4953B7FBF888C855983463F65AC3E14 /* Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.debug.xcconfig; sourceTree = "<group>"; };
 		A55899245F4E9744169B48448D79AC70 /* TiemzyaRiOSKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TiemzyaRiOSKit-umbrella.h"; sourceTree = "<group>"; };
 		A7861E0E1B0613241345B9BE72B611D2 /* Pods-TiemzyaRiOSKit_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TiemzyaRiOSKit_Example"; path = Pods_TiemzyaRiOSKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A81A45B4DE66D4E42A0C3ACAAC7D422D /* TRIKButtonPreviousDarkCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonPreviousDarkCircle.png; path = TiemzyaRiOSKit/Assets/TRIKButtonPreviousDarkCircle.png; sourceTree = "<group>"; };
+		A81A45B4DE66D4E42A0C3ACAAC7D422D /* TRIKButtonPreviousDarkCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonPreviousDarkCircle.png; sourceTree = "<group>"; };
 		A82A609271ACFC42E3BA3885A795C9B9 /* Pods-TiemzyaRiOSKit_UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TiemzyaRiOSKit_UITests.release.xcconfig"; sourceTree = "<group>"; };
 		A8363E706BCC9FE4ADE062D413E8C4A0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		A970276D63A7FD004657748023513FFF /* TRIKButtonNextLightRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextLightRoundedRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextLightRoundedRect.png; sourceTree = "<group>"; };
+		A970276D63A7FD004657748023513FFF /* TRIKButtonNextLightRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonNextLightRoundedRect.png; sourceTree = "<group>"; };
 		AA6822A419E3FBD6B8B32F73EC418685 /* TRIKLocalizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = TRIKLocalizable.strings; path = en.lproj/TRIKLocalizable.strings; sourceTree = "<group>"; };
 		AD230D52678400E3F1CF81A820636864 /* TRIKAlertVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKAlertVC.swift; sourceTree = "<group>"; };
 		B04792A713AE196D663B74130E0B8AFB /* TRIKImageBroken.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKImageBroken.png; path = de.lproj/TRIKImageBroken.png; sourceTree = "<group>"; };
-		B137BDB9C398AFCB9B20FF6A3072D3E8 /* TRIKButtonDismissDarkCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissDarkCircle.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissDarkCircle.png; sourceTree = "<group>"; };
+		B137BDB9C398AFCB9B20FF6A3072D3E8 /* TRIKButtonDismissDarkCircle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonDismissDarkCircle.png; sourceTree = "<group>"; };
 		B26BC2D5918499275BCAA8F6708DD507 /* Pods-TiemzyaRiOSKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TiemzyaRiOSKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B3C98A03193D8F037CA816D195E8FF68 /* TRIKTVSectionHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKTVSectionHeader.swift; sourceTree = "<group>"; };
-		B40731900BBA608607413D52651D2148 /* TRIKButtonBack.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonBack.png; path = TiemzyaRiOSKit/Assets/TRIKButtonBack.png; sourceTree = "<group>"; };
+		B40731900BBA608607413D52651D2148 /* TRIKButtonBack.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonBack.png; sourceTree = "<group>"; };
 		B49EEA0AB0A54F6F04BB71B8BC5B15A0 /* Pods-TiemzyaRiOSKit_UnitTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TiemzyaRiOSKit_UnitTests"; path = Pods_TiemzyaRiOSKit_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DB31EBDBA24998B8BAC31870233274 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		B65296F2C384BAC181CAF085383DACE4 /* TRIKImageBroken.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKImageBroken.png; path = en.lproj/TRIKImageBroken.png; sourceTree = "<group>"; };
@@ -324,8 +324,8 @@
 		C317CAA4F2337FF0A55F807FA1B1D2A2 /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Source/Protected.swift; sourceTree = "<group>"; };
 		C5168BB7D50E84D4BCECC0C5ABE3BAA8 /* TiemzyaRiOSKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TiemzyaRiOSKit.release.xcconfig; sourceTree = "<group>"; };
 		C5DCDC098AED17E9AEB6345139284F59 /* TiemzyaRiOSKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TiemzyaRiOSKit; path = TiemzyaRiOSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C68F58C50386AD8A78A28C1FDA9246B4 /* TRIKButtonLanguage.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonLanguage.png; path = TiemzyaRiOSKit/Assets/TRIKButtonLanguage.png; sourceTree = "<group>"; };
-		C8562B97F41AD00BA7D5AF4B1D2AABBA /* TRIKButtonDismissLightRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissLightRoundedRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissLightRoundedRect.png; sourceTree = "<group>"; };
+		C68F58C50386AD8A78A28C1FDA9246B4 /* TRIKButtonLanguage.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonLanguage.png; sourceTree = "<group>"; };
+		C8562B97F41AD00BA7D5AF4B1D2AABBA /* TRIKButtonDismissLightRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonDismissLightRoundedRect.png; sourceTree = "<group>"; };
 		C9F6F8E6501C58F400D9158E1F161B37 /* TRIKActivityOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKActivityOverlay.swift; sourceTree = "<group>"; };
 		CA58A9C59FB89D3DE8018722D7EACE9C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		CCC4E9A08D0EDBF51678F11DB7AC9706 /* Pods-TiemzyaRiOSKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TiemzyaRiOSKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -334,22 +334,22 @@
 		D0B41CCCDFCF0C04AF8C2DD34A7D594B /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		D0DD249F0D0A2E91B343CC78CFEEDBA5 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		D1F449AD2EEE5826B34941C99CBD8105 /* TRIKCountryOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKCountryOverlay.swift; sourceTree = "<group>"; };
-		D7A86D594DAEBE9353919A4937013A21 /* TRIKSliderThumbImageBlue.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKSliderThumbImageBlue.png; path = TiemzyaRiOSKit/Assets/TRIKSliderThumbImageBlue.png; sourceTree = "<group>"; };
+		D7A86D594DAEBE9353919A4937013A21 /* TRIKSliderThumbImageBlue.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKSliderThumbImageBlue.png; sourceTree = "<group>"; };
 		DAB3F4DEC660EA4E0D1518B65C6A9A91 /* Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.release.xcconfig; sourceTree = "<group>"; };
 		DCC7D121BFBAE958A0E71D531B5AD1A3 /* TiemzyaRiOSKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TiemzyaRiOSKit.modulemap; sourceTree = "<group>"; };
-		DCF9EDC8C135F0406F0AE248D5B1B5FE /* TRIKButtonDismissLightRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonDismissLightRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonDismissLightRect.png; sourceTree = "<group>"; };
+		DCF9EDC8C135F0406F0AE248D5B1B5FE /* TRIKButtonDismissLightRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonDismissLightRect.png; sourceTree = "<group>"; };
 		DDEF86DB2F034B2435E33314C6B2D948 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		DE9AD930B7FD9D7787669151B33CC50A /* URLEncodedFormEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLEncodedFormEncoder.swift; path = Source/URLEncodedFormEncoder.swift; sourceTree = "<group>"; };
 		E1969BEEA13787774E6F4D7E407EA11C /* TRIKTextInputVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKTextInputVC.swift; sourceTree = "<group>"; };
 		E2EF996717753B85AD75FF049BA192BF /* ResourceBundle-TiemzyaRiOSKit-TiemzyaRiOSKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-TiemzyaRiOSKit-TiemzyaRiOSKit-Info.plist"; sourceTree = "<group>"; };
-		E437545E41C653ECCABF92DEDF85750F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		E55C4F2C6A55193C5AC49B53709DB2E3 /* TRIKButtonNextDarkRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonNextDarkRoundedRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonNextDarkRoundedRect.png; sourceTree = "<group>"; };
+		E437545E41C653ECCABF92DEDF85750F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E55C4F2C6A55193C5AC49B53709DB2E3 /* TRIKButtonNextDarkRoundedRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonNextDarkRoundedRect.png; sourceTree = "<group>"; };
 		E57628633C1D230EA7BE5C721583E4E7 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		E8CC8778B1E51F4C729C67A98B313720 /* Pods-TiemzyaRiOSKit_UnitTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TiemzyaRiOSKit_UnitTests-umbrella.h"; sourceTree = "<group>"; };
-		E9EACA6CB3DEEED73446EA9B18A6B66E /* TRIKButtonPreviousLightRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKButtonPreviousLightRect.png; path = TiemzyaRiOSKit/Assets/TRIKButtonPreviousLightRect.png; sourceTree = "<group>"; };
-		EF0C06F688EADE9D6CDED3568E7C7D09 /* TRIKCountries.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = TRIKCountries.plist; path = TiemzyaRiOSKit/Assets/TRIKCountries.plist; sourceTree = "<group>"; };
+		E9EACA6CB3DEEED73446EA9B18A6B66E /* TRIKButtonPreviousLightRect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKButtonPreviousLightRect.png; sourceTree = "<group>"; };
+		EF0C06F688EADE9D6CDED3568E7C7D09 /* TRIKCountries.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = TRIKCountries.plist; sourceTree = "<group>"; };
 		F1CABD3BE299488A76F2A51587E900C8 /* Pods-TiemzyaRiOSKit_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TiemzyaRiOSKit_Example-Info.plist"; sourceTree = "<group>"; };
-		F265DE7AE9FFE6327576A356700BB797 /* TRIKCheckmark.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = TRIKCheckmark.png; path = TiemzyaRiOSKit/Assets/TRIKCheckmark.png; sourceTree = "<group>"; };
+		F265DE7AE9FFE6327576A356700BB797 /* TRIKCheckmark.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = TRIKCheckmark.png; sourceTree = "<group>"; };
 		F3223E22C3F5B4B32167D20B7DCAA6A8 /* Pods-TiemzyaRiOSKit_UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TiemzyaRiOSKit_UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F380EAA94A6E668EF5780D9165464F47 /* TRIKKeyboardViewAnimationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKKeyboardViewAnimationDelegate.swift; sourceTree = "<group>"; };
 		F3E303F43B8A77B1098439AA7483C11E /* Result+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Result+Alamofire.swift"; path = "Source/Result+Alamofire.swift"; sourceTree = "<group>"; };
@@ -357,9 +357,9 @@
 		F55B19C6B7FFB66485714B5DE544E4FC /* Concurrency.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Concurrency.swift; path = Source/Concurrency.swift; sourceTree = "<group>"; };
 		F56B88065A50F4B2835E51F2006DA362 /* Pods-TiemzyaRiOSKit_UnitTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TiemzyaRiOSKit_UnitTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		F5B9841A159CFFCFEECE9E368017ED5F /* TRIKAutoDestroyOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKAutoDestroyOverlay.swift; sourceTree = "<group>"; };
-		F637EA1A53FA1B6467AA45834E0C0A01 /* TiemzyaRiOSKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TiemzyaRiOSKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F637EA1A53FA1B6467AA45834E0C0A01 /* TiemzyaRiOSKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TiemzyaRiOSKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FE13171346B1A07721DCCA31970B8255 /* URLSessionConfiguration+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLSessionConfiguration+Alamofire.swift"; path = "Source/URLSessionConfiguration+Alamofire.swift"; sourceTree = "<group>"; };
-		FF778CC038527D1185E24AC79D57FCCD /* TRIKUtility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRIKUtility.swift; path = TiemzyaRiOSKit/Classes/TRIKUtility.swift; sourceTree = "<group>"; };
+		FF778CC038527D1185E24AC79D57FCCD /* TRIKUtility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TRIKUtility.swift; sourceTree = "<group>"; };
 		FF784AECAB1CF4D8E63DFB863F9B8E55 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -457,6 +457,43 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		2D1C11812A0C250B00B2B51D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EF0C06F688EADE9D6CDED3568E7C7D09 /* TRIKCountries.plist */,
+				696E09A0638AE3BCF134A988D91B3A38 /* TRIKLanguages.plist */,
+				EA36279638A1A39C05B551EEE4B077EE /* TRIKLocalizable.strings */,
+				B40731900BBA608607413D52651D2148 /* TRIKButtonBack.png */,
+				09DCAF67F800B888F9A7A29B9D8DC3F2 /* TRIKButtonClear.png */,
+				B137BDB9C398AFCB9B20FF6A3072D3E8 /* TRIKButtonDismissDarkCircle.png */,
+				162D86B7B6B5D35BE419A04DF4FE342F /* TRIKButtonDismissDarkRect.png */,
+				0D996D79E28283EE33D6F3506BC54E21 /* TRIKButtonDismissDarkRoundedRect.png */,
+				68B22CCD8963346311237046D1C7ADD0 /* TRIKButtonDismissLightCircle.png */,
+				DCF9EDC8C135F0406F0AE248D5B1B5FE /* TRIKButtonDismissLightRect.png */,
+				C8562B97F41AD00BA7D5AF4B1D2AABBA /* TRIKButtonDismissLightRoundedRect.png */,
+				C68F58C50386AD8A78A28C1FDA9246B4 /* TRIKButtonLanguage.png */,
+				2E27C41EAD90A72A08B34A2D7283DDE1 /* TRIKButtonNextDarkCircle.png */,
+				04F257D182DCDDA3616B6EF9C65C0ABC /* TRIKButtonNextDarkRect.png */,
+				E55C4F2C6A55193C5AC49B53709DB2E3 /* TRIKButtonNextDarkRoundedRect.png */,
+				75F73AA2BE9989188B58B426651102D5 /* TRIKButtonNextLightCircle.png */,
+				18F35000AC382789A997192D45A4C4CD /* TRIKButtonNextLightRect.png */,
+				A970276D63A7FD004657748023513FFF /* TRIKButtonNextLightRoundedRect.png */,
+				A81A45B4DE66D4E42A0C3ACAAC7D422D /* TRIKButtonPreviousDarkCircle.png */,
+				422D456DC405C9B1AF7026B7299394C2 /* TRIKButtonPreviousDarkRect.png */,
+				9EB8DBFF820D1E183F82D740ED090558 /* TRIKButtonPreviousDarkRoundedRect.png */,
+				4474D414959AD28D52105C62537AD4B1 /* TRIKButtonPreviousLightCircle.png */,
+				E9EACA6CB3DEEED73446EA9B18A6B66E /* TRIKButtonPreviousLightRect.png */,
+				1FA67E99B574D4750013BB3C2AA12FDB /* TRIKButtonPreviousLightRoundedRect.png */,
+				60666E27F27A65801A48EA612061DBE6 /* TRIKButtonSearch.png */,
+				F265DE7AE9FFE6327576A356700BB797 /* TRIKCheckmark.png */,
+				A93E73819E96A3F5FE1614B05CFE1A3F /* TRIKImageBroken.png */,
+				6EA057464143C41BCB519013023D0DF7 /* TRIKSliderThumbImageBlack.png */,
+				D7A86D594DAEBE9353919A4937013A21 /* TRIKSliderThumbImageBlue.png */,
+				475AD18BD74CE00F3E2E00731E905E7B /* TRIKSliderThumbImageGrey.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		3FEC4937DAEC74B36F43A8A4A7C89C7F /* Pods-TiemzyaRiOSKit_Example */ = {
@@ -571,7 +608,6 @@
 				02F0E367AD0EFC79467D657D126B9FBD /* Validation.swift */,
 				2B0810928A6319057A946D6BCAD4DD5E /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -595,38 +631,9 @@
 		9E712AECBE0364997C9ABC53D7F17945 /* TiemzyaRiOSKit */ = {
 			isa = PBXGroup;
 			children = (
-				B40731900BBA608607413D52651D2148 /* TRIKButtonBack.png */,
-				09DCAF67F800B888F9A7A29B9D8DC3F2 /* TRIKButtonClear.png */,
-				B137BDB9C398AFCB9B20FF6A3072D3E8 /* TRIKButtonDismissDarkCircle.png */,
-				162D86B7B6B5D35BE419A04DF4FE342F /* TRIKButtonDismissDarkRect.png */,
-				0D996D79E28283EE33D6F3506BC54E21 /* TRIKButtonDismissDarkRoundedRect.png */,
-				68B22CCD8963346311237046D1C7ADD0 /* TRIKButtonDismissLightCircle.png */,
-				DCF9EDC8C135F0406F0AE248D5B1B5FE /* TRIKButtonDismissLightRect.png */,
-				C8562B97F41AD00BA7D5AF4B1D2AABBA /* TRIKButtonDismissLightRoundedRect.png */,
-				C68F58C50386AD8A78A28C1FDA9246B4 /* TRIKButtonLanguage.png */,
-				2E27C41EAD90A72A08B34A2D7283DDE1 /* TRIKButtonNextDarkCircle.png */,
-				04F257D182DCDDA3616B6EF9C65C0ABC /* TRIKButtonNextDarkRect.png */,
-				E55C4F2C6A55193C5AC49B53709DB2E3 /* TRIKButtonNextDarkRoundedRect.png */,
-				75F73AA2BE9989188B58B426651102D5 /* TRIKButtonNextLightCircle.png */,
-				18F35000AC382789A997192D45A4C4CD /* TRIKButtonNextLightRect.png */,
-				A970276D63A7FD004657748023513FFF /* TRIKButtonNextLightRoundedRect.png */,
-				A81A45B4DE66D4E42A0C3ACAAC7D422D /* TRIKButtonPreviousDarkCircle.png */,
-				422D456DC405C9B1AF7026B7299394C2 /* TRIKButtonPreviousDarkRect.png */,
-				9EB8DBFF820D1E183F82D740ED090558 /* TRIKButtonPreviousDarkRoundedRect.png */,
-				4474D414959AD28D52105C62537AD4B1 /* TRIKButtonPreviousLightCircle.png */,
-				E9EACA6CB3DEEED73446EA9B18A6B66E /* TRIKButtonPreviousLightRect.png */,
-				1FA67E99B574D4750013BB3C2AA12FDB /* TRIKButtonPreviousLightRoundedRect.png */,
-				60666E27F27A65801A48EA612061DBE6 /* TRIKButtonSearch.png */,
-				F265DE7AE9FFE6327576A356700BB797 /* TRIKCheckmark.png */,
 				03EC0BEB82C6FC0032640796C920D3D0 /* TRIKConstants.swift */,
-				EF0C06F688EADE9D6CDED3568E7C7D09 /* TRIKCountries.plist */,
-				A93E73819E96A3F5FE1614B05CFE1A3F /* TRIKImageBroken.png */,
-				696E09A0638AE3BCF134A988D91B3A38 /* TRIKLanguages.plist */,
-				EA36279638A1A39C05B551EEE4B077EE /* TRIKLocalizable.strings */,
-				6EA057464143C41BCB519013023D0DF7 /* TRIKSliderThumbImageBlack.png */,
-				D7A86D594DAEBE9353919A4937013A21 /* TRIKSliderThumbImageBlue.png */,
-				475AD18BD74CE00F3E2E00731E905E7B /* TRIKSliderThumbImageGrey.png */,
 				FF778CC038527D1185E24AC79D57FCCD /* TRIKUtility.swift */,
+				2D1C11812A0C250B00B2B51D /* Assets */,
 				F5054B666BEA1084E9F90A0E4DD5D6E1 /* Cells */,
 				BB65D1361459E661AE23277E23892CB1 /* Controller */,
 				568E9B02DB960DCE9384D7F6500EEBEA /* CoreData */,

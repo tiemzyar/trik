@@ -674,8 +674,10 @@
 		0B7CC1512028613F002F4CB1 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				0B36E92C2020684800708850 /* coreData */,
 				0B7CC1522028614B002F4CB1 /* documents */,
 				0B7CC15320286151002F4CB1 /* images */,
+				32624CE522C7AEB6006E82DA /* ui */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -705,6 +707,50 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		2D1C11822A0C26A500B2B51D /* base */ = {
+			isa = PBXGroup;
+			children = (
+				2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		2D1C11832A0C26C800B2B51D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B2EBCAC200DC77D00C65884 /* BaseVCTests.swift */,
+				0B2EBCAE200DDD0D00C65884 /* TextInputVCTests.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		2D1C11842A0C26E400B2B51D /* coreData */ = {
+			isa = PBXGroup;
+			children = (
+				0B36E900202048DD00708850 /* DBManagerTests.swift */,
+			);
+			path = coreData;
+			sourceTree = "<group>";
+		};
+		2D1C11852A0C272400B2B51D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0B5A81162021B2BF00B0EFD8 /* ActivityOverlayTests.swift */,
+				0B43243C20231C4A00DF9D71 /* AutoDestroyOverlayTests.swift */,
+				0B721CD32031C06F0016F0AC /* BigTouchZoneSliderTests.swift */,
+				0B88683F202338BD0078EDC6 /* CountryOverlayTests.swift */,
+				0B7CC14F2028605B002F4CB1 /* ImageSlideShowOverlayTests.swift */,
+				0B75966720079A8A00DDA35F /* InsetLabelTests.swift */,
+				0B7CC14D20285AF1002F4CB1 /* LanguageOverlayTests.swift */,
+				0B5A81182022032C00B0EFD8 /* OverlayTests.swift */,
+				0B58E2F12029A2AD00D445D1 /* PagingISSOverlayTests.swift */,
+				0B7CC14B20285113002F4CB1 /* SearchBarTests.swift */,
+				0BF18C9F2028656D00E3F120 /* StaticISSOverlayTests.swift */,
+				0BAFC3DE2034793800AC1B0E /* ZoomableImageTests.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		32624CE522C7AEB6006E82DA /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,12 +759,12 @@
 			path = ui;
 			sourceTree = "<group>";
 		};
-		32624CE622C7B10F006E82DA /* sources */ = {
+		32624CE622C7B10F006E82DA /* app */ = {
 			isa = PBXGroup;
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
-			path = sources;
+			path = app;
 			sourceTree = "<group>";
 		};
 		32624CE722C7B138006E82DA /* sources */ = {
@@ -865,26 +911,12 @@
 		607FACE81AFB9204008FA782 /* TiemzyaRiOSKit_UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				32624CE622C7B10F006E82DA /* app */,
 				0B7CC1512028613F002F4CB1 /* assets */,
-				0B36E92C2020684800708850 /* coreData */,
-				32624CE622C7B10F006E82DA /* sources */,
-				32624CE522C7AEB6006E82DA /* ui */,
-				2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */,
-				0B75966720079A8A00DDA35F /* InsetLabelTests.swift */,
-				0B2EBCAC200DC77D00C65884 /* BaseVCTests.swift */,
-				0B2EBCAE200DDD0D00C65884 /* TextInputVCTests.swift */,
-				0B36E900202048DD00708850 /* DBManagerTests.swift */,
-				0B5A81182022032C00B0EFD8 /* OverlayTests.swift */,
-				0B5A81162021B2BF00B0EFD8 /* ActivityOverlayTests.swift */,
-				0B43243C20231C4A00DF9D71 /* AutoDestroyOverlayTests.swift */,
-				0B88683F202338BD0078EDC6 /* CountryOverlayTests.swift */,
-				0B7CC14B20285113002F4CB1 /* SearchBarTests.swift */,
-				0B7CC14D20285AF1002F4CB1 /* LanguageOverlayTests.swift */,
-				0B7CC14F2028605B002F4CB1 /* ImageSlideShowOverlayTests.swift */,
-				0BF18C9F2028656D00E3F120 /* StaticISSOverlayTests.swift */,
-				0B58E2F12029A2AD00D445D1 /* PagingISSOverlayTests.swift */,
-				0BAFC3DE2034793800AC1B0E /* ZoomableImageTests.swift */,
-				0B721CD32031C06F0016F0AC /* BigTouchZoneSliderTests.swift */,
+				2D1C11822A0C26A500B2B51D /* base */,
+				2D1C11832A0C26C800B2B51D /* controller */,
+				2D1C11842A0C26E400B2B51D /* coreData */,
+				2D1C11852A0C272400B2B51D /* view */,
 				0B721CD52031D08A0016F0AC /* ConstantsTests.swift */,
 				0B721CD72031D74B0016F0AC /* UtilityTests.swift */,
 			);
@@ -1644,7 +1676,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(PROJECT_NAME)_UnitTests/sources/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)_UnitTests/app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(CONFIGURATION_BUILD_DIR)",
@@ -1671,7 +1703,7 @@
 					"$(SDKROOT)/System/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(PROJECT_NAME)_UnitTests/sources/Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_NAME)_UnitTests/app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(CONFIGURATION_BUILD_DIR)",
