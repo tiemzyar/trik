@@ -71,6 +71,7 @@
 		0BF7881F1FB9A1A5001569B8 /* LanguageOverlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF7881E1FB9A1A5001569B8 /* LanguageOverlayVC.swift */; };
 		2D1C117C2A098A0200B2B51D /* Locale+FallbackLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C117B2A098A0200B2B51D /* Locale+FallbackLanguage.swift */; };
 		2D1C117E2A09B0E700B2B51D /* CommonTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */; };
+		2D1C11882A0C28FA00B2B51D /* UIViewHierarchyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C11872A0C28FA00B2B51D /* UIViewHierarchyTests.swift */; };
 		32A9451F22F6F0AF00C63B15 /* image-28.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A944B222F6F0AA00C63B15 /* image-28.jpg */; };
 		32A9452022F6F0AF00C63B15 /* image-28.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A944B222F6F0AA00C63B15 /* image-28.jpg */; };
 		32A9452122F6F0AF00C63B15 /* image-12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A944B322F6F0AB00C63B15 /* image-12.jpg */; };
@@ -281,6 +282,7 @@
 		0BF7881E1FB9A1A5001569B8 /* LanguageOverlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageOverlayVC.swift; sourceTree = "<group>"; };
 		2D1C117B2A098A0200B2B51D /* Locale+FallbackLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+FallbackLanguage.swift"; sourceTree = SOURCE_ROOT; };
 		2D1C117D2A09B0E700B2B51D /* CommonTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTestBase.swift; sourceTree = "<group>"; };
+		2D1C11872A0C28FA00B2B51D /* UIViewHierarchyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHierarchyTests.swift; sourceTree = "<group>"; };
 		32A944B222F6F0AA00C63B15 /* image-28.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-28.jpg"; sourceTree = "<group>"; };
 		32A944B322F6F0AB00C63B15 /* image-12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-12.jpg"; sourceTree = "<group>"; };
 		32A944B422F6F0AB00C63B15 /* image-42.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-42.jpg"; sourceTree = "<group>"; };
@@ -751,6 +753,14 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		2D1C11862A0C28A900B2B51D /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				2D1C11872A0C28FA00B2B51D /* UIViewHierarchyTests.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		32624CE522C7AEB6006E82DA /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -916,6 +926,7 @@
 				2D1C11822A0C26A500B2B51D /* base */,
 				2D1C11832A0C26C800B2B51D /* controller */,
 				2D1C11842A0C26E400B2B51D /* coreData */,
+				2D1C11862A0C28A900B2B51D /* extension */,
 				2D1C11852A0C272400B2B51D /* view */,
 				0B721CD52031D08A0016F0AC /* ConstantsTests.swift */,
 				0B721CD72031D74B0016F0AC /* UtilityTests.swift */,
@@ -1403,6 +1414,7 @@
 				0B721CD82031D74B0016F0AC /* UtilityTests.swift in Sources */,
 				2D1C117E2A09B0E700B2B51D /* CommonTestBase.swift in Sources */,
 				0B721CD62031D08A0016F0AC /* ConstantsTests.swift in Sources */,
+				2D1C11882A0C28FA00B2B51D /* UIViewHierarchyTests.swift in Sources */,
 				32CB76AD22D8A4EF00F1B041 /* AppDBModel.xcdatamodeld in Sources */,
 				32F0DDEB22C7C366003E3B5E /* TestEntry+CoreDataClass.swift in Sources */,
 				0B36E901202048DD00708850 /* DBManagerTests.swift in Sources */,

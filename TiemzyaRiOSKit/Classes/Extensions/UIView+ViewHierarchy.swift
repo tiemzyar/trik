@@ -45,24 +45,9 @@ public extension UIView {
 			return nextResponder
 		} else if let nextResponder = self.next as? UIView {
 			return nextResponder.findViewController()
-		} else {
-			return nil
 		}
-	}
-	
-	/**
-	Recursively searches through the view's subview hierarchy to find all subviews of type `type`.
-	 
-	This method is deprecated and will be removed in a future version of this framework.
-	
-	- parameters:
-		- type: Type of subviews to find
-	
-	- returns: Array of found subviews
-	*/
-	@available(*, deprecated, message: "Use 'getSubview(ofType:recursive:)' instead")
-	func getSubviewsRecursive<T : UIView>(ofType type: T.Type) -> [T] {
-		return self.getSubviews(ofType: type, recursive: true)
+		
+		return nil
 	}
 	
 	/**
@@ -90,5 +75,28 @@ public extension UIView {
 		}
 
 		return subviews
+	}
+	
+	/**
+	Searches through the view's superview hierarchy to find superviews of a given type.
+	
+	- parameters:
+		- type: Type of superview to find
+	
+	- returns: Array of found superviews
+	*/
+	func getSuperviews<T : UIView>(ofType type: T.Type) -> [T] {
+		var superviews = [T]()
+		
+		var currentView: UIView? = self
+		repeat {
+			if let sv = currentView?.superview as? T {
+				superviews.append(sv)
+			}
+			
+			currentView = currentView?.superview
+		} while currentView != nil
+		
+		return superviews
 	}
 }
