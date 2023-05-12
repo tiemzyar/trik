@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 20.11.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -36,13 +36,6 @@ Zoom functionality:
 - Pinch: Zoom in or out gradually
 - Single touch double tap: Zoom in by a specific factor
 - Dual touch double tap: Zoom out by a specific factor
-
-Metadata:
--
-Author: tiemzyar
-
-Revision history:
-- Created class
 */
 public class TRIKZoomableImage: UIScrollView {
 	// MARK: Nested types
@@ -136,15 +129,6 @@ public class TRIKZoomableImage: UIScrollView {
 		self.updateImageZoomScales()
 	}
 
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
-
 	// MARK: -
 	// MARK: Instance methods
 	/**
@@ -196,38 +180,15 @@ extension TRIKZoomableImage {
 		// Image view
 		self.imageView.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.imageView)
-		self.constraintImageTop = NSLayoutConstraint(item: self.imageView,
-													 attribute: NSLayoutConstraint.Attribute.top,
-													 relatedBy: NSLayoutConstraint.Relation.equal,
-													 toItem: self,
-													 attribute: NSLayoutConstraint.Attribute.top,
-													 multiplier: 1.0,
-													 constant: 0.0)
-		self.addConstraint(self.constraintImageTop!)
-		self.constraintImageLeading = NSLayoutConstraint(item: self.imageView,
-														 attribute: NSLayoutConstraint.Attribute.leading,
-														 relatedBy: NSLayoutConstraint.Relation.equal,
-														 toItem: self,
-														 attribute: NSLayoutConstraint.Attribute.leading,
-														 multiplier: 1.0,
-														 constant: 0.0)
-		self.addConstraint(self.constraintImageLeading!)
-		self.constraintImageTrailing = NSLayoutConstraint(item: self.imageView,
-														  attribute: NSLayoutConstraint.Attribute.trailing,
-														  relatedBy: NSLayoutConstraint.Relation.equal,
-														  toItem: self,
-														  attribute: NSLayoutConstraint.Attribute.trailing,
-														  multiplier: 1.0,
-														  constant: 0.0)
-		self.addConstraint(self.constraintImageTrailing!)
-		self.constraintImageBottom = NSLayoutConstraint(item: self.imageView,
-														attribute: NSLayoutConstraint.Attribute.bottom,
-														relatedBy: NSLayoutConstraint.Relation.equal,
-														toItem: self,
-														attribute: NSLayoutConstraint.Attribute.bottom,
-														multiplier: 1.0,
-														constant: 0.0)
-		self.addConstraint(self.constraintImageBottom!)
+		
+		self.constraintImageTop = self.imageView.topAnchor.constraint(equalTo: self.topAnchor)
+		self.constraintImageTop?.isActive = true
+		self.constraintImageLeading = self.imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+		self.constraintImageLeading?.isActive = true
+		self.constraintImageTrailing = self.imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+		self.constraintImageTrailing?.isActive = true
+		self.constraintImageBottom = self.imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+		self.constraintImageBottom?.isActive = true
 	}
 	
 	/**

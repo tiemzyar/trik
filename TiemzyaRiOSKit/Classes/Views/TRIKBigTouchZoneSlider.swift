@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 04.12.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -142,6 +142,7 @@ public class TRIKBigTouchZoneSlider: UISlider {
 				initialValue: Float = TRIKBigTouchZoneSlider.defaultInitialValue,
 				interval: Float = TRIKBigTouchZoneSlider.defaultInterval,
 				delegate: TRIKBigTouchZoneSliderDelegate? = nil) {
+		
 		self.alignmentView = alignmentView
 		self.delegate = delegate
 		
@@ -154,15 +155,6 @@ public class TRIKBigTouchZoneSlider: UISlider {
 						 initialValue: initialValue,
 						 interval: interval)
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -243,10 +235,11 @@ extension TRIKBigTouchZoneSlider {
 	Sets up the slider.
 	*/
 	private func setupSlider(withStyle style: TRIKBigTouchZoneSlider.Style,
-								 minValue: Float,
-								 maxValue: Float,
-								 initialValue: Float,
-								 interval: Float) {
+							 minValue: Float,
+							 maxValue: Float,
+							 initialValue: Float,
+							 interval: Float) {
+		
 		self.setupSliderLayout()
 		self.customize()
 		self.setStyle(style,
@@ -262,28 +255,10 @@ extension TRIKBigTouchZoneSlider {
 	*/
 	private func setupSliderLayout() {
 		self.translatesAutoresizingMaskIntoConstraints = false
-		if let sview = self.superview, let aview = self.alignmentView {
-			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutConstraint.Attribute.width,
-												   relatedBy: NSLayoutConstraint.Relation.equal,
-												   toItem: aview,
-												   attribute: NSLayoutConstraint.Attribute.width,
-												   multiplier: 1.0,
-												   constant: 0.0))
-			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutConstraint.Attribute.centerX,
-												   relatedBy: NSLayoutConstraint.Relation.equal,
-												   toItem: aview,
-												   attribute: NSLayoutConstraint.Attribute.centerX,
-												   multiplier: 1.0,
-												   constant: 0.0))
-			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutConstraint.Attribute.centerY,
-												   relatedBy: NSLayoutConstraint.Relation.equal,
-												   toItem: aview,
-												   attribute: NSLayoutConstraint.Attribute.centerY,
-												   multiplier: 1.0,
-												   constant: 0.0))
+		if let aview = self.alignmentView {
+			self.widthAnchor.constraint(equalTo: aview.widthAnchor).isActive = true
+			self.centerXAnchor.constraint(equalTo: aview.centerXAnchor).isActive = true
+			self.centerYAnchor.constraint(equalTo: aview.centerYAnchor).isActive = true
 		}
 	}
 	
@@ -309,6 +284,7 @@ extension TRIKBigTouchZoneSlider {
 						 maxValue: Float = TRIKBigTouchZoneSlider.defaultMaxValue,
 						 initialValue: Float = TRIKBigTouchZoneSlider.defaultInitialValue,
 						 interval: Float = TRIKBigTouchZoneSlider.defaultInterval) {
+		
 		self.style = style
 		
 		var min = minValue

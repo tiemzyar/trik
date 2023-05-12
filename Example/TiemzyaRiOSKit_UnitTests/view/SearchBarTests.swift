@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 05.02.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,27 +29,36 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
+/**
+Unit test class for ``TRIKSearchBar``.
+*/
 class SearchBarTests: XCTestCase {
 	// MARK: Type properties
 	
 	
 	// MARK: Instance properties
 	var searchBar: TRIKSearchBar!
+}
 
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
+// MARK: -
+// MARK: Setup and tear-down
+extension SearchBarTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		self.searchBar = TRIKSearchBar()
 	}
-
-	override func tearDown() {
+	
+	override func tearDownWithError() throws {
 		self.searchBar = nil
-
-		super.tearDown()
+		
+		try super.tearDownWithError()
 	}
+}
 
-	// MARK: Test methods
+// MARK: -
+// MARK: Tests
+extension SearchBarTests {
     func testInitCoder() {
 		self.searchBar = TRIKSearchBar(coder: NSCoder())
 		
@@ -97,9 +106,6 @@ class SearchBarTests: XCTestCase {
 		
 		XCTAssertTrue(true, "Everything should have worked fine here")
 	}
-
-	// MARK: Support methods
-	
 }
 
 extension SearchBarTests: TRIKSearchBarDelegate {

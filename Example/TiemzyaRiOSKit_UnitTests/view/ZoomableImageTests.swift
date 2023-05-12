@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 14.02.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,9 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
+/**
+Unit test class for ``TRIKZoomableImage``.
+*/
 class ZoomableImageTests: XCTestCase {
 	// MARK: Type properties
 	private static let controllerID = "SliderController"
@@ -36,10 +39,13 @@ class ZoomableImageTests: XCTestCase {
 	// MARK: Instance properties
 	var controller: UIViewController!
 	var zoomableImage: TRIKZoomableImage!
-	
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
+}
+
+// MARK: -
+// MARK: Setup and tear-down
+extension ZoomableImageTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		// Get test storyboard and view controller for slider
 		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: ZoomableImageTests.self))
@@ -49,14 +55,17 @@ class ZoomableImageTests: XCTestCase {
 		_ = self.controller.view
 	}
 	
-	override func tearDown() {
+	override func tearDownWithError() throws {
 		self.zoomableImage = nil
 		self.controller = nil
 		
-		super.tearDown()
+		try super.tearDownWithError()
 	}
-	
-	// MARK: Test methods
+}
+
+// MARK: -
+// MARK: Tests
+extension ZoomableImageTests {
 	func testInitCoder() {
 		self.zoomableImage = TRIKZoomableImage(coder: NSCoder())
 		
@@ -85,34 +94,10 @@ class ZoomableImageTests: XCTestCase {
 		self.zoomableImage = TRIKZoomableImage(frame: CGRect.zero)
 		self.zoomableImage.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(self.zoomableImage)
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: view,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: view,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
-											  attribute: NSLayoutConstraint.Attribute.centerX,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: view,
-											  attribute: NSLayoutConstraint.Attribute.centerX,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		view.addConstraint(NSLayoutConstraint(item: self.zoomableImage!,
-											  attribute: NSLayoutConstraint.Attribute.centerY,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: view,
-											  attribute: NSLayoutConstraint.Attribute.centerY,
-											  multiplier: 1.0,
-											  constant: 0.0))
+		self.zoomableImage!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		self.zoomableImage!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		self.zoomableImage!.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		self.zoomableImage!.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 		
 		self.zoomableImage.displayImage(image1)
 		
@@ -136,8 +121,4 @@ class ZoomableImageTests: XCTestCase {
 		XCTAssertNotNil(self.zoomableImage.imageView.image, "Zoomable image should contain an image")
 		XCTAssertEqual(self.zoomableImage.imageView.image, image2, "Zoomable image's image does not match expected image")
 	}
-
-	// MARK: Support methods
-
-
 }

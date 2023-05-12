@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 28.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,13 +32,6 @@ import QuartzCore
 // MARK: Implementation
 /**
 A custom implementation of a UISearchBar like search bar.
-
-Metadata:
--
-Author: tiemzyar
-
-Revision history:
-- Created view
 */
 public class TRIKSearchBar: UIView {
 	// MARK: Nested types
@@ -202,6 +195,7 @@ public class TRIKSearchBar: UIView {
 	            searchFieldHeight height: CGFloat = TRIKSearchBar.defaultHeight,
 	            searchFieldPadding padding: CGFloat = TRIKSearchBar.defaultPadding,
 	            roundCorners rounded: Bool = false) {
+		
 		self.delegate = delegate
 		self.searchFieldHeight = height
 		self.searchFieldPadding = padding
@@ -216,15 +210,6 @@ public class TRIKSearchBar: UIView {
 		
 		self.setup()
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -256,43 +241,17 @@ extension TRIKSearchBar {
 		// Search text field
 		self.searchField.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(searchField)
-		let minWidth = NSLayoutConstraint(item: self.searchField,
-		                                  attribute: NSLayoutConstraint.Attribute.width,
-		                                  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-		                                  toItem: nil,
-		                                  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-		                                  multiplier: 1.0,
-		                                  constant: TRIKSearchBar.searchFieldMinWidth)
+		
+		let minWidth = self.searchField.widthAnchor.constraint(greaterThanOrEqualToConstant: TRIKSearchBar.searchFieldMinWidth)
 		minWidth.priority = UILayoutPriority(rawValue: 750)
-		self.searchField.addConstraint(minWidth)
-		self.searchField.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                                  attribute: NSLayoutConstraint.Attribute.height,
-		                                                  relatedBy: NSLayoutConstraint.Relation.equal,
-		                                                  toItem: nil,
-		                                                  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-		                                                  multiplier: 1.0,
-		                                                  constant: self.searchFieldHeight))
-		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutConstraint.Attribute.top,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self,
-		                                      attribute: NSLayoutConstraint.Attribute.top,
-		                                      multiplier: 1.0,
-		                                      constant: self.searchFieldPadding))
-		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutConstraint.Attribute.leading,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self,
-		                                      attribute: NSLayoutConstraint.Attribute.leading,
-		                                      multiplier: 1.0,
-		                                      constant: self.searchFieldPadding))
-		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutConstraint.Attribute.bottom,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self,
-		                                      attribute: NSLayoutConstraint.Attribute.bottom,
-		                                      multiplier: 1.0,
-		                                      constant: -self.searchFieldPadding))
+		minWidth.isActive = true
+		self.searchField.heightAnchor.constraint(equalToConstant: self.searchFieldHeight).isActive = true
+		self.searchField.topAnchor.constraint(equalTo: self.topAnchor,
+											  constant: self.searchFieldPadding).isActive = true
+		self.searchField.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+												  constant: self.searchFieldPadding).isActive = true
+		self.searchField.bottomAnchor.constraint(equalTo: self.bottomAnchor,
+												 constant: -self.searchFieldPadding).isActive = true
 		
 		// Cancel button
 		self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
@@ -300,42 +259,15 @@ extension TRIKSearchBar {
 		self.cancelButton.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
 		self.cancelButton.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: TRIKSearchBar.subviewSpacing, bottom: 0.0, right: TRIKSearchBar.subviewSpacing)
 		self.addSubview(self.cancelButton)
-		self.constraintCancelButtonWidth = NSLayoutConstraint(item: self.cancelButton,
-		                                                      attribute: NSLayoutConstraint.Attribute.width,
-		                                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                                      toItem: nil,
-		                                                      attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-		                                                      multiplier: 1.0,
-		                                                      constant: 0.0)
-		self.cancelButton.addConstraint(self.constraintCancelButtonWidth)
-		self.addConstraint(NSLayoutConstraint(item: self.searchField,
-		                                      attribute: NSLayoutConstraint.Attribute.trailing,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self.cancelButton,
-		                                      attribute: NSLayoutConstraint.Attribute.leading,
-		                                      multiplier: 1.0,
-		                                      constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-		                                      attribute: NSLayoutConstraint.Attribute.top,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self.searchField,
-		                                      attribute: NSLayoutConstraint.Attribute.top,
-		                                      multiplier: 1.0,
-		                                      constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-		                                      attribute: NSLayoutConstraint.Attribute.bottom,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self.searchField,
-		                                      attribute: NSLayoutConstraint.Attribute.bottom,
-		                                      multiplier: 1.0,
-		                                      constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.cancelButton,
-		                                      attribute: NSLayoutConstraint.Attribute.trailing,
-		                                      relatedBy: NSLayoutConstraint.Relation.equal,
-		                                      toItem: self,
-		                                      attribute: NSLayoutConstraint.Attribute.trailing,
-		                                      multiplier: 1.0,
-		                                      constant: -self.searchFieldPadding))
+		
+		self.constraintCancelButtonWidth = self.cancelButton.widthAnchor.constraint(equalToConstant: 0)
+		self.constraintCancelButtonWidth.isActive = true
+		
+		self.cancelButton.topAnchor.constraint(equalTo: self.searchField.topAnchor).isActive = true
+		self.cancelButton.leadingAnchor.constraint(equalTo: self.searchField.trailingAnchor).isActive = true
+		self.cancelButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+													constant: -self.searchFieldPadding).isActive = true
+		self.cancelButton.bottomAnchor.constraint(equalTo: self.searchField.bottomAnchor).isActive = true
 	}
 	
 	/**

@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 12.02.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,20 +29,26 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
-class BigTouchZoneSliderTests: XCTestCase {
+/**
+Unit test class for ``TRIKBigTouchZoneSlider``.
+*/
+class BigTouchZoneSliderTests: CommonTestBase {
 	// MARK: Type properties
 	private static let controllerID = "SliderController"
 	private static let sliderTag = 101
-
+	
 	// MARK: Instance properties
 	var controller: UIViewController!
 	var sliderCode: TRIKBigTouchZoneSlider!
 	var sliderIB: TRIKBigTouchZoneSlider!
+}
 
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
-
+// MARK: -
+// MARK: Setup and tear-down
+extension BigTouchZoneSliderTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
+		
 		// Get test storyboard and view controller for slider
 		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: BigTouchZoneSliderTests.self))
 		self.controller = storyboard.instantiateViewController(withIdentifier: BigTouchZoneSliderTests.controllerID)
@@ -52,16 +58,56 @@ class BigTouchZoneSliderTests: XCTestCase {
 		// Preload controller's view
 		_ = self.controller.view
 	}
-
-	override func tearDown() {
+	
+	override func tearDownWithError() throws {
 		self.sliderCode = nil
 		self.sliderIB = nil
 		self.controller = nil
-
-		super.tearDown()
+		
+		try super.tearDownWithError()
 	}
+}
 
-	// MARK: Test methods
+// MARK: -
+// MARK: Supporting methods
+extension BigTouchZoneSliderTests {
+	func createSlider(withStyle style: TRIKBigTouchZoneSlider.Style = .blue,
+					  minValue: Float = TRIKBigTouchZoneSlider.defaultMinValue,
+					  maxValue: Float = TRIKBigTouchZoneSlider.defaultMaxValue,
+					  initialValue: Float = TRIKBigTouchZoneSlider.defaultInitialValue,
+					  interval: Float = TRIKBigTouchZoneSlider.defaultInterval,
+					  assertOptions: Bool = true) {
+		if self.sliderCode != nil {
+			if self.sliderCode.superview != nil {
+				self.sliderCode.removeFromSuperview()
+			}
+			self.sliderCode = nil
+		}
+		
+		self.sliderCode = TRIKBigTouchZoneSlider(superview: self.controller.view,
+												 alignmentView: self.sliderIB,
+												 style: style,
+												 minValue: minValue,
+												 maxValue: maxValue,
+												 initialValue: initialValue,
+												 interval: interval,
+												 delegate: self)
+		
+		if assertOptions {
+			// Assert initialization options have been set correctly
+			XCTAssertEqual(self.sliderCode.style, style, "Slider style does not match expected style")
+			XCTAssertEqual(self.sliderCode.minimumValue, minValue, "Slider minimum value does not match expected value")
+			XCTAssertEqual(self.sliderCode.maximumValue, maxValue, "Slider maximum value does not match expected value")
+			XCTAssertEqual(self.sliderCode.value, initialValue, "Slider value does not match expected value")
+			XCTAssertEqual(self.sliderCode.interval, interval, "Slider interval does not match expected value")
+			XCTAssertNotNil(self.sliderCode.delegate, "Slider should have a delegate")
+		}
+	}
+}
+
+// MARK: -
+// MARK: Tests
+extension BigTouchZoneSliderTests {
 	func testInitCoder() {
 		// Assert slider exists
 		XCTAssertNotNil(self.sliderIB, "Slider should not be nil")
@@ -163,41 +209,6 @@ class BigTouchZoneSliderTests: XCTestCase {
 		// Interval should have been set to delta between min and max value
 		XCTAssertEqual(self.sliderCode.interval, sliderCode.maximumValue - sliderCode.minimumValue, "Slider interval did not get adjusted as expected")
 	}
-
-	// MARK: Support methods
-	func createSlider(withStyle style: TRIKBigTouchZoneSlider.Style = .blue,
-					  minValue: Float = TRIKBigTouchZoneSlider.defaultMinValue,
-					  maxValue: Float = TRIKBigTouchZoneSlider.defaultMaxValue,
-					  initialValue: Float = TRIKBigTouchZoneSlider.defaultInitialValue,
-					  interval: Float = TRIKBigTouchZoneSlider.defaultInterval,
-					  assertOptions: Bool = true) {
-		if self.sliderCode != nil {
-			if self.sliderCode.superview != nil {
-				self.sliderCode.removeFromSuperview()
-			}
-			self.sliderCode = nil
-		}
-		
-		self.sliderCode = TRIKBigTouchZoneSlider(superview: self.controller.view,
-												 alignmentView: self.sliderIB,
-												 style: style,
-												 minValue: minValue,
-												 maxValue: maxValue,
-												 initialValue: initialValue,
-												 interval: interval,
-												 delegate: self)
-		
-		if assertOptions {
-			// Assert initialization options have been set correctly
-			XCTAssertEqual(self.sliderCode.style, style, "Slider style does not match expected style")
-			XCTAssertEqual(self.sliderCode.minimumValue, minValue, "Slider minimum value does not match expected value")
-			XCTAssertEqual(self.sliderCode.maximumValue, maxValue, "Slider maximum value does not match expected value")
-			XCTAssertEqual(self.sliderCode.value, initialValue, "Slider value does not match expected value")
-			XCTAssertEqual(self.sliderCode.interval, interval, "Slider interval does not match expected value")
-			XCTAssertNotNil(self.sliderCode.delegate, "Slider should have a delegate")
-		}
-	}
-
 }
 
 extension BigTouchZoneSliderTests: TRIKBigTouchZoneSliderDelegate {

@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_Tests
 //
 //  Created by tiemzyar on 11.01.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,13 @@
 
 import UIKit
 import XCTest
+
 @testable import TiemzyaRiOSKit
 
-class InsetLabelTests: XCTestCase {
+/**
+Unit test class for ``TRIKInsetLabel``.
+*/
+class InsetLabelTests: CommonTestBase {
 	// MARK: Type properties
 	private static let controllerID = "InsetLabelController"
 	private static let labelTag = 101
@@ -40,10 +44,13 @@ class InsetLabelTests: XCTestCase {
 	var controller: UIViewController!
 	var insets: UIEdgeInsets!
 	var label: TRIKInsetLabel!
-	
-	// MARK: Setup and tear-down
-    override func setUp() {
-        super.setUp()
+}
+
+// MARK: -
+// MARK: Setup and tear-down
+extension InsetLabelTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		// Get test storyboard and view controller for inset label
 		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: InsetLabelTests.self))
@@ -53,17 +60,20 @@ class InsetLabelTests: XCTestCase {
 		
 		
 		self.insets = InsetLabelTests.insetsCode
-    }
-    
-    override func tearDown() {
-        self.label = nil
+	}
+	
+	override func tearDownWithError() throws {
+		self.label = nil
 		self.insets = nil
 		self.controller = nil
 		
-        super.tearDown()
-    }
-	
-	// MARK: Test methods
+		try super.tearDownWithError()
+	}
+}
+
+// MARK: -
+// MARK: Tests
+extension InsetLabelTests {
 	func testInitCoder() {
 		if let controllerLabel = self.controller.view.viewWithTag(InsetLabelTests.labelTag) as? TRIKInsetLabel {
 			self.label = controllerLabel

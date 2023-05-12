@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 11.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -35,13 +35,6 @@ Label with custom insets.
 Source
 -
 https://stackoverflow.com/a/21267507
-
-Metadata:
--
-Author: tiemzyar
-
-Revision history:
-- Created label
 */
 @IBDesignable
 public class TRIKInsetLabel: UILabel {
@@ -107,15 +100,6 @@ public class TRIKInsetLabel: UILabel {
 		self.textInsets = TRIKInsetLabel.zeroInsets
 		super.init(coder: aDecoder)
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 	
 	/**
 	Adds edge insets to the inset label's rectangle for drawing text.
