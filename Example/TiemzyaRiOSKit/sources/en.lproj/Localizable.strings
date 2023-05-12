@@ -103,7 +103,8 @@ Implementation details can be found in the code of the view's controller.";
 /* KeyboardAnimationVC */
 "KAnimVC: Label Example Desc" =
 "This view shows the usage of the Text Input View Controller from the TRIK framework.
-Implementation details can be found in the code of the view's controller.";
+Implementation details can be found in the code of the view's controller.
+However, there are known flaws in the animation logic, which is why the framework controller has been deprecated and should not be used in its current form!";
 
 /* LanguageOverlayVC */
 "LOverlayVC: Label Example Desc" =

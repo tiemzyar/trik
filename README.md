@@ -4,8 +4,8 @@
 Framework for simplyfying some aspects of iOS development
 
 Author: tiemzyar <br />
-Date: 2021-12-19 <br />
-Xcode-Version: 13.1
+Date: 2023-05-12 <br />
+Xcode-Version: 14.2
 
 ## Functionality
 
@@ -19,13 +19,15 @@ Overview:
 
   The slider comes with customizing options for its values (min, max, initial, interval) and three different color styles.
 
-* Keyboard animation (automatic view animation for text field entries, when the keyboard and the text field would overlap)
+~~* Keyboard animation (automatic view animation for text field entries, when the keyboard and the text field would overlap)~~
+* There are known flaws in the animation logic of the controller implementing keyboard animation, thus it has been deprecated for the time being 
 
 * Easily usable overlays
   * Activity overlay (with info text and indicator or progress bar)
   * Auto destroy overlay (temporary text overlay)
   * Country overlay (select a country from a [complete or custom] list of countries)
   * Language overlay (easily switch the application language)
+	* Known issue: currently only works for apps not using SceneDelegate
 
   All of these overlays come with different options for color style and position.
 
@@ -37,7 +39,7 @@ Overview:
 
 Details:
 
-* A detailed description of the framework's functionality (including images) will be added some time in the future.
+* A detailed description of the framework's functionality (including images) might be added some time in the future.
 
 * Until then you can just try out the example app included in the framework to see the functionality in action.
 

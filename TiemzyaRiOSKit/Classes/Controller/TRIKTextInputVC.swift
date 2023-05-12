@@ -33,6 +33,7 @@ import QuartzCore
 /**
 View controller with common functionality of controllers that allow text input by the user.
 */
+@available(*, deprecated, message: "This controller has flaws in its keyboard animation logic and should not be used in its current form")
 open class TRIKTextInputVC: TRIKBaseVC, TRIKKeyboardViewAnimationDelegate {
 	// MARK: Nested types
 	/**
@@ -107,11 +108,6 @@ open class TRIKTextInputVC: TRIKBaseVC, TRIKKeyboardViewAnimationDelegate {
 	*/
 	override open func viewDidLoad() {
         super.viewDidLoad()
-		
-		// Make sure that the first subview of the controller is set
-		if self.firstSubview == nil {
-			self.firstSubview = self.view
-		}
 		
 		// Register for keyboard appearance and frame change notifications
 		NotificationCenter.default.addObserver(self, selector: #selector(TRIKTextInputVC.keyboardWillAppear(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)

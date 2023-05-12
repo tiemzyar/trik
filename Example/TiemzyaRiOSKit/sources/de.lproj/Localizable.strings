@@ -100,6 +100,12 @@ Implementierungsdetails können dem Code des Controllers der View entnommen werd
 "ISSOverlayVC: Label Paging Enabled" = "Blättern-Buttons:";
 "ISSOverlayVC: Label Preload Images" = "Bilder vorladen:";
 
+/* KeyboardAnimationVC */
+"KAnimVC: Label Example Desc" =
+"Diese View zeigt die Verwendung des Text Input View Controller aus dem TRIK Framework.
+Implementierungsdetails können dem Code des Controllers der View entnommen werden.
+Es existieren allerdings Probleme in der Animationslogik, weshalb der Framework-Controller als 'deprecated' markiert wurde und in seiner aktuellen Form nicht verwendet werden sollte!";
+
 /* LanguageOverlayVC */
 "LOverlayVC: Label Example Desc" =
 "Diese View zeigt die Verwendung des Language Overlays aus dem TRIK Framework.

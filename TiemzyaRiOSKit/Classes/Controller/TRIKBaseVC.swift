@@ -70,6 +70,11 @@ open class TRIKBaseVC: UIViewController {
 	override open func viewDidLoad() {
         super.viewDidLoad()
 		
+		// Make sure the controller's first subview is always set
+		if self.firstSubview == nil {
+			self.firstSubview = self.view
+		}
+		
 		self.titleLabel.text = self.titleLabelText
     }
 
