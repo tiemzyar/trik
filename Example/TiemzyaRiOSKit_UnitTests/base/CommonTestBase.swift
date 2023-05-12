@@ -22,6 +22,22 @@ class CommonTestBase: XCTestCase {
 }
 
 // MARK: -
+// MARK: Assertion methods
+extension CommonTestBase {
+	@objc(assertCGFloatValue:::)
+	func assertValue(_ actual: CGFloat, matches expected: CGFloat, acceptableDeviation: CGFloat = 0.01) {
+		self.assertValue(Double(actual), matches: Double(expected), acceptableDeviation: Double(acceptableDeviation))
+	}
+	
+	@objc(assertDoubleValue:::)
+	func assertValue(_ actual: Double, matches expected: Double, acceptableDeviation: Double = 0.01) {
+		let expectedValueRange = (expected - acceptableDeviation)...(expected + acceptableDeviation)
+		XCTAssertTrue(expectedValueRange.contains(actual),
+					  "Value '\(actual)' is outside of expected range '\(expectedValueRange)'")
+	}
+}
+
+// MARK: -
 // MARK: Async testing methods
 extension CommonTestBase {
 	func waitForExpectations(withTimeout timeout: TimeInterval = 30.0) {

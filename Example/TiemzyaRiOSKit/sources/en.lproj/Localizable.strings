@@ -50,6 +50,7 @@ Implementation details can be found in the code of the view's controller.";
 "This view shows the usage of the Auto Destroy Overlay from the TRIK framework.
 Implementation details can be found in the code of the view's controller.";
 "ADOverlayVC: Label Tap To Destroy" = "Tap to destroy:";
+"ADOverlayVC: Label Use Alignment" = "Use alignment view:";
 "ADOverlayVC: Button Add Overlay" = "Add Overlay";
 
 /* BigTouchZoneSliderVC */

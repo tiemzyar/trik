@@ -60,6 +60,12 @@ class AutoDestroyOverlayVC: OverlayVC {
 	/// Switch for enabling / disabling the overlay's tap-to-destroy option
 	@IBOutlet weak var tapToDestroySwitch: UISwitch!
 	
+	/// Description label for the overlay's use-alignment-view option
+	@IBOutlet weak var useAlignmentLabel: UILabel!
+	
+	/// Switch for enabling / disabling the overlay's use-alignment-view option
+	@IBOutlet weak var useAlignmentSwitch: UISwitch!
+	
 	/// Button for triggering the overlay's presentation
 	@IBOutlet weak var addOverlayButton: UIButton!
 
@@ -76,6 +82,8 @@ class AutoDestroyOverlayVC: OverlayVC {
 		self.destructionDelayDescLabel.text = localizedString(forKey: "ADOverlayVC: Label Destruction Delay",
 															  fallback: Locale.appFallbackLanguage)
 		self.tapToDestroyLabel.text = localizedString(forKey: "ADOverlayVC: Label Tap To Destroy",
+													  fallback: Locale.appFallbackLanguage)
+		self.useAlignmentLabel.text = localizedString(forKey: "ADOverlayVC: Label Use Alignment",
 													  fallback: Locale.appFallbackLanguage)
 		self.addOverlayButton.setTitle(localizedString(forKey: "ADOverlayVC: Button Add Overlay",
 													   fallback: Locale.appFallbackLanguage),
@@ -110,8 +118,15 @@ class AutoDestroyOverlayVC: OverlayVC {
 		- sender: The button triggering the method call
 	*/
 	@IBAction func createADOverlay(_ sender: UIButton) {
+		let alignmentView = self.useAlignmentSwitch.isOn ? self.addOverlayButton : nil
+		let text = """
+		Lorem ipsum dolor sit amet, quo viris iudico in, te eos elitr nostrud, te est audiam comprehensam. Pro voluptua delicata ad, nam an autem deleniti, usu atqui quando nominati id. Ei quo debitis convenire. Duo suas salutatus ad, quo graece delenit te.
+
+		Aliquid perpetua convenire per cu, mei ei vero utinam, sed et virtute mentitum indoctum. Cu adolescens mnesarchum nec. Ea labores platonem sententiae pri, ea amet mutat oportere sit, pri ad nostrud platonem. Cu usu eius rationibus. Cu dico assum mel, tempor molestie periculis eam at. Quo at omnes legendos scripserit, ad nemore saperet mei, ne sed liber harum nostrud. Latine reprimique scribentur at mea, consulatu efficiantur qui id.
+		"""
 		self.overlay = TRIKAutoDestroyOverlay(superview: self.firstSubview,
-											  text: "Some Info 4 U",
+											  alignmentView: alignmentView,
+											  text: text,
 											  font: UIFont.systemFont(ofSize: 20.0),
 											  style: self.selectedStyle,
 											  position: self.position,

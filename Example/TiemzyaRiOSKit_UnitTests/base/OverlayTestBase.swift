@@ -23,6 +23,11 @@ class OverlayTestBase: CommonTestBase {
 	static let testFontContent = UIFont(name: "Avenir-Black", size: 15.0)!
 	static let testFontHeader = UIFont(name: "Avenir-Heavy", size: 18.0)!
 	static let testString = "Some plain text"
+	static let testStringLong = """
+		Lorem ipsum dolor sit amet, quo viris iudico in, te eos elitr nostrud, te est audiam comprehensam. Pro voluptua delicata ad, nam an autem deleniti, usu atqui quando nominati id. Ei quo debitis convenire. Duo suas salutatus ad, quo graece delenit te.
+		
+		Aliquid perpetua convenire per cu, mei ei vero utinam, sed et virtute mentitum indoctum. Cu adolescens mnesarchum nec. Ea labores platonem sententiae pri, ea amet mutat oportere sit, pri ad nostrud platonem. Cu usu eius rationibus. Cu dico assum mel, tempor molestie periculis eam at. Quo at omnes legendos scripserit, ad nemore saperet mei, ne sed liber harum nostrud. Latine reprimique scribentur at mea, consulatu efficiantur qui id.
+		"""
 
 	// MARK: Instance properties
 	var navVC: UINavigationController!

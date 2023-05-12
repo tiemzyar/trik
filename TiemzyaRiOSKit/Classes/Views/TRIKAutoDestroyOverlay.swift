@@ -52,6 +52,9 @@ public class TRIKAutoDestroyOverlay: TRIKOverlay {
 
 	// MARK: -
 	// MARK: Instance properties
+	/// Stores the overlay's optional alignment view
+	private let alignmentView: UIView?
+	
 	/// Stores the time in seconds after which the overlay destroys itself
 	private let secondsUntilDestruction: Double
 	
@@ -83,8 +86,23 @@ public class TRIKAutoDestroyOverlay: TRIKOverlay {
 	
 	Initializes the overlay's properties and sets up its layout as well as the layout of its subviews.
 	
+	The optional alignment view will affect the overlay's positioning logic.
+	- with alignment view:
+		- top: Overlay will be placed right above its alignment view
+		- center: Overlay will be centered vertically on its alignment view
+		- bottom: Overlay will be placed right below its alignment view
+		- full: Alignment view will be ignored
+	- without alignment view:
+		- top: Overlay will be placed at the top edge of its superview
+		- center: Overlay will be centered vertically in its superview
+		- bottom: Overlay will be placed at the bottom edge of its superview
+		- full: Overlay will be centered in its superview and span the whole superview
+	
+	Also see: ``adjustOverlayLayout()``.
+	
 	- parameters:
 		- superview: The overlay's designated superview
+		- alignmentView: Optional alignment view for the overlay (will be ignored for layout position `full`)
 		- text: The text to display within the overlay
 		- font: The font to use within the overlay
 		- style: The style of the overlay
@@ -95,6 +113,7 @@ public class TRIKAutoDestroyOverlay: TRIKOverlay {
 	- returns: A fully set up instance of TRIKAutoDestroyOverlay
 	*/
 	public init(superview: UIView,
+				alignmentView: UIView? = nil,
 	            text: String,
 	            font: UIFont = TRIKOverlay.defaultFont,
 	            style: TRIKOverlay.Style = .white,
@@ -102,6 +121,7 @@ public class TRIKAutoDestroyOverlay: TRIKOverlay {
 	            destroyAfter seconds: Double = TRIKAutoDestroyOverlay.defaultDestructionDelay,
 	            tapToDestroy tappable: Bool = false) {
 		
+		self.alignmentView = alignmentView
 		self.secondsUntilDestruction = seconds
 		self.tapDestructionActive = tappable
 		
@@ -138,8 +158,59 @@ extension TRIKAutoDestroyOverlay {
 	Sets up the overlay.
 	*/
 	private func setupOverlay() {
+		self.adjustOverlayLayout()
 		self.setupSubviewLayout()
 		self.customize()
+	}
+	
+	/**
+	Adjusts the overlay's position in its superview subject to its alignment view.
+	
+	If no alignment view is available, the overlay will keep its default position (as set up in ``TRIKOverlay``).
+	
+	If alignment view is available:
+	- top: Overlay will be placed at the top edge of its superview
+	- center: Overlay will be centered vertically in its superview
+	- bottom: Overlay will be placed at the bottom edge of its superview
+	- full: Overlay's alignment view will be ignored
+	*/
+	private func adjustOverlayLayout() {
+		if let superview = self.superview, let alignmentView = self.alignmentView {
+			switch self.position {
+			case .top:
+				// Change alignment from top edge of superview to above alignment view
+				self.overlayAnchorTop.isActive = false
+				self.overlayAnchorBottomLessEqual.isActive = false
+				
+				self.bottomAnchor.constraint(equalTo: alignmentView.topAnchor,
+											 constant: -TRIKOverlay.padding).isActive = true
+				self.topAnchor.constraint(greaterThanOrEqualTo: superview.topAnchor,
+										  constant: TRIKOverlay.padding).isActive = true
+			case .center:
+				// Change center y alignment from superview to alignment view
+				let constant = self.overlayAnchorCenterY.constant
+				self.overlayAnchorCenterY.isActive = false
+				
+				self.overlayAnchorCenterY = self.centerYAnchor.constraint(equalTo: alignmentView.centerYAnchor,
+																		  constant: constant)
+				self.overlayAnchorCenterY.isActive = true
+				
+				// Prevent view overflow if alignment view is below superview's center y
+				self.bottomAnchor.constraint(lessThanOrEqualTo: superview.bottomAnchor,
+											 constant: -TRIKOverlay.padding).isActive = true
+			case .bottom:
+				// Change alignment from bottom edge of superview to below alignment view
+				self.overlayAnchorBottom.isActive = false
+				self.overlayAnchorTopGreaterEqual.isActive = false
+				
+				self.topAnchor.constraint(equalTo: alignmentView.bottomAnchor,
+										  constant: TRIKOverlay.padding).isActive = true
+				self.bottomAnchor.constraint(lessThanOrEqualTo: superview.bottomAnchor,
+											 constant: -TRIKOverlay.padding).isActive = true
+			case .full:
+				break
+			}
+		}
 	}
 	
 	/**
@@ -174,6 +245,9 @@ extension TRIKAutoDestroyOverlay {
 	Customizes the overlay's subviews.
 	*/
 	private func customize() {
+		// Reduce compression resistance to prevent breaking superview layout when using an alignment view
+		self.label.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+		
 		// Auto destruction
 		let destroy = #selector(TRIKAutoDestroyOverlay.handleTap(_:))
 		if self.tapDestructionActive {

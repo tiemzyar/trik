@@ -124,6 +124,21 @@ public class TRIKOverlay: UIView {
 	
 	/// Constraint for the overlay's label top alignment
 	internal var labelConstraintAlignmentTop: NSLayoutConstraint!
+	
+	/// Constraint for the overlay's bottom alignment for layout position `bottom`
+	internal var overlayAnchorBottom: NSLayoutConstraint!
+	
+	/// Constraint for the overlay's bottom alignment for layout position `top`
+	internal var overlayAnchorBottomLessEqual: NSLayoutConstraint!
+	
+	/// Constraint for the overlay's center y alignment
+	internal var overlayAnchorCenterY: NSLayoutConstraint!
+	
+	/// Constraint for the overlay's top alignment for layout position `top`
+	internal var overlayAnchorTop: NSLayoutConstraint!
+	
+	/// Constraint for the overlay's top alignment for layout position `bottom`
+	internal var overlayAnchorTopGreaterEqual: NSLayoutConstraint!
 
 	// MARK: -
 	// MARK: View lifecycle
@@ -309,41 +324,43 @@ extension TRIKOverlay {
 	private func setupOverlayLayout() {
 		if let sview = self.superview {
 			let centerX = self.centerXAnchor.constraint(equalTo: sview.centerXAnchor)
-			let centerY = self.centerYAnchor.constraint(equalTo: sview.centerYAnchor)
+			self.overlayAnchorCenterY = self.centerYAnchor.constraint(equalTo: sview.centerYAnchor)
 			
-			let topEqual = self.topAnchor.constraint(equalTo: sview.topAnchor, constant: TRIKOverlay.padding)
-			let topGreaterEqual = self.topAnchor.constraint(greaterThanOrEqualTo: sview.topAnchor,
-															constant: TRIKOverlay.padding)
+			self.overlayAnchorTop = self.topAnchor.constraint(equalTo: sview.topAnchor,
+															  constant: TRIKOverlay.padding)
+			self.overlayAnchorTopGreaterEqual = self.topAnchor.constraint(greaterThanOrEqualTo: sview.topAnchor,
+																		  constant: TRIKOverlay.padding)
 			
 			let leadingEqual = self.leadingAnchor.constraint(equalTo: sview.leadingAnchor,
 															 constant: TRIKOverlay.padding)
 			let leadingGreaterEqual = self.leadingAnchor.constraint(greaterThanOrEqualTo: sview.leadingAnchor,
 																	constant: TRIKOverlay.padding)
 			
-			let bottomEqual = self.bottomAnchor.constraint(equalTo: sview.bottomAnchor, constant: -TRIKOverlay.padding)
-			let bottomLessEqual = self.bottomAnchor.constraint(lessThanOrEqualTo: sview.bottomAnchor,
-															   constant: -TRIKOverlay.padding)
+			self.overlayAnchorBottom = self.bottomAnchor.constraint(equalTo: sview.bottomAnchor,
+																	constant: -TRIKOverlay.padding)
+			self.overlayAnchorBottomLessEqual = self.bottomAnchor.constraint(lessThanOrEqualTo: sview.bottomAnchor,
+																			 constant: -TRIKOverlay.padding)
 			
 			switch self.position {
 			case .top:
 				centerX.isActive = true
-				topEqual.isActive = true
+				self.overlayAnchorTop.isActive = true
 				leadingGreaterEqual.isActive = true
-				bottomLessEqual.isActive = true
+				self.overlayAnchorBottomLessEqual.isActive = true
 			case .center:
 				centerX.isActive = true
-				centerY.isActive = true
-				topGreaterEqual.isActive = true
+				self.overlayAnchorCenterY.isActive = true
+				self.overlayAnchorTopGreaterEqual.isActive = true
 				leadingGreaterEqual.isActive = true
 			case .bottom:
 				centerX.isActive = true
-				topGreaterEqual.isActive = true
+				self.overlayAnchorTopGreaterEqual.isActive = true
 				leadingGreaterEqual.isActive = true
-				bottomEqual.isActive = true
+				self.overlayAnchorBottom.isActive = true
 			case .full:
 				centerX.isActive = true
-				centerY.isActive = true
-				topEqual.isActive = true
+				self.overlayAnchorCenterY.isActive = true
+				self.overlayAnchorTop.isActive = true
 				leadingEqual.isActive = true
 			}
 		}

@@ -33,6 +33,8 @@ import XCTest
 Unit test class for ``TRIKAutoDestroyOverlay``.
 */
 class AutoDestroyOverlayTests: OverlayTestBase {
+	// Instance properties
+	var alignmentView: UIView?
 }
 
 // MARK: -
@@ -46,7 +48,84 @@ extension AutoDestroyOverlayTests {
 	}
 	
 	override func tearDownWithError() throws {
+		self.alignmentView = nil
+		
 		try super.tearDownWithError()
+	}
+}
+
+// MARK: -
+// MARK: Supporting methods
+extension AutoDestroyOverlayTests {
+	func createOverlay(tappable: Bool, assertOptions assert: Bool) {
+		if self.overlay != nil {
+			self.overlay.dismiss(animated: false) { [unowned self] (_) in
+				self.overlay.destroy()
+			}
+		}
+		
+		self.overlay = TRIKAutoDestroyOverlay(superview: self.controller.view,
+											  text: AutoDestroyOverlayTests.testString,
+											  tapToDestroy: tappable)
+		guard let adOverlay = self.overlay else {
+			return
+		}
+		adOverlay.present(animated: true) { (_) in
+			if assert {
+				// Assert initialization options have been set correctly
+				if tappable {
+					XCTAssertNotNil(adOverlay.gestureRecognizers, "Overlay should have at least one gesture recognizer assigned")
+				}
+				else {
+					XCTAssertNil(adOverlay.gestureRecognizers, "Overlay should not have any gesture recognizers assigned")
+				}
+			}
+		}
+	}
+	
+	func createOverlay(withDestructionDelay delay: Double) {
+		if self.overlay != nil {
+			self.overlay.dismiss(animated: false) { [unowned self] (_) in
+				self.overlay.destroy()
+			}
+		}
+		
+		self.overlay = TRIKAutoDestroyOverlay(superview: self.controller.view,
+											  text: AutoDestroyOverlayTests.testString,
+											  destroyAfter: delay)
+		self.overlay.present(animated: true)
+	}
+	
+	func createOverlay(withAlignmentView useAlignmentView: Bool,
+					   position: TRIKOverlay.Position) {
+		if self.overlay != nil {
+			self.overlay.dismiss(animated: false) { [unowned self] (_) in
+				self.overlay.destroy()
+			}
+		}
+		
+		if useAlignmentView {
+			let view = UIView(frame: .zero)
+			view.translatesAutoresizingMaskIntoConstraints = false
+			self.controller.view.addSubview(view)
+			
+			view.widthAnchor.constraint(equalToConstant: 100).isActive = true
+			view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+			view.centerXAnchor.constraint(equalTo: self.controller.view.centerXAnchor).isActive = true
+			view.centerYAnchor.constraint(equalTo: self.controller.view.centerYAnchor).isActive = true
+			
+			self.alignmentView = view
+		}
+		
+		let extraLongTestString = OverlayTestBase.testStringLong + OverlayTestBase.testStringLong
+		self.overlay = TRIKAutoDestroyOverlay(superview: self.controller.view,
+											  alignmentView: alignmentView,
+											  text: extraLongTestString,
+											  position: position)
+		
+		self.overlay.present(animated: true)
+		
+		self.controller.view.layoutIfNeeded()
 	}
 }
 
@@ -105,45 +184,156 @@ extension AutoDestroyOverlayTests {
 			XCTAssertNil(self.overlay.superview, "Overlay should not have a superview anymore")
 		}
 	}
-
-	// MARK: Support methods
-	func createOverlay(tappable: Bool, assertOptions assert: Bool) {
-		if self.overlay != nil {
-			self.overlay.dismiss(animated: false) { [unowned self] (_) in
-				self.overlay.destroy()
-			}
+	
+	func test_layout_noAlignmentView_positionTop() {
+		self.createOverlay(withAlignmentView: false, position: .top)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let alignmentView = self.overlay.superview else {
+			
+			return XCTFail("Unexpected overlay type or missing superview")
 		}
 		
-		self.overlay = TRIKAutoDestroyOverlay(superview: self.controller.view,
-											  text: AutoDestroyOverlayTests.testString,
-											  tapToDestroy: tappable)
-		guard let adOverlay = self.overlay else {
-			return
-		}
-		adOverlay.present(animated: true) { (_) in
-			if assert {
-				// Assert initialization options have been set correctly
-				if tappable {
-					XCTAssertNotNil(adOverlay.gestureRecognizers, "Overlay should have at least one gesture recognizer assigned")
-				}
-				else {
-					XCTAssertNil(adOverlay.gestureRecognizers, "Overlay should not have any gesture recognizers assigned")
-				}
-			}
-		}
+		self.assertValue(overlay.frame.midX, matches: alignmentView.frame.midX, acceptableDeviation: 0.5)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minX, alignmentView.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxX, alignmentView.bounds.maxX - TRIKOverlay.padding)
+		
+		self.assertValue(overlay.frame.minY, matches: alignmentView.bounds.minY + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxY, alignmentView.bounds.maxY - TRIKOverlay.padding)
 	}
 	
-	func createOverlay(withDestructionDelay delay: Double) {
-		if self.overlay != nil {
-			self.overlay.dismiss(animated: false) { [unowned self] (_) in
-				self.overlay.destroy()
-			}
+	func test_layout_noAlignmentView_positionCenter() {
+		self.createOverlay(withAlignmentView: false, position: .center)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let alignmentView = self.overlay.superview else {
+			
+			return XCTFail("Unexpected overlay type or missing superview")
 		}
 		
-		self.overlay = TRIKAutoDestroyOverlay(superview: self.controller.view,
-											  text: AutoDestroyOverlayTests.testString,
-											  destroyAfter: delay)
-		self.overlay.present(animated: true)
+		self.assertValue(overlay.frame.midX, matches: alignmentView.frame.midX, acceptableDeviation: 0.5)
+		self.assertValue(overlay.frame.midY, matches: alignmentView.frame.midY, acceptableDeviation: 0.5)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minX, alignmentView.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxX, alignmentView.bounds.maxX - TRIKOverlay.padding)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minY, alignmentView.bounds.minY + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxY, alignmentView.bounds.maxY - TRIKOverlay.padding)
 	}
-
+	
+	func test_layout_noAlignmentView_positionBottom() {
+		self.createOverlay(withAlignmentView: false, position: .bottom)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let alignmentView = self.overlay.superview else {
+			
+			return XCTFail("Unexpected overlay type or missing superview")
+		}
+		
+		self.assertValue(overlay.frame.midX, matches: alignmentView.frame.midX, acceptableDeviation: 0.5)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minX, alignmentView.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxX, alignmentView.bounds.maxX - TRIKOverlay.padding)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minY, alignmentView.bounds.minY + TRIKOverlay.padding)
+		self.assertValue(overlay.frame.maxY, matches: alignmentView.bounds.maxY - TRIKOverlay.padding)
+	}
+	
+	func test_layout_noAlignmentView_positionFull() {
+		self.createOverlay(withAlignmentView: false, position: .full)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let alignmentView = self.overlay.superview else {
+			
+			return XCTFail("Unexpected overlay type or missing superview")
+		}
+		
+		self.assertValue(overlay.frame.midX, matches: alignmentView.frame.midX, acceptableDeviation: 0.5)
+		self.assertValue(overlay.frame.midY, matches: alignmentView.frame.midY, acceptableDeviation: 0.5)
+		
+		XCTAssertEqual(overlay.frame.minX, alignmentView.bounds.minX + TRIKOverlay.padding)
+		XCTAssertEqual(overlay.frame.maxX, alignmentView.bounds.maxX - TRIKOverlay.padding)
+		
+		XCTAssertEqual(overlay.frame.minY, alignmentView.bounds.minY + TRIKOverlay.padding)
+		XCTAssertEqual(overlay.frame.maxY, alignmentView.bounds.maxY - TRIKOverlay.padding)
+	}
+	
+	func test_layout_withAlignmentView_positionTop() {
+		self.createOverlay(withAlignmentView: true, position: .top)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let superview = self.controller.view,
+			  let alignmentView = self.alignmentView else {
+			
+			return XCTFail("Unexpected overlay type or missing superview or alignment view")
+		}
+		
+		self.assertValue(overlay.frame.midX, matches: superview.bounds.midX, acceptableDeviation: 0.5)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxX, superview.bounds.maxX - TRIKOverlay.padding)
+		
+		self.assertValue(overlay.frame.maxY, matches: alignmentView.frame.minY - TRIKOverlay.padding)
+		XCTAssertGreaterThanOrEqual(overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+	}
+	
+	func test_layout_withAlignmentView_positionCenter() {
+		self.createOverlay(withAlignmentView: true, position: .center)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let superview = self.controller.view,
+			  let alignmentView = self.alignmentView else {
+			
+			return XCTFail("Unexpected overlay type or missing superview or alignment view")
+		}
+		
+		self.assertValue(overlay.frame.midX, matches: superview.bounds.midX, acceptableDeviation: 0.5)
+		self.assertValue(overlay.frame.midY, matches: alignmentView.frame.midY, acceptableDeviation: 0.5)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxX, superview.bounds.maxX - TRIKOverlay.padding)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxY, superview.bounds.maxY - TRIKOverlay.padding)
+	}
+	
+	func test_layout_withAlignmentView_positionBottom() {
+		self.createOverlay(withAlignmentView: true, position: .bottom)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let superview = self.controller.view,
+			  let alignmentView = self.alignmentView else {
+			
+			return XCTFail("Unexpected overlay type or missing superview or alignment view")
+		}
+		
+		self.assertValue(overlay.frame.midX, matches: superview.bounds.midX, acceptableDeviation: 0.5)
+		
+		XCTAssertGreaterThanOrEqual(overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxX, superview.bounds.maxX - TRIKOverlay.padding)
+		
+		self.assertValue(overlay.frame.minY, matches: alignmentView.frame.maxY + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(overlay.frame.maxY, superview.bounds.maxY - TRIKOverlay.padding)
+	}
+	
+	func test_layout_withAlignmentView_positionFull() {
+		self.createOverlay(withAlignmentView: true, position: .full)
+		
+		guard let overlay = self.overlay as? TRIKAutoDestroyOverlay,
+			  let superview = self.controller.view,
+			  let _ = self.alignmentView else {
+			
+			return XCTFail("Unexpected overlay type or missing superview or alignment view")
+		}
+		
+		self.assertValue(overlay.frame.midX, matches: superview.frame.midX, acceptableDeviation: 0.5)
+		self.assertValue(overlay.frame.midY, matches: superview.frame.midY, acceptableDeviation: 0.5)
+		
+		XCTAssertEqual(overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+		XCTAssertEqual(overlay.frame.maxX, superview.bounds.maxX - TRIKOverlay.padding)
+		
+		XCTAssertEqual(overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+		XCTAssertEqual(overlay.frame.maxY, superview.bounds.maxY - TRIKOverlay.padding)
+	}
 }
