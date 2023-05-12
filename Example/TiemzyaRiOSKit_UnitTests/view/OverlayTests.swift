@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 31.01.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,53 +29,63 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
-class OverlayTests: XCTestCase {
-	// MARK: Type properties
-	private static let controllerNavID = "NavVC"
-	private static let testString = "Some plain text"
-	private static let testFont = UIFont(name: "Avenir-Black", size: 15.0)!
-	
-	// MARK: Instance properties
-	var navVC: UINavigationController!
-	var controller: UIViewController!
-	var overlay: TRIKOverlay!
-	
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
-		
-		// Get test storyboard and view controllers for testing
-		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: OverlayTests.self))
-		
-		guard let nvc = storyboard.instantiateViewController(withIdentifier: OverlayTests.controllerNavID) as? UINavigationController else {
-			return
-		}
-		self.navVC = nvc
-		
-		guard let rvc = self.navVC.viewControllers.first else {
-			return
-		}
-		self.controller = rvc
-		// Preload controller's view
-		_ = self.controller.view
+/**
+Unit test class for ``TRIKOverlay``.
+*/
+class OverlayTests: OverlayTestBase {
+	// Type properties
+	private static let testStringLong = """
+	 Lorem ipsum dolor sit amet, quo viris iudico in, te eos elitr nostrud, te est audiam comprehensam. Pro voluptua delicata ad, nam an autem deleniti, usu atqui quando nominati id. Ei quo debitis convenire. Duo suas salutatus ad, quo graece delenit te.
+
+	 Aliquid perpetua convenire per cu, mei ei vero utinam, sed et virtute mentitum indoctum. Cu adolescens mnesarchum nec. Ea labores platonem sententiae pri, ea amet mutat oportere sit, pri ad nostrud platonem. Cu usu eius rationibus. Cu dico assum mel, tempor molestie periculis eam at. Quo at omnes legendos scripserit, ad nemore saperet mei, ne sed liber harum nostrud. Latine reprimique scribentur at mea, consulatu efficiantur qui id.
+	"""
+}
+
+// MARK: -
+// MARK: Setup and tear-down
+extension OverlayTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		self.overlay = TRIKOverlay(superview: self.controller.view, text: OverlayTests.testString)
 	}
 	
-	override func tearDown() {
+	override func tearDownWithError() throws {
+		try super.tearDownWithError()
+	}
+}
+
+// MARK: -
+// MARK: Supporting methods
+extension OverlayTests {
+	private func createOverlay(withStyle style: TRIKOverlay.Style,
+							   position: TRIKOverlay.Position,
+							   assertOptions: Bool) {
 		if self.overlay != nil {
 			self.overlay.dismiss(animated: false) { [unowned self] (_) in
 				self.overlay.destroy()
 			}
-			self.overlay = nil
 		}
-		self.controller = nil
-		self.navVC = nil
 		
-		super.tearDown()
+		self.overlay = TRIKOverlay(superview: self.controller.view,
+								   text: OverlayTests.testString,
+								   font: OverlayTests.testFontContent,
+								   style: style,
+								   position: position)
+		
+		self.overlay.present(animated: false) { [unowned self] (_) in
+			if assertOptions {
+				// Assert initialization options have been set correctly
+				XCTAssertEqual(self.overlay.style, style, "Overlay style does not match expected style")
+				XCTAssertEqual(self.overlay.position, position, "Overlay position does not match expected position")
+			}
+		}
 	}
-	
-	// MARK: Test methods
+}
+
+// MARK: -
+// MARK: Tests
+extension OverlayTests {
 	func testInitCoder() {
 		self.overlay = TRIKOverlay(coder: NSCoder())
 		
@@ -124,6 +134,87 @@ class OverlayTests: XCTestCase {
 		self.createOverlay(withStyle: .tiemzyar, position: .full, assertOptions: true)
 	}
 	
+	func test_layout_inSuperview_positionTop() {
+		self.overlay = TRIKOverlay(superview: self.controller.view,
+								   text: Self.testStringLong,
+								   position: .top)
+		
+		self.presentAndLayoutControllerView()
+		
+		guard let superview = self.overlay.superview else {
+			return XCTFail("Overlay shoud have superview")
+		}
+		
+		XCTAssertEqual(self.overlay.frame.midX, superview.bounds.midX)
+		XCTAssertEqual(self.overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+		XCTAssertGreaterThanOrEqual(self.overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(self.overlay.frame.maxY, superview.bounds.maxY - TRIKOverlay.padding)
+	}
+	
+	func test_layout_inSuperview_positionCenter() {
+		self.overlay = TRIKOverlay(superview: self.controller.view,
+								   text: Self.testStringLong,
+								   position: .center)
+		
+		self.presentAndLayoutControllerView()
+		
+		guard let superview = self.overlay.superview else {
+			return XCTFail("Overlay shoud have superview")
+		}
+		
+		XCTAssertEqual(self.overlay.frame.midX, superview.bounds.midX)
+		XCTAssertEqual(self.overlay.frame.midY, superview.bounds.midY)
+		XCTAssertGreaterThanOrEqual(self.overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+		XCTAssertGreaterThanOrEqual(self.overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+	}
+	
+	func test_layout_inSuperview_positionBottom() {
+		self.overlay = TRIKOverlay(superview: self.controller.view,
+								   text: Self.testStringLong,
+								   position: .bottom)
+		
+		self.presentAndLayoutControllerView()
+		
+		guard let superview = self.overlay.superview else {
+			return XCTFail("Overlay shoud have superview")
+		}
+		
+		XCTAssertEqual(self.overlay.frame.midX, superview.bounds.midX)
+		XCTAssertGreaterThanOrEqual(self.overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+		XCTAssertGreaterThanOrEqual(self.overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+		XCTAssertEqual(self.overlay.frame.maxY, superview.bounds.maxY - TRIKOverlay.padding)
+	}
+	
+	func test_layout_inSuperview_positionFull() {
+		self.overlay = TRIKOverlay(superview: self.controller.view,
+								   text: Self.testStringLong,
+								   position: .full)
+		
+		self.presentAndLayoutControllerView()
+		
+		guard let superview = self.overlay.superview else {
+			return XCTFail("Overlay shoud have superview")
+		}
+		
+		XCTAssertEqual(self.overlay.frame.midX, superview.bounds.midX)
+		XCTAssertEqual(self.overlay.frame.midY, superview.bounds.midY)
+		XCTAssertEqual(self.overlay.frame.minY, superview.bounds.minY + TRIKOverlay.padding)
+		XCTAssertEqual(self.overlay.frame.minX, superview.bounds.minX + TRIKOverlay.padding)
+	}
+	
+	func test_layout_subviews_label() {
+		self.overlay = TRIKOverlay(superview: self.controller.view,
+								   text: Self.testStringLong,
+								   position: .full)
+		
+		self.presentAndLayoutControllerView()
+		
+		XCTAssertEqual(self.overlay.label.frame.minX, self.overlay.bounds.minX + TRIKOverlay.padding)
+		XCTAssertEqual(self.overlay.label.frame.maxX, self.overlay.bounds.maxX - TRIKOverlay.padding)
+		XCTAssertGreaterThanOrEqual(self.overlay.label.frame.minY, self.overlay.bounds.minY + TRIKOverlay.padding)
+		XCTAssertLessThanOrEqual(self.overlay.label.frame.maxY, self.overlay.bounds.maxY - TRIKOverlay.padding)
+	}
+	
 	func testPresentationAndDismissal() {
 		self.overlay.present()
 		// Assert overlay is visible
@@ -161,30 +252,5 @@ class OverlayTests: XCTestCase {
 		// Assert text has been set correctly
 		XCTAssertNotNil(self.overlay.label.text, "Overlay's text should have been set")
 		XCTAssertEqual(self.overlay.label.text, OverlayTests.testString, "Text of overlay's label does not match expected text")
-	}
-	
-	// MARK: Support methods
-	func createOverlay(withStyle style: TRIKOverlay.Style,
-					   position: TRIKOverlay.Position,
-					   assertOptions: Bool) {
-		if self.overlay != nil {
-			self.overlay.dismiss(animated: false) { [unowned self] (_) in
-				self.overlay.destroy()
-			}
-		}
-		
-		self.overlay = TRIKOverlay(superview: self.controller.view,
-								   text: OverlayTests.testString,
-								   font: OverlayTests.testFont,
-								   style: style,
-								   position: position)
-		
-		self.overlay.present(animated: false) { [unowned self] (_) in
-			if assertOptions {
-				// Assert initialization options have been set correctly
-				XCTAssertEqual(self.overlay.style, style, "Overlay style does not match expected style")
-				XCTAssertEqual(self.overlay.position, position, "Overlay position does not match expected position")
-			}
-		}
 	}
 }

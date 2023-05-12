@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 04.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -162,6 +162,7 @@ public class TRIKOverlay: UIView {
 	            font: UIFont = TRIKOverlay.defaultFont,
 	            style: TRIKOverlay.Style = .white,
 	            position: TRIKOverlay.Position = .center) {
+		
 		self.font = font
 		self.style = style
 		self.position = position
@@ -181,15 +182,6 @@ public class TRIKOverlay: UIView {
 		
 		self.setupOverlay()
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -316,92 +308,43 @@ extension TRIKOverlay {
 	*/
 	private func setupOverlayLayout() {
 		if let sview = self.superview {
-			sview.addConstraint(NSLayoutConstraint(item: self,
-												   attribute: NSLayoutConstraint.Attribute.centerX,
-												   relatedBy: NSLayoutConstraint.Relation.equal,
-												   toItem: sview,
-												   attribute: NSLayoutConstraint.Attribute.centerX,
-												   multiplier: 1.0,
-												   constant: 0.0))
+			let centerX = self.centerXAnchor.constraint(equalTo: sview.centerXAnchor)
+			let centerY = self.centerYAnchor.constraint(equalTo: sview.centerYAnchor)
+			
+			let topEqual = self.topAnchor.constraint(equalTo: sview.topAnchor, constant: TRIKOverlay.padding)
+			let topGreaterEqual = self.topAnchor.constraint(greaterThanOrEqualTo: sview.topAnchor,
+															constant: TRIKOverlay.padding)
+			
+			let leadingEqual = self.leadingAnchor.constraint(equalTo: sview.leadingAnchor,
+															 constant: TRIKOverlay.padding)
+			let leadingGreaterEqual = self.leadingAnchor.constraint(greaterThanOrEqualTo: sview.leadingAnchor,
+																	constant: TRIKOverlay.padding)
+			
+			let bottomEqual = self.bottomAnchor.constraint(equalTo: sview.bottomAnchor, constant: -TRIKOverlay.padding)
+			let bottomLessEqual = self.bottomAnchor.constraint(lessThanOrEqualTo: sview.bottomAnchor,
+															   constant: -TRIKOverlay.padding)
+			
 			switch self.position {
 			case .top:
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   multiplier: 1.0,
-													   constant: TRIKOverlay.padding))
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.bottom,
-													   relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.bottom,
-													   multiplier: 1.0,
-													   constant: -TRIKOverlay.padding))
+				centerX.isActive = true
+				topEqual.isActive = true
+				leadingGreaterEqual.isActive = true
+				bottomLessEqual.isActive = true
 			case .center:
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.centerY,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.centerY,
-													   multiplier: 1.0,
-													   constant: 0.0))
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   multiplier: 1.0,
-													   constant: TRIKOverlay.padding))
+				centerX.isActive = true
+				centerY.isActive = true
+				topGreaterEqual.isActive = true
+				leadingGreaterEqual.isActive = true
 			case .bottom:
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.bottom,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.bottom,
-													   multiplier: 1.0,
-													   constant: -TRIKOverlay.padding))
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   multiplier: 1.0,
-													   constant: TRIKOverlay.padding))
+				centerX.isActive = true
+				topGreaterEqual.isActive = true
+				leadingGreaterEqual.isActive = true
+				bottomEqual.isActive = true
 			case .full:
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.centerY,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.centerY,
-													   multiplier: 1.0,
-													   constant: 0.0))
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   multiplier: 1.0,
-													   constant: TRIKOverlay.padding))
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.leading,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.leading,
-													   multiplier: 1.0,
-													   constant: TRIKOverlay.padding))
-			}
-			if self.position == .top ||
-				self.position == .center ||
-				self.position == .bottom {
-				sview.addConstraint(NSLayoutConstraint(item: self,
-													   attribute: NSLayoutConstraint.Attribute.leading,
-													   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-													   toItem: sview,
-													   attribute: NSLayoutConstraint.Attribute.leading,
-													   multiplier: 1.0,
-													   constant: TRIKOverlay.padding))
+				centerX.isActive = true
+				centerY.isActive = true
+				topEqual.isActive = true
+				leadingEqual.isActive = true
 			}
 		}
 	}
@@ -413,76 +356,26 @@ extension TRIKOverlay {
 		// Background view
 		self.backgroundView.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.backgroundView)
-		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.backgroundView,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  multiplier: 1.0,
-											  constant: 0.0))
+		self.backgroundView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+		self.backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+		self.backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+		self.backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 		
 		// Text
 		self.label.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.label)
-		self.label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: NSLayoutConstraint.Axis.vertical)
-		self.label.addConstraint(NSLayoutConstraint(item: self.label,
-													attribute: NSLayoutConstraint.Attribute.width,
-													relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKOverlay.labelMinWidth))
-		self.addConstraint(NSLayoutConstraint(item: self.label,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: TRIKOverlay.padding))
-		self.addConstraint(NSLayoutConstraint(item: self.label,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.padding))
-		self.labelConstraintAlignmentTop = NSLayoutConstraint(item: self.label,
-															  attribute: NSLayoutConstraint.Attribute.top,
-															  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-															  toItem: self,
-															  attribute: NSLayoutConstraint.Attribute.top,
-															  multiplier: 1.0,
-															  constant: TRIKOverlay.padding)
-		self.addConstraint(self.labelConstraintAlignmentTop)
-		self.labelConstraintAlignmentBottom = NSLayoutConstraint(item: self.label,
-																 attribute: NSLayoutConstraint.Attribute.bottom,
-																 relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
-																 toItem: self,
-																 attribute: NSLayoutConstraint.Attribute.bottom,
-																 multiplier: 1.0,
-																 constant: -TRIKOverlay.padding)
-		self.addConstraint(self.labelConstraintAlignmentBottom)
+		self.label.setContentCompressionResistancePriority(.required, for: NSLayoutConstraint.Axis.vertical)
+		self.label.widthAnchor.constraint(greaterThanOrEqualToConstant: TRIKOverlay.labelMinWidth).isActive = true
+		self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: TRIKOverlay.padding).isActive = true
+		self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -TRIKOverlay.padding)
+			.isActive = true
+		
+		self.labelConstraintAlignmentTop = self.label.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor,
+																		   constant: TRIKOverlay.padding)
+		self.labelConstraintAlignmentTop.isActive = true
+		self.labelConstraintAlignmentBottom = self.label.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor,
+																				 constant: -TRIKOverlay.padding)
+		self.labelConstraintAlignmentBottom.isActive = true
 	}
 	
 	/**

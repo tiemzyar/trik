@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 31.01.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,55 +29,28 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
-class ActivityOverlayTests: XCTestCase {
+class ActivityOverlayTests: OverlayTestBase {
 	// MARK: Type properties
-	private static let controllerNavID = "NavVC"
-	private static let testString = "Some plain text"
-	private static let testColor = UIColor.cyan
-	private static let testFont = UIFont(name: "Avenir-Black", size: 15.0)!
 	private static let testButtonTitle = "I'm a button"
-	
-	// MARK: Instance properties
-	var navVC: UINavigationController!
-	var controller: UIViewController!
-	var overlay: TRIKActivityOverlay!
-	
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
-		
-		// Get test storyboard and view controllers for testing
-		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: ActivityOverlayTests.self))
-		
-		guard let nvc = storyboard.instantiateViewController(withIdentifier: ActivityOverlayTests.controllerNavID) as? UINavigationController else {
-			return
-		}
-		self.navVC = nvc
-		
-		guard let rvc = self.navVC.viewControllers.first else {
-			return
-		}
-		self.controller = rvc
-		// Preload controller's view
-		_ = self.controller.view
+}
+
+// MARK: -
+// MARK: Setup and tear-down
+extension ActivityOverlayTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		self.overlay = TRIKActivityOverlay(superview: self.controller.view, text: ActivityOverlayTests.testString)
 	}
 	
-	override func tearDown() {
-		if self.overlay != nil {
-			self.overlay.dismiss(animated: false) { [unowned self] (_) in
-				self.overlay.destroy()
-			}
-			self.overlay = nil
-		}
-		self.controller = nil
-		self.navVC = nil
-		
-		super.tearDown()
+	override func tearDownWithError() throws {
+		try super.tearDownWithError()
 	}
-	
-	// MARK: Test methods
+}
+
+// MARK: -
+// MARK: Tests
+extension ActivityOverlayTests {
 	func testInitCoder() {
 		self.overlay = TRIKActivityOverlay(coder: NSCoder())
 		
@@ -97,14 +70,22 @@ class ActivityOverlayTests: XCTestCase {
 	}
 	
 	func testPresentationWithActivityIndicator() {
-		self.overlay.presentWithActivityIndicator()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.presentWithActivityIndicator()
 		
 		self.assertIndicatorVisibility()
 	}
 	
 	func testPresentationWithActivityIndicatorAnimated() {
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
 		let promise = expectation(description: "Animated presentation completed")
-		self.overlay.presentWithActivityIndicator(animated: true) { (true) in
+		overlay.presentWithActivityIndicator(animated: true) { (true) in
 			promise.fulfill()
 		}
 		
@@ -114,14 +95,22 @@ class ActivityOverlayTests: XCTestCase {
 	}
 	
 	func testPresentationWithProgressBar() {
-		self.overlay.presentWithProgressBar()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.presentWithProgressBar()
 		
 		self.assertProgressVisibility()
 	}
 	
 	func testPresentationWithProgressBarAnimated() {
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
 		let promise = expectation(description: "Animated presentation completed")
-		self.overlay.presentWithProgressBar(animated: true) { (true) in
+		overlay.presentWithProgressBar(animated: true) { (true) in
 			promise.fulfill()
 		}
 		
@@ -131,76 +120,100 @@ class ActivityOverlayTests: XCTestCase {
 	}
 	
 	func testPresentActivityIndicator() {
-		self.overlay.present()
-		self.overlay.presentActivityIndicator()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.present()
+		overlay.presentActivityIndicator()
 		
 		self.assertIndicatorVisibility()
 	}
 	
 	func testPresentProgressBar() {
-		self.overlay.present()
-		self.overlay.presentProgressBar()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.present()
+		overlay.presentProgressBar()
 		
 		self.assertProgressVisibility()
 	}
 	
 	func testUpdatingProgress() {
-		self.overlay.presentWithProgressBar()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.presentWithProgressBar()
 		
 		// Update to invalid negative value
 		var progress: Float = -0.5
-		self.overlay.updateProgress(progress)
+		overlay.updateProgress(progress)
 		// Assert update failure and reset
-		XCTAssertNotEqual(self.overlay.activityProgress.progress, progress, "\(progress) is an invalid value and should have been adjusted")
-		XCTAssertEqual(self.overlay.activityProgress.progress, 0.0, "Progress should have been reset 0.0")
+		XCTAssertNotEqual(overlay.activityProgress.progress, progress, "\(progress) is an invalid value and should have been adjusted")
+		XCTAssertEqual(overlay.activityProgress.progress, 0.0, "Progress should have been reset 0.0")
 		
 		// Update to valid value
 		progress = 0.25
-		self.overlay.updateProgress(progress)
+		overlay.updateProgress(progress)
 		// Assert update success
-		XCTAssertEqual(self.overlay.activityProgress.progress, progress, "Progress should have been updated to \(progress)")
+		XCTAssertEqual(overlay.activityProgress.progress, progress, "Progress should have been updated to \(progress)")
 		
 		// Update to invalid value above 1.0
 		progress = 1.3
-		self.overlay.updateProgress(progress)
+		overlay.updateProgress(progress)
 		// Assert update failure and reset
-		XCTAssertNotEqual(self.overlay.activityProgress.progress, progress, "\(progress) is an invalid value and should have been adjusted")
-		XCTAssertEqual(self.overlay.activityProgress.progress, 1.0, "Progress should have been adjusted to 1.0")
+		XCTAssertNotEqual(overlay.activityProgress.progress, progress, "\(progress) is an invalid value and should have been adjusted")
+		XCTAssertEqual(overlay.activityProgress.progress, 1.0, "Progress should have been adjusted to 1.0")
 	}
 	
 	func testCustomizingButton() {
-		self.overlay.present()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.present()
 		
 		// Setting button title
-		self.overlay.setButtonTitle(ActivityOverlayTests.testButtonTitle)
-		XCTAssertNotNil(self.overlay.button.title(for: .normal), "Overlay's button title should have been set")
-		XCTAssertEqual(self.overlay.button.title(for: .normal)!, ActivityOverlayTests.testButtonTitle, "Overlay's button title does not match expected title")
+		overlay.setButtonTitle(ActivityOverlayTests.testButtonTitle)
+		XCTAssertNotNil(overlay.button.title(for: .normal), "Overlay's button title should have been set")
+		XCTAssertEqual(overlay.button.title(for: .normal)!, ActivityOverlayTests.testButtonTitle, "Overlay's button title does not match expected title")
 		
 		// Adding button target
 		let selector = #selector(ActivityOverlayTests.buttonTargetMethod(_:))
-		self.overlay.addButtonTarget(self, action: selector)
-		XCTAssertNotNil(self.overlay.button.actions(forTarget: self, forControlEvent: .touchUpInside), "Overlay's button should have an action for specified target")
+		overlay.addButtonTarget(self, action: selector)
+		XCTAssertNotNil(overlay.button.actions(forTarget: self, forControlEvent: .touchUpInside), "Overlay's button should have an action for specified target")
 		
 		// Removing button target
-		self.overlay.removeButtonTarget(self, action: selector)
-		XCTAssertNil(self.overlay.button.actions(forTarget: self, forControlEvent: .touchUpInside), "Overlay's button should not have an action for specified target anymore")
+		overlay.removeButtonTarget(self, action: selector)
+		XCTAssertNil(overlay.button.actions(forTarget: self, forControlEvent: .touchUpInside), "Overlay's button should not have an action for specified target anymore")
 	}
 	
 	func testPresentAndDismissButton() {
-		self.overlay.presentWithActivityIndicator()
-		self.overlay.setButtonTitle(ActivityOverlayTests.testButtonTitle)
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
 		
-		self.overlay.presentButton()
+		overlay.presentWithActivityIndicator()
+		overlay.setButtonTitle(ActivityOverlayTests.testButtonTitle)
+		
+		overlay.presentButton()
 		// Assert button is visible
-		XCTAssertFalse(self.overlay.button.isHidden, "Overlay's button should be visible")
+		XCTAssertFalse(overlay.button.isHidden, "Overlay's button should be visible")
 		
-		self.overlay.dismissButton()
+		overlay.dismissButton()
 		// Assert button is not visible
-		XCTAssertTrue(self.overlay.button.isHidden, "Overlay's button should not be visible")
+		XCTAssertTrue(overlay.button.isHidden, "Overlay's button should not be visible")
 	}
 	
 	func testSettingStyle() {
-		self.overlay.presentWithActivityIndicator()
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.presentWithActivityIndicator()
 		
 		self.changeStyle(to: .light, withAssertion: true)
 		self.changeStyle(to: .dark, withAssertion: true)
@@ -264,26 +277,38 @@ class ActivityOverlayTests: XCTestCase {
 	
 	// MARK: Support methods
 	func assertIndicatorVisibility() {
-		XCTAssertFalse(self.overlay.isHidden, "Overlay should be visible")
-		XCTAssertFalse(self.overlay.activityIndicator.isHidden, "Overlay should be visible")
-		XCTAssertTrue(self.overlay.activityProgress.isHidden, "Overlay should be visible")
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		XCTAssertFalse(overlay.isHidden, "Overlay should be visible")
+		XCTAssertFalse(overlay.activityIndicator.isHidden, "Overlay should be visible")
+		XCTAssertTrue(overlay.activityProgress.isHidden, "Overlay should be visible")
 	}
 	
 	func assertProgressVisibility() {
-		XCTAssertFalse(self.overlay.isHidden, "Overlay should be visible")
-		XCTAssertFalse(self.overlay.activityProgress.isHidden, "Overlay should be visible")
-		XCTAssertTrue(self.overlay.activityIndicator.isHidden, "Overlay should be visible")
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		XCTAssertFalse(overlay.isHidden, "Overlay should be visible")
+		XCTAssertFalse(overlay.activityProgress.isHidden, "Overlay should be visible")
+		XCTAssertTrue(overlay.activityIndicator.isHidden, "Overlay should be visible")
 	}
 	
 	@objc func buttonTargetMethod(_ sender: UIButton) {}
 	
 	func changeStyle(to newStyle: TRIKOverlay.Style, withAssertion assert: Bool) {
-		let oldStyle = self.overlay.style
-		self.overlay.setStyle(newStyle)
+		guard let overlay = self.overlay as? TRIKActivityOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		let oldStyle = overlay.style
+		overlay.setStyle(newStyle)
 		
 		if assert {
 			// Assert style has been changed as expected
-			XCTAssertNotEqual(self.overlay.style, oldStyle, "Overlay style does not match expected style")
+			XCTAssertNotEqual(overlay.style, oldStyle, "Overlay style does not match expected style")
 		}
 	}
 	
@@ -302,10 +327,13 @@ class ActivityOverlayTests: XCTestCase {
 										   activityColor: color)
 		self.overlay.present(animated: false) { [unowned self] (_) in
 			if assert {
+				guard let overlay = self.overlay as? TRIKActivityOverlay else {
+					return XCTFail("Unexpected overlay type")
+				}
+				
 				// Assert initialization options have been set correctly
-				XCTAssertNotEqual(self.overlay.activityIndicator.color, color, "Overlay's activity color should have been adjusted for better visibility")
+				XCTAssertNotEqual(overlay.activityIndicator.color, color, "Overlay's activity color should have been adjusted for better visibility")
 			}
 		}
 	}
-	
 }

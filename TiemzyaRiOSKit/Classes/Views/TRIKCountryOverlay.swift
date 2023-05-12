@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 17.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -339,6 +339,7 @@ public class TRIKCountryOverlay: TRIKOverlay {
 	            locale: TRIKCountryOverlay.Locale = .local,
 	            localizationEnabled: Bool = true,
 				delegate: TRIKCountryOverlayDelegate? = nil) {
+		
 		self.delegate = delegate
 		self.fontHeader = headerFont
 		self.fontContent = contentFont
@@ -365,15 +366,6 @@ public class TRIKCountryOverlay: TRIKOverlay {
 		
 		self.setupOverlay()
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -448,137 +440,58 @@ extension TRIKCountryOverlay {
 			dummyLabel.text = self.languageSwitch.titleForSegment(at: 0)!
 			dummyLabel.sizeToFit()
 			let languageSwitchWidth = (dummyLabel.frame.size.width + 2 * TRIKCountryOverlay.languageSwitchStringPadding) * CGFloat(self.languageSwitch.numberOfSegments)
+			
 			self.languageSwitch.translatesAutoresizingMaskIntoConstraints = false
 			self.addSubview(self.languageSwitch)
-			self.languageSwitch.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-																 attribute: NSLayoutConstraint.Attribute.width,
-																 relatedBy: NSLayoutConstraint.Relation.equal,
-																 toItem: nil,
-																 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-																 multiplier: 1.0,
-																 constant: languageSwitchWidth))
-			self.languageSwitch.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-																 attribute: NSLayoutConstraint.Attribute.height,
-																 relatedBy: NSLayoutConstraint.Relation.equal,
-																 toItem: nil,
-																 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-																 multiplier: 1.0,
-																 constant: TRIKCountryOverlay.languageSwitchHeight))
-			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  multiplier: 1.0,
-												  constant: TRIKOverlay.padding))
-			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutConstraint.Attribute.leading,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.leading,
-												  multiplier: 1.0,
-												  constant: TRIKOverlay.padding))
-			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutConstraint.Attribute.trailing,
-												  relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.trailing,
-												  multiplier: 1.0,
-												  constant: -TRIKOverlay.padding))
+			
+			self.languageSwitch.widthAnchor.constraint(equalToConstant: languageSwitchWidth).isActive = true
+			self.languageSwitch.heightAnchor.constraint(equalToConstant: TRIKCountryOverlay.languageSwitchHeight)
+				.isActive = true
+			self.languageSwitch.topAnchor.constraint(equalTo: self.topAnchor,
+													 constant: TRIKOverlay.padding).isActive = true
+			self.languageSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+														 constant: TRIKOverlay.padding).isActive = true
+			self.languageSwitch.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor,
+														  constant: -TRIKOverlay.padding).isActive = true
 		}
 		
 		// Search bar
 		self.countrySearchBar.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.countrySearchBar)
+		
 		if self.localizationEnabled {
-			self.addConstraint(NSLayoutConstraint(item: self.languageSwitch,
-												  attribute: NSLayoutConstraint.Attribute.bottom,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self.countrySearchBar,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  multiplier: 1.0,
-												  constant: -TRIKOverlay.subviewSpacing))
+			self.languageSwitch.bottomAnchor.constraint(equalTo: self.countrySearchBar.topAnchor,
+														constant: -TRIKOverlay.subviewSpacing).isActive = true
 		}
 		else {
-			self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  multiplier: 1.0,
-												  constant: TRIKOverlay.padding))
+			self.countrySearchBar.topAnchor.constraint(equalTo: self.topAnchor,
+													   constant: TRIKOverlay.padding).isActive = true
 		}
 		
 		// Country table
 		self.countryTable.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.countryTable)
-		let heightConstraint = NSLayoutConstraint(item: self.countryTable,
-												  attribute: NSLayoutConstraint.Attribute.height,
-												  relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-												  toItem: nil,
-												  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-												  multiplier: 1.0,
-												  constant: TRIKCountryOverlay.tvMinHeight)
+		
+		let heightConstraint = self.countryTable.heightAnchor.constraint(greaterThanOrEqualToConstant: TRIKCountryOverlay.tvMinHeight)
 		heightConstraint.priority = UILayoutPriority(rawValue: 750)
-		self.countryTable.addConstraint(heightConstraint)
-		let widthConstraint = NSLayoutConstraint(item: self.countryTable,
-												 attribute: NSLayoutConstraint.Attribute.width,
-												 relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-												 toItem: nil,
-												 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-												 multiplier: 1.0,
-												 constant: TRIKCountryOverlay.tvMinWidth)
+		heightConstraint.isActive = true
+		let widthConstraint = self.countryTable.widthAnchor.constraint(greaterThanOrEqualToConstant: TRIKCountryOverlay.tvMinWidth)
 		widthConstraint.priority = UILayoutPriority(rawValue: 750)
-		self.countryTable.addConstraint(widthConstraint)
-		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutConstraint.Attribute.width,
-											  relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual,
-											  toItem: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.width,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.countrySearchBar,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.subviewSpacing))
-		self.addConstraint(NSLayoutConstraint(item: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: TRIKOverlay.padding))
-		self.addConstraint(NSLayoutConstraint(item: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.padding))
-		self.addConstraint(NSLayoutConstraint(item: self.countryTable,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.padding))
+		widthConstraint.isActive = true
+		
+		self.countrySearchBar.widthAnchor.constraint(lessThanOrEqualTo: countryTable.widthAnchor)
+			.isActive = true
+		self.countrySearchBar.leadingAnchor.constraint(equalTo: self.countryTable.leadingAnchor).isActive = true
+		self.countrySearchBar.trailingAnchor.constraint(equalTo: self.countryTable.trailingAnchor).isActive = true
+		self.countrySearchBar.bottomAnchor.constraint(equalTo: self.countryTable.topAnchor,
+													  constant: -TRIKOverlay.subviewSpacing).isActive = true
+		
+		self.countryTable.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+												   constant: TRIKOverlay.padding).isActive = true
+		self.countryTable.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+													constant: -TRIKOverlay.padding).isActive = true
+		self.countryTable.bottomAnchor.constraint(equalTo: self.bottomAnchor,
+												  constant: -TRIKOverlay.padding).isActive = true
 	}
 	
 	/**
@@ -753,6 +666,10 @@ extension TRIKCountryOverlay {
 		self.countryTable.bounces = true
 		self.countryTable.alwaysBounceHorizontal = false
 		self.countryTable.alwaysBounceVertical = true
+		
+		if #available(iOS 15.0, *) {
+			self.countryTable.sectionHeaderTopPadding = 0
+		}
 	}
 }
 

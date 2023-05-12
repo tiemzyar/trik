@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 21.11.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -119,6 +119,7 @@ public class TRIKStaticImageSlideShowOverlay: TRIKImageSlideShowOverlay {
 						   dismissButton dismissButtonEnabled: Bool = true,
 						   pagingButtons pagingButtonsEnabled: Bool = true,
 						   delegate: TRIKImageSlideShowOverlayDelegate? = nil) {
+		
 		self.currentImage = TRIKZoomableImage(frame: CGRect.zero)
 		
 		super.init(superview: superview,
@@ -131,15 +132,6 @@ public class TRIKStaticImageSlideShowOverlay: TRIKImageSlideShowOverlay {
 				   pagingButtons: pagingButtonsEnabled,
 				   delegate: delegate)
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -254,48 +246,15 @@ extension TRIKStaticImageSlideShowOverlay {
 		self.currentImage.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.currentImage)
 		self.bringButtonsToFront()
-		self.currentImage.addConstraint(NSLayoutConstraint(item: self.currentImage,
-														   attribute: NSLayoutConstraint.Attribute.width,
-														   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-														   toItem: nil,
-														   attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-														   multiplier: 1.0,
-														   constant: TRIKImageSlideShowOverlay.minWidth))
-		self.currentImage.addConstraint(NSLayoutConstraint(item: self.currentImage,
-														   attribute: NSLayoutConstraint.Attribute.height,
-														   relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual,
-														   toItem: nil,
-														   attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-														   multiplier: 1.0,
-														   constant: TRIKImageSlideShowOverlay.minHeight))
-		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.currentImage,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  multiplier: 1.0,
-											  constant: 0.0))
+		
+		self.currentImage.widthAnchor.constraint(greaterThanOrEqualToConstant: TRIKImageSlideShowOverlay.minWidth)
+			.isActive = true
+		self.currentImage.heightAnchor.constraint(greaterThanOrEqualToConstant: TRIKImageSlideShowOverlay.minHeight)
+			.isActive = true
+		self.currentImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+		self.currentImage.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+		self.currentImage.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+		self.currentImage.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 	}
 	
 	/**

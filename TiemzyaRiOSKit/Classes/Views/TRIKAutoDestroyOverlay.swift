@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 04.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -101,6 +101,7 @@ public class TRIKAutoDestroyOverlay: TRIKOverlay {
 	            position: TRIKOverlay.Position = .bottom,
 	            destroyAfter seconds: Double = TRIKAutoDestroyOverlay.defaultDestructionDelay,
 	            tapToDestroy tappable: Bool = false) {
+		
 		self.secondsUntilDestruction = seconds
 		self.tapDestructionActive = tappable
 		
@@ -112,15 +113,6 @@ public class TRIKAutoDestroyOverlay: TRIKOverlay {
 		
 		self.setupOverlay()
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -154,30 +146,28 @@ extension TRIKAutoDestroyOverlay {
 	Sets up the layout of the overlay's subviews.
 	*/
 	private func setupSubviewLayout() {
-		// Guard existence of first items of constraints
-		guard let ctFirstItem = self.labelConstraintAlignmentTop.firstItem, let cbFirstItem = self.labelConstraintAlignmentBottom.firstItem else {
+		// Guard existence of 1st and 2nd items of constraints
+		guard let ctFirstItem = self.labelConstraintAlignmentTop.firstItem as? UIView,
+			  let ctSecondItem = self.labelConstraintAlignmentTop.secondItem as? UIView,
+			  let cbFirstItem = self.labelConstraintAlignmentBottom.firstItem as? UIView,
+			  let cbSecondItem = self.labelConstraintAlignmentBottom.secondItem as? UIView else {
+			
 			return
 		}
 		
+		let ctConstant = self.labelConstraintAlignmentTop.constant
+		let cbConstant = self.labelConstraintAlignmentBottom.constant
+		
 		// Adjust label
-		self.removeConstraint(self.labelConstraintAlignmentTop)
-		self.labelConstraintAlignmentTop = NSLayoutConstraint(item: ctFirstItem,
-															  attribute: self.labelConstraintAlignmentTop.firstAttribute,
-															  relatedBy: NSLayoutConstraint.Relation.equal,
-															  toItem: self.labelConstraintAlignmentTop.secondItem,
-															  attribute: self.labelConstraintAlignmentTop.secondAttribute,
-															  multiplier: self.labelConstraintAlignmentTop.multiplier,
-															  constant: self.labelConstraintAlignmentTop.constant)
-		self.addConstraint(self.labelConstraintAlignmentTop)
-		self.removeConstraint(self.labelConstraintAlignmentBottom)
-		self.labelConstraintAlignmentBottom = NSLayoutConstraint(item: cbFirstItem,
-																 attribute: self.labelConstraintAlignmentBottom.firstAttribute,
-																 relatedBy: NSLayoutConstraint.Relation.equal,
-																 toItem: self.labelConstraintAlignmentBottom.secondItem,
-																 attribute: self.labelConstraintAlignmentBottom.secondAttribute,
-																 multiplier: self.labelConstraintAlignmentBottom.multiplier,
-																 constant: self.labelConstraintAlignmentBottom.constant)
-		self.addConstraint(self.labelConstraintAlignmentBottom)
+		self.labelConstraintAlignmentTop.isActive = false
+		self.labelConstraintAlignmentTop = ctFirstItem.topAnchor.constraint(equalTo: ctSecondItem.topAnchor,
+																			constant: ctConstant)
+		self.labelConstraintAlignmentTop.isActive = true
+		
+		self.labelConstraintAlignmentBottom.isActive = false
+		self.labelConstraintAlignmentBottom = cbFirstItem.bottomAnchor.constraint(equalTo: cbSecondItem.bottomAnchor,
+																				  constant: cbConstant)
+		self.labelConstraintAlignmentBottom.isActive = true
 	}
 	
 	/**

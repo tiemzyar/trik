@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 28.09.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -132,9 +132,10 @@ public class TRIKActivityOverlay: TRIKOverlay {
 	            style: TRIKOverlay.Style = .white,
 	            position: TRIKOverlay.Position = .center,
 	            activityColor: UIColor = TRIKConstant.Color.Blue.tiemzyar) {
+		
 		self.activityColor = activityColor
 		
-		self.activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
+		self.activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
 		self.activityProgress = UIProgressView(progressViewStyle: UIProgressView.Style.default)
 		self.button = UIButton(frame: CGRect.zero)
 		self.buttonConstraintHeight = NSLayoutConstraint()
@@ -149,15 +150,6 @@ public class TRIKActivityOverlay: TRIKOverlay {
 		self.setupOverlay()
 	}
 
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
-
 	// MARK: -
 	// MARK: Instance methods
 	/**
@@ -169,6 +161,7 @@ public class TRIKActivityOverlay: TRIKOverlay {
 	*/
 	public func presentWithActivityIndicator(animated: Bool = false,
 											 completion: ((Bool) -> Void)? = nil) {
+		
 		self.present(animated: animated) { (true) in
 			self.activityIndicator.isHidden = false
 			self.activityIndicator.startAnimating()
@@ -190,6 +183,7 @@ public class TRIKActivityOverlay: TRIKOverlay {
 	*/
 	public func presentWithProgressBar(animated: Bool = false,
 									   completion: ((Bool) -> Void)? = nil) {
+		
 		self.present(animated: animated) { [unowned self] (true) in
 			self.activityProgress.isHidden = false
 			self.resetProgress()
@@ -349,86 +343,33 @@ extension TRIKActivityOverlay {
 		// Activity indicator
 		self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.activityIndicator)
-		self.addConstraint(NSLayoutConstraint(item: self.activityIndicator,
-											  attribute: NSLayoutConstraint.Attribute.centerX,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.centerX,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.activityIndicator,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  multiplier: 1.0,
-											  constant: TRIKOverlay.padding))
-		self.addConstraint(NSLayoutConstraint(item: self.activityIndicator,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self.label,
-											  attribute: NSLayoutConstraint.Attribute.top,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.subviewSpacing))
+		self.activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+		self.activityIndicator.topAnchor.constraint(equalTo: self.topAnchor,
+													constant: TRIKOverlay.padding).isActive = true
+		self.activityIndicator.bottomAnchor.constraint(equalTo: self.label.topAnchor,
+													   constant: -TRIKOverlay.subviewSpacing).isActive = true
 		
 		// Progess bar
 		self.activityProgress.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.activityProgress)
-		self.addConstraint(NSLayoutConstraint(item: self.activityProgress,
-											  attribute: NSLayoutConstraint.Attribute.centerY,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self.activityIndicator,
-											  attribute: NSLayoutConstraint.Attribute.centerY,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.addConstraint(NSLayoutConstraint(item: self.activityProgress,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.leading,
-											  multiplier: 1.0,
-											  constant: TRIKOverlay.padding))
-		self.addConstraint(NSLayoutConstraint(item: self.activityProgress,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.trailing,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.padding))
+		self.activityProgress.centerYAnchor.constraint(equalTo: self.activityIndicator.centerYAnchor).isActive = true
+		self.activityProgress.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+													   constant: TRIKOverlay.padding).isActive = true
+		self.activityProgress.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+														constant: -TRIKOverlay.padding).isActive = true
 		
 		// Action button
 		self.button.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(self.button)
-		self.buttonConstraintHeight = NSLayoutConstraint(item: self.button,
-														 attribute: NSLayoutConstraint.Attribute.height,
-														 relatedBy: NSLayoutConstraint.Relation.equal,
-														 toItem: nil,
-														 attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-														 multiplier: 1.0,
-														 constant: TRIKActivityOverlay.buttonHeight)
-		self.button.addConstraint(self.buttonConstraintHeight)
-		self.addConstraint(NSLayoutConstraint(item: self.button,
-											  attribute: NSLayoutConstraint.Attribute.centerX,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.centerX,
-											  multiplier: 1.0,
-											  constant: 0.0))
-		self.buttonConstraintSpacingTop = NSLayoutConstraint(item: self.button,
-															 attribute: NSLayoutConstraint.Attribute.top,
-															 relatedBy: NSLayoutConstraint.Relation.equal,
-															 toItem: self.label,
-															 attribute: NSLayoutConstraint.Attribute.bottom,
-															 multiplier: 1.0,
-															 constant: TRIKOverlay.subviewSpacing)
-		self.addConstraint(self.buttonConstraintSpacingTop)
-		self.addConstraint(NSLayoutConstraint(item: self.button,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  relatedBy: NSLayoutConstraint.Relation.equal,
-											  toItem: self,
-											  attribute: NSLayoutConstraint.Attribute.bottom,
-											  multiplier: 1.0,
-											  constant: -TRIKOverlay.padding))
+		
+		self.buttonConstraintHeight = self.button.heightAnchor.constraint(equalToConstant: TRIKActivityOverlay.buttonHeight)
+		self.buttonConstraintHeight.isActive = true
+		self.button.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+		self.buttonConstraintSpacingTop = self.button.topAnchor.constraint(equalTo: self.label.bottomAnchor,
+																		   constant: TRIKOverlay.subviewSpacing)
+		self.buttonConstraintSpacingTop.isActive = true
+		self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -TRIKOverlay.padding).isActive = true
+		
 		self.buttonConstraintHeight.constant = 0.0
 		self.buttonConstraintSpacingTop.constant = 0.0
 	}

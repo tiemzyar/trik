@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 20.11.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -311,6 +311,7 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 							dismissButton dismissButtonEnabled: Bool = true,
 							pagingButtons pagingButtonsEnabled: Bool = true,
 							delegate: TRIKImageSlideShowOverlayDelegate? = nil) {
+		
 		self.init(superview: superview,
 				  font: font,
 				  style: style,
@@ -356,6 +357,7 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 							dismissButton dismissButtonEnabled: Bool = true,
 							pagingButtons pagingButtonsEnabled: Bool = true,
 							delegate: TRIKImageSlideShowOverlayDelegate? = nil) {
+		
 		self.init(superview: superview,
 				  font: font,
 				  style: style,
@@ -397,6 +399,7 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 				  dismissButton dismissButtonEnabled: Bool = true,
 				  pagingButtons pagingButtonsEnabled: Bool = true,
 				  delegate: TRIKImageSlideShowOverlayDelegate? = nil) {
+		
 		self.buttonAlpha = buttonAlpha
 		self.isDismissable = dismissButtonEnabled
 		self.pagingButtonsEnabled = pagingButtonsEnabled
@@ -412,15 +415,6 @@ public class TRIKImageSlideShowOverlay: TRIKOverlay {
 		// Set button style (possible only after init phase 1 is completed, due to calling self within setter)
 		self.buttonStyle = buttonStyle
 	}
-
-	// MARK: Drawing
-	/*
-	// Only override draw() if you perform custom drawing.
-	// An empty implementation adversely affects performance during animation.
-	override func draw(_ rect: CGRect) {
-		// Drawing code
-	}
-	*/
 
 	// MARK: -
 	// MARK: Instance methods
@@ -598,90 +592,37 @@ extension TRIKImageSlideShowOverlay {
 		// Dismiss button
 		if self.isDismissable {
 			self.dismissButton = UIButton(type: .custom)
-			let button = self.dismissButton!
-			button.translatesAutoresizingMaskIntoConstraints = false
-			self.addSubview(button)
-			button.addConstraint(NSLayoutConstraint(item: button,
-													attribute: NSLayoutConstraint.Attribute.height,
-													relatedBy: NSLayoutConstraint.Relation.equal,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKImageSlideShowOverlay.buttonSideLength))
-			button.addConstraint(NSLayoutConstraint(item: button,
-													attribute: NSLayoutConstraint.Attribute.width,
-													relatedBy: NSLayoutConstraint.Relation.equal,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKImageSlideShowOverlay.buttonSideLength))
-			self.addConstraint(NSLayoutConstraint(item: button,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.top,
-												  multiplier: 1.0,
-												  constant: TRIKOverlay.padding))
-			self.addConstraint(NSLayoutConstraint(item: button,
-												  attribute: NSLayoutConstraint.Attribute.trailing,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.trailing,
-												  multiplier: 1.0,
-												  constant: -TRIKOverlay.padding))
+			if let button = self.dismissButton {
+				button.translatesAutoresizingMaskIntoConstraints = false
+				self.addSubview(button)
+				
+				button.heightAnchor.constraint(equalToConstant: TRIKImageSlideShowOverlay.buttonSideLength).isActive = true
+				button.widthAnchor.constraint(equalToConstant: TRIKImageSlideShowOverlay.buttonSideLength).isActive = true
+				button.topAnchor.constraint(equalTo: self.topAnchor, constant: TRIKOverlay.padding).isActive = true
+				button.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+												 constant: -TRIKOverlay.padding).isActive = true
+			}
 		}
 		
 		// Activity indicator
-		self.indicator = UIActivityIndicatorView(style: .whiteLarge)
+		self.indicator = UIActivityIndicatorView(style: .large)
 		self.indicatorContainerView = UIView(frame: CGRect.zero)
 		if let indicator = self.indicator, let container = self.indicatorContainerView {
 			indicator.translatesAutoresizingMaskIntoConstraints = false
 			container.translatesAutoresizingMaskIntoConstraints = false
 			container.addSubview(indicator)
-			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: container,
-													   attribute: NSLayoutConstraint.Attribute.top,
-													   multiplier: 1.0,
-													   constant: TRIKImageSlideShowOverlay.indicatorPadding))
-			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutConstraint.Attribute.leading,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: container,
-													   attribute: NSLayoutConstraint.Attribute.leading,
-													   multiplier: 1.0,
-													   constant: TRIKImageSlideShowOverlay.indicatorPadding))
-			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutConstraint.Attribute.centerX,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: container,
-													   attribute: NSLayoutConstraint.Attribute.centerX,
-													   multiplier: 1.0,
-													   constant: 0.0))
-			container.addConstraint(NSLayoutConstraint(item: indicator,
-													   attribute: NSLayoutConstraint.Attribute.centerY,
-													   relatedBy: NSLayoutConstraint.Relation.equal,
-													   toItem: container,
-													   attribute: NSLayoutConstraint.Attribute.centerY,
-													   multiplier: 1.0,
-													   constant: 0.0))
+			
+			indicator.topAnchor.constraint(equalTo: container.topAnchor,
+										   constant: TRIKImageSlideShowOverlay.indicatorPadding).isActive = true
+			indicator.leadingAnchor.constraint(equalTo: container.leadingAnchor,
+											   constant: TRIKImageSlideShowOverlay.indicatorPadding).isActive = true
+			indicator.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+			indicator.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
 			
 			self.addSubview(container)
-			self.addConstraint(NSLayoutConstraint(item: container,
-												  attribute: NSLayoutConstraint.Attribute.centerX,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.centerX,
-												  multiplier: 1.0,
-												  constant: 0.0))
-			self.addConstraint(NSLayoutConstraint(item: container,
-												  attribute: NSLayoutConstraint.Attribute.centerY,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.centerY,
-												  multiplier: 1.0,
-												  constant: 0.0))
+			
+			container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+			container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 		}
 		
 		self.removePagingButtons()
@@ -709,71 +650,33 @@ extension TRIKImageSlideShowOverlay {
 		if self.pagingButtonsEnabled && self.getImageCount() > 1 {
 			// Previous button
 			self.previousImageButton = UIButton(type: .custom)
-			let pButton = self.previousImageButton!
-			pButton.translatesAutoresizingMaskIntoConstraints = false
-			self.addSubview(pButton)
-			pButton.addConstraint(NSLayoutConstraint(item: pButton,
-													attribute: NSLayoutConstraint.Attribute.height,
-													relatedBy: NSLayoutConstraint.Relation.equal,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKImageSlideShowOverlay.buttonSideLength))
-			pButton.addConstraint(NSLayoutConstraint(item: pButton,
-													attribute: NSLayoutConstraint.Attribute.width,
-													relatedBy: NSLayoutConstraint.Relation.equal,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKImageSlideShowOverlay.buttonSideLength))
-			self.addConstraint(NSLayoutConstraint(item: pButton,
-												  attribute: NSLayoutConstraint.Attribute.leading,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.leading,
-												  multiplier: 1.0,
-												  constant: TRIKOverlay.padding))
-			self.addConstraint(NSLayoutConstraint(item: pButton,
-												  attribute: NSLayoutConstraint.Attribute.centerY,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.centerY,
-												  multiplier: 1.0,
-												  constant: 0.0))
+			if let button = self.previousImageButton {
+				button.translatesAutoresizingMaskIntoConstraints = false
+				self.addSubview(button)
+				
+				button.heightAnchor.constraint(equalToConstant: TRIKImageSlideShowOverlay.buttonSideLength)
+					.isActive = true
+				button.widthAnchor.constraint(equalToConstant: TRIKImageSlideShowOverlay.buttonSideLength)
+					.isActive = true
+				button.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+												constant: TRIKOverlay.padding).isActive = true
+				button.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+			}
 			
 			// Next button
 			self.nextImageButton = UIButton(type: .custom)
-			let nButton = self.nextImageButton!
-			nButton.translatesAutoresizingMaskIntoConstraints = false
-			self.addSubview(nButton)
-			nButton.addConstraint(NSLayoutConstraint(item: nButton,
-													attribute: NSLayoutConstraint.Attribute.height,
-													relatedBy: NSLayoutConstraint.Relation.equal,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKImageSlideShowOverlay.buttonSideLength))
-			nButton.addConstraint(NSLayoutConstraint(item: nButton,
-													attribute: NSLayoutConstraint.Attribute.width,
-													relatedBy: NSLayoutConstraint.Relation.equal,
-													toItem: nil,
-													attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-													multiplier: 1.0,
-													constant: TRIKImageSlideShowOverlay.buttonSideLength))
-			self.addConstraint(NSLayoutConstraint(item: nButton,
-												  attribute: NSLayoutConstraint.Attribute.trailing,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.trailing,
-												  multiplier: 1.0,
-												  constant: -TRIKOverlay.padding))
-			self.addConstraint(NSLayoutConstraint(item: nButton,
-												  attribute: NSLayoutConstraint.Attribute.centerY,
-												  relatedBy: NSLayoutConstraint.Relation.equal,
-												  toItem: self,
-												  attribute: NSLayoutConstraint.Attribute.centerY,
-												  multiplier: 1.0,
-												  constant: 0.0))
+			if let button = self.nextImageButton {
+				button.translatesAutoresizingMaskIntoConstraints = false
+				self.addSubview(button)
+				
+				button.heightAnchor.constraint(equalToConstant: TRIKImageSlideShowOverlay.buttonSideLength)
+					.isActive = true
+				button.widthAnchor.constraint(equalToConstant: TRIKImageSlideShowOverlay.buttonSideLength)
+					.isActive = true
+				button.trailingAnchor.constraint(equalTo: self.trailingAnchor,
+												 constant: -TRIKOverlay.padding).isActive = true
+				button.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+			}
 		}
 	}
 	

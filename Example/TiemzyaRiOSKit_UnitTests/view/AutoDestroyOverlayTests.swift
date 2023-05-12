@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 01.02.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,53 +29,30 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
-class AutoDestroyOverlayTests: XCTestCase {
-	// MARK: Type properties
-	private static let controllerNavID = "NavVC"
-	private static let testString = "Some plain text"
+/**
+Unit test class for ``TRIKAutoDestroyOverlay``.
+*/
+class AutoDestroyOverlayTests: OverlayTestBase {
+}
 
-	// MARK: Instance properties
-	var navVC: UINavigationController!
-	var controller: UIViewController!
-	var overlay: TRIKAutoDestroyOverlay!
-
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
-
-		// Get test storyboard and view controllers for testing
-		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: ActivityOverlayTests.self))
-		
-		guard let nvc = storyboard.instantiateViewController(withIdentifier: AutoDestroyOverlayTests.controllerNavID) as? UINavigationController else {
-			return
-		}
-		self.navVC = nvc
-		
-		guard let rvc = self.navVC.viewControllers.first else {
-			return
-		}
-		self.controller = rvc
-		// Preload controller's view
-		_ = self.controller.view
+// MARK: -
+// MARK: Setup and tear-down
+extension AutoDestroyOverlayTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		self.overlay = TRIKAutoDestroyOverlay(superview: self.controller.view,
 											  text: AutoDestroyOverlayTests.testString)
 	}
-
-	override func tearDown() {
-		if self.overlay != nil {
-			self.overlay.dismiss(animated: false) { [unowned self] (_) in
-				self.overlay.destroy()
-			}
-			self.overlay = nil
-		}
-		self.controller = nil
-		self.navVC = nil
-
-		super.tearDown()
+	
+	override func tearDownWithError() throws {
+		try super.tearDownWithError()
 	}
+}
 
-	// MARK: Test methods
+// MARK: -
+// MARK: Tests
+extension AutoDestroyOverlayTests {
 	func testInitCoder() {
 		self.overlay = TRIKAutoDestroyOverlay(coder: NSCoder())
 		

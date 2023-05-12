@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit_UnitTests
 //
 //  Created by tiemzyar on 05.02.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,56 +29,32 @@ import XCTest
 
 @testable import TiemzyaRiOSKit
 
-class LanguageOverlayTests: XCTestCase {
+/**
+Unit test class for ``TRIKLanguageOverlay``.
+*/
+class LanguageOverlayTests: OverlayTestBase {
 	// MARK: Type properties
-	private static let controllerNavID = "NavVC"
-	private static let testFontContent = UIFont(name: "Avenir-Black", size: 15.0)!
-	private static let testFontHeader = UIFont(name: "Avenir-Heavy", size: 18.0)!
 	private static let testFontTitle = UIFont(name: "Avenir-Heavy", size: 20.0)!
-	private static let testString = "Some arbitrary text"
-	
-	// MARK: Instance properties
-	var navVC: UINavigationController!
-	var controller: UIViewController!
-	var overlay: TRIKLanguageOverlay!
-	
-	// MARK: Setup and tear-down
-	override func setUp() {
-		super.setUp()
-		
-		// Get test storyboard and view controllers for testing
-		let storyboard = UIStoryboard(name: "TestStoryboard", bundle: Bundle(for: LanguageOverlayTests.self))
-		
-		guard let nvc = storyboard.instantiateViewController(withIdentifier: LanguageOverlayTests.controllerNavID) as? UINavigationController else {
-			return
-		}
-		self.navVC = nvc
-		
-		guard let rvc = self.navVC.viewControllers.first else {
-			return
-		}
-		self.controller = rvc
-		// Preload controller's view
-		_ = self.controller.view
+}
+
+// MARK: -
+// MARK: Setup and tear-down
+extension LanguageOverlayTests {
+	override func setUpWithError() throws {
+		try super.setUpWithError()
 		
 		self.overlay = TRIKLanguageOverlay(superview: self.controller.view,
 										   text: LanguageOverlayTests.testString)
 	}
 	
-	override func tearDown() {
-		if self.overlay != nil {
-			self.overlay.dismiss(animated: false) { [unowned self] (_) in
-				self.overlay.destroy()
-			}
-			self.overlay = nil
-		}
-		self.controller = nil
-		self.navVC = nil
-		
-		super.tearDown()
+	override func tearDownWithError() throws {
+		try super.tearDownWithError()
 	}
-	
-	// MARK: Test methods
+}
+
+// MARK: -
+// MARK: Tests
+extension LanguageOverlayTests {
 	func testInitCoder() {
 		self.overlay = TRIKLanguageOverlay(coder: NSCoder())
 		
@@ -87,16 +63,20 @@ class LanguageOverlayTests: XCTestCase {
 	}
 	
 	func testInitDefault() {
+		guard let overlay = self.overlay as? TRIKLanguageOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
 		// Assert initialization customized overlay as expected
-		XCTAssertNotNil(self.overlay.superview, "The overlay should have a superview after initialization")
-		XCTAssertEqual(self.overlay.superview!, self.controller.view, "Overlay superview does not match expected view")
-		XCTAssertEqual(self.overlay.font, TRIKLanguageOverlay.defaultFontTitle, "Overlay title font does not match expected font")
-		XCTAssertEqual(self.overlay.fontHeader, TRIKLanguageOverlay.defaultFontHeader, "Overlay header font does not match expected font")
-		XCTAssertEqual(self.overlay.fontContent, TRIKOverlay.defaultFont, "Overlay content font does not match expected font")
-		XCTAssertEqual(self.overlay.style, TRIKOverlay.Style.white, "Overlay style does not match expected style")
-		XCTAssertEqual(self.overlay.position, TRIKOverlay.Position.center, "Overlay position does not match expected position")
-		XCTAssertEqual(self.overlay.fallbackLanguage, TRIKConstant.Language.Code.english, "Overlay fallback language does not match expected language")
-		XCTAssertNil(self.overlay.delegate, "Overlay should not have a delegate")
+		XCTAssertNotNil(overlay.superview, "The overlay should have a superview after initialization")
+		XCTAssertEqual(overlay.superview!, self.controller.view, "Overlay superview does not match expected view")
+		XCTAssertEqual(overlay.font, TRIKLanguageOverlay.defaultFontTitle, "Overlay title font does not match expected font")
+		XCTAssertEqual(overlay.fontHeader, TRIKLanguageOverlay.defaultFontHeader, "Overlay header font does not match expected font")
+		XCTAssertEqual(overlay.fontContent, TRIKOverlay.defaultFont, "Overlay content font does not match expected font")
+		XCTAssertEqual(overlay.style, TRIKOverlay.Style.white, "Overlay style does not match expected style")
+		XCTAssertEqual(overlay.position, TRIKOverlay.Position.center, "Overlay position does not match expected position")
+		XCTAssertEqual(overlay.fallbackLanguage, TRIKConstant.Language.Code.english, "Overlay fallback language does not match expected language")
+		XCTAssertNil(overlay.delegate, "Overlay should not have a delegate")
 	}
 	
 	func testInitWithOptions() {
@@ -128,14 +108,18 @@ class LanguageOverlayTests: XCTestCase {
 										   style: style,
 										   delegate: self)
 		
-		self.overlay.present(animated: false) { (_) in
-			self.overlay.languageTable.reloadData()
+		guard let overlay = self.overlay as? TRIKLanguageOverlay else {
+			return XCTFail("Unexpected overlay type")
+		}
+		
+		overlay.present(animated: false) { (_) in
+			overlay.languageTable.reloadData()
 			self.controller.view.layoutIfNeeded()
 			
 			if assertOptions {
 				// Assert initialization options have been set correctly
-				XCTAssertEqual(self.overlay.style, style, "Overlay's style does not match expected style")
-				XCTAssertNotNil(self.overlay.delegate, "Overlay's delegate should not be nil")
+				XCTAssertEqual(overlay.style, style, "Overlay's style does not match expected style")
+				XCTAssertNotNil(overlay.delegate, "Overlay's delegate should not be nil")
 			}
 		}
 	}

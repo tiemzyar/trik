@@ -3,7 +3,7 @@
 //  TiemzyaRiOSKit
 //
 //  Created by tiemzyar on 09.10.18.
-//  Copyright © 2018 tiemzyar.
+//  Copyright © 2018-2023 tiemzyar.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -367,16 +367,14 @@ extension TRIKLanguageOverlay {
 	*/
 	private func setupSubviewLayout() {
 		// Adjust label
-		if let ctFirstItem = self.labelConstraintAlignmentTop.firstItem {
-			self.removeConstraint(self.labelConstraintAlignmentTop)
-			self.labelConstraintAlignmentTop = NSLayoutConstraint(item: ctFirstItem,
-																  attribute: self.labelConstraintAlignmentTop.firstAttribute,
-																  relatedBy: NSLayoutConstraint.Relation.equal,
-																  toItem: self.labelConstraintAlignmentTop.secondItem,
-																  attribute: self.labelConstraintAlignmentTop.secondAttribute,
-																  multiplier: self.labelConstraintAlignmentTop.multiplier,
-																  constant: self.labelConstraintAlignmentTop.constant)
-			self.addConstraint(self.labelConstraintAlignmentTop)
+		if let ctFirstItem = self.labelConstraintAlignmentTop.firstItem as? UIView,
+		   let ctSecondItem = self.labelConstraintAlignmentTop.secondItem as? UIView {
+			
+			let ctConstant = self.labelConstraintAlignmentTop.constant
+			self.labelConstraintAlignmentTop.isActive = false
+			self.labelConstraintAlignmentTop = ctFirstItem.topAnchor.constraint(equalTo: ctSecondItem.topAnchor,
+																				constant: ctConstant)
+			self.labelConstraintAlignmentTop.isActive = true
 		}
 		
 		// Language table
